@@ -1,0 +1,232 @@
+.contact-container {}
+
+.contact-container img {
+    width: 2em;
+    height: 2em;
+}
+
+.contact-container .hero-section {
+    position: relative;
+    width: 100%;
+    height: 25em;
+    background: url('/static/images/contacts/contact-us2.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: rgb(138, 43, 226, .5);
+    margin: 0;
+    padding: 0;
+    z-index: -1;
+}
+
+.hero-section .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FD21CA;
+    flex-direction: column;
+    text-shadow: 4px 0 0 white;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to left, rgb(53, 5, 97, .5), rgb(80, 5, 151, .5));
+}
+
+.hero-section .content div {
+    color: #FD21CA;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+}
+
+.content-section {
+    margin: 2em;
+}
+
+.contact-socials {
+    position: absolute;
+    top: 90%;
+}
+
+.contact-socials img {
+    border-radius: 50%;
+    font-weight: bolder;
+    font-size: larger;
+    padding: .5em;
+    color: #de1aad;
+    background-color: rgb(238, 231, 231, .5);
+    transition: linear .5s;
+}
+
+.contact-socials img:hover {
+    transform: scale(1.5);
+    transition: linear .5s;
+}
+
+.content-section {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
+    margin-top: 3em;
+    background-image linear-gradient(to bottom,
+    lightgreen,
+    whitesmoke,
+    lightgreen,
+    whitesmoke,
+    lightgreen,
+    whitesmoke,
+    lightgreen,
+    whitesmoke,
+    lightgreen,
+    whitesmoke,
+    lightgreen,
+    whitesmoke,
+    lightgreen,
+    whitesmoke,
+    lightgreen,
+    whitesmoke);
+}
+
+.content-section h1 {
+    display: flex;
+    text-shadow: 2px 0 0 #de1aad;
+    text-align: center;
+    text-decoration-line underline;
+    text-decoration-color green;
+    color #971ADE;
+}
+
+.content-section h1 div {
+    max-height: .25em;
+    width: 30%;
+    border: .25em solid rgb(53, 5, 97);
+    background-color: #de1aad;
+    color: #de1aad;
+    margin: .25em;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content center;
+    align-items: center;
+    text-shadow: 2px 0 0 white;
+    padding: 3.5em;
+    border-radius: 50%;
+    background-color: #971ADE;
+    border-bottom: 8px solid #FD21CA;
+    transition: linear 1s;
+}
+
+.contact-info:hover {
+    color: black;
+    background-image: linear-gradient(to top, #971ADE, #de1aad);
+    transition: linear 1s;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    margin: .25em;
+}
+
+.contact-info p:last-of-type {
+    color: #FD21CA;
+}
+
+.contact-info img {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: .5em;
+    padding: .25em;
+    border-radius 50%;
+}
+
+.contact-info svg {
+    margin: 0 .5em;
+}
+
+.title-header {
+    text-align: center;
+    text-transform: initial;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 1em;
+}
+
+.contact-form {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-form ul {
+    background-color: rgb(128, 26, 224, .5);
+    padding: 2em;
+    border-radius: 10px;
+    display: flex;
+    align-items center;
+    flex-direction: column;
+    margin: 0;
+    transition: all ease 2s;
+    border-bottom: 8px solid #FD21CA;
+}
+
+.contact-form ul:hover {
+    color: black;
+    background-image: linear-gradient(to top, #971ADE, #de1aad);
+    transition: all ease 2s;
+}
+
+.contact-form li {
+    padding: 0;
+    margin: .5em;
+}
+
+.contact-form input {
+    height: 2em;
+    border-radius: 5px;
+    padding-left: .5em;
+}
+
+.contact-form li:first-of-type {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+}
+
+.contact-form li:first-of-type input {
+    flex: 1;
+    margin: .25em;
+}
+
+.contact-form li:not(.contact-form li:first-of-type,
+.contact-form .submit) input,
+.contact-form textarea {
+    width: 100%;
+}
+
+.contact-form .submit {
+    border: 2px solid #de1aad;
+    font-weight: bolder;
+    font-size: larger;
+    color: #FD21CA;
+}
+
+.contact-form .submit:hover {
+    background-image: linear-gradient(to left, #971ADE, #de1aad);
+    border: 2px solid white;
+    color: white;
+}
+
+.map-section {
+    background-color: whitesmoke;
+    width: 100%;
+    height: 25em;
+    margin-top: 3em;
+}
+
+.map-section iframe {
+    width: 100%;
+    height: 25em;
+}

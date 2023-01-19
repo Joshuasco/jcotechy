@@ -1,0 +1,98 @@
+<!DOCTYPE html> {%load static%}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/includes/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/includes/footer.css' %}"> {%block styles %}
+    <!-- title and styles goes here -->
+    {%endblock%}
+</head>
+
+<body>
+    <header>
+        {% include 'includes/header.html' %}
+    </header>
+    <main>
+        <div class="content">
+            {% block content %}{%endblock%}
+        </div>
+        <div class="get-quote-form-container">
+            {%for message in messages %} {{message}} {%endfor%}
+            <div class="get-quote-form">
+                <div class="quote-header">
+                    <small><b> Get a Quote for any of our services you are interested in</b></small> <button class="cancel-get-quote">Cancel</button></div>
+                <form action="{% url 'core:quote' %}?next={{request.get_full_path}}" method='POST'>
+                    {%csrf_token%}
+                    <p><input tpe="text" name='full_name' placeholder="your full name" required></p>
+                    <p><input type="email" name="email" id="" placeholder="your email" required></p>
+                    <p><select name="service" id="" required>
+                <option value="Select a service you are interested in">Select a service you are interested in</option>
+                <option value="Visual & appealing Design">Visual & appealing Design</option>
+                <option value="Web App Development">Web App Development</option>
+                <option value="Mobile & Desktop App Development">Mobile & Desktop App Development</option>
+                <option value="Artifitial Intelligent/Robotics">Artifitial Intelligent/Robotics</option>
+                <option value="Iot and Embedded System">Iot and Embedded System</option>
+                <option value="Digital Marketing Campaign">Digital Marketing Campaign</option>
+                <option value="Digital Training">Digital Training</option>
+            </select></p>
+                    <p><input type="file" name="file" id="">
+                        <small>upload file if any. format must be 'pdf, docs or txt'</small>
+                    </p>
+                    <p><textarea name="message" id="" cols="30" rows="10" placeholder="leave a message on detail description of your proje" required></textarea></p>
+                    <input type="submit" value="Get Quote">
+                    <input type="hidden" name="path" value="{{request.path}}">
+                </form>
+            </div>
+        </div>
+        <div class="aside">
+
+            {% block aside %}{%endblock%}
+
+        </div>
+    </main>
+    <footer>
+        <div class="footer-contact">
+            <div class="subscription-container">
+                <h3>Stay Updated With Jcotech</h3>
+                <form method="POST" action="">
+                    <input type="email" name="email" id="" placeholder="enter email address"><br>
+                    <input class="submit-btn" type="submit" value="Subscribe">
+                </form>
+            </div>
+            <div>
+                <h3>Locate Us</h3>
+                <div class="address">
+                    <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="31.675" viewBox="0 0 384 510.675">
+                            <path id="location-dot" d="M168.3,499.2C116.1,435,0,279.4,0,192,0,85.96,85.96,0,192,0,298,0,384,85.96,384,192c0,87.4-117,243-168.3,307.2a30.212,30.212,0,0,1-47.4,0ZM192,256a64,64,0,1,0-64-64A64.059,64.059,0,0,0,192,256Z" fill="#fff"/>
+                          </svg>
+                        <span>  No 5 maryland Estate, Onitsha, Anambra State. Nigeria</span>
+                    </p>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="11.952" height="12.026" viewBox="0 0 511.952 512.026">
+                        <path id="phone" d="M511.2,387,487.95,487.8a31.081,31.081,0,0,1-30.46,24.22C205.2,512,0,306.8,0,54.5A31.064,31.064,0,0,1,24.22,24.05L125.02.8A31.383,31.383,0,0,1,160.8,18.92l46.52,108.5a31.3,31.3,0,0,1-8.98,36.45L144.5,207.1A349.658,349.658,0,0,0,304,366.6l44.08-53.8a31.108,31.108,0,0,1,36.47-8.975l108.5,46.51C506.1,357.2,514.6,372.4,511.2,387Z" transform="translate(0 0.006)" fill="#fff"/>
+                      </svg> +2347054974199
+                    </p>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 512 384">
+                        <path id="envelope" d="M464,64a48,48,0,0,1,28.8,86.4L275.2,313.6a32.1,32.1,0,0,1-38.4,0L19.2,150.4A48,48,0,0,1,48,64ZM217.6,339.2a63.9,63.9,0,0,0,76.8,0L512,176V384a64.059,64.059,0,0,1-64,64H64A64.027,64.027,0,0,1,0,384V176Z" transform="translate(0 -64)" fill="#fff"/>
+                      </svg> Jcotech.xyz
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        {% include 'includes/footer.html' %}
+    </footer>
+    <script src="{% static 'script/libraries/jquery_com-3.5.1.min.js' %}"></script>
+    <script src="{% static 'script/libraries/htmx.min.js' %}"></script>
+    <script src="{% static 'script/base.js' %}"></script>
+    <script src="{% static 'script/includes/header.js' %}"></script>
+    {%block scripts%}
+    <!-- all scripts goes here -->
+    {%endblock%}
+</body>
+
+</html>

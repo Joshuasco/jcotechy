@@ -1,0 +1,30 @@
+{% extends 'account/base.html'%}{%load static%} {%block account-styles%}
+
+<link rel="stylesheet" href="{% static 'css/account/signup.css' %}">{%endblock account-styles%} {%block account-content%}
+<!-- <div>
+    <form method="POST">
+        {%csrf_token%} {{form.as_p}}
+        <input type="submit" value="Submit">
+    </form>
+</div> -->
+
+<section class="section-2 form-section">
+    <p>
+        {%for message in messages%} {{message}} {%endfor%}
+    </p>
+    <div class="form-container">
+        <div class="img-container"><img src="{% static 'images/account/login3.jpg' %}" alt=""></div>
+        <form method="POST" action="{%url 'account:signup' %}">
+            {%csrf_token%}
+            <p><input type="text" name="username" id="" placeholder="username" required></p>
+            <p><input type="text" name="email" id="" placeholder="email" required></p>
+
+            <p class="form-control">
+                <span><input type="password" name="password" id="" placeholder='password' required></span>
+                <span><input type="password" name="confirm_password" id="" placeholder='confirm password' required></span>
+            </p>
+
+            <input type="submit" class="submit" value="Signup">
+        </form>
+    </div>
+</section>{% endblock account-content%}

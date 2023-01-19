@@ -1,0 +1,330 @@
+{% extends 'blog/base.html' %} {%load static%} {% load social_share %} {%block blog-styles%}
+<link rel="stylesheet" href="{% static 'css/blog/article_details.css' %}">
+<title>{{article.title}}</title>
+{%endblock%} {% block blog-content%}
+<div class="detail-page">
+
+    <main>
+        <div class="main-content-container">
+            <section class="section-1 title-container">
+                <h1 class="article-title">{{article.title|title}}</h1>
+                <div class="author-container">
+                    <div class="author">
+                        <a href="{{article.author.image.url}}"><img src="{{article.author.image.url}}" alt=""></a> <span id="author"><span>{{article.author.user.username}}</span> <span>{{article.created}}</span> </span>
+                    </div>
+                    <div class="socials ">
+                        <span title="share on instagram"><svg  xmlns="http://www.w3.org/2000/svg" width="14.25" height="14.15" viewBox="0 0 448.25 448.15">
+                            <path id="instagram" d="M224.1,141A114.9,114.9,0,1,0,339,255.9,114.718,114.718,0,0,0,224.1,141Zm0,189.6a74.7,74.7,0,1,1,74.7-74.7,74.836,74.836,0,0,1-74.7,74.7ZM370.5,136.3a26.8,26.8,0,1,1-26.8-26.8A26.738,26.738,0,0,1,370.5,136.3Zm76.1,27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9,0C95.8,35.1,64,43.3,37.7,69.5s-34.4,58-36.2,93.9c-2.1,37-2.1,147.9,0,184.9,1.7,35.9,9.9,67.7,36.2,93.9s58,34.4,93.9,36.2c37,2.1,147.9,2.1,184.9,0,35.9-1.7,67.7-9.9,93.9-36.2,26.2-26.2,34.4-58,36.2-93.9,2.1-37,2.1-147.8,0-184.8ZM398.8,388a75.627,75.627,0,0,1-42.6,42.6c-29.5,11.7-99.5,9-132.1,9s-102.7,2.6-132.1-9A75.627,75.627,0,0,1,49.4,388c-11.7-29.5-9-99.5-9-132.1s-2.6-102.7,9-132.1A75.628,75.628,0,0,1,92,81.2c29.5-11.7,99.5-9,132.1-9s102.7-2.6,132.1,9a75.628,75.628,0,0,1,42.6,42.6c11.7,29.5,9,99.5,9,132.1S410.5,358.6,398.8,388Z" transform="translate(0.075 -31.825)" fill="#fff"/>
+                          </svg>
+                          </span> <span title="share on twitter"><svg xmlns="http://www.w3.org/2000/svg" width="21.998" height="15.837" viewBox="0 0 511.998 415.837">
+                            <path id="twitter" d="M459.37,151.716c.325,4.548.325,9.1.325,13.645,0,138.72-105.583,298.558-298.558,298.558A296.534,296.534,0,0,1,0,416.813a217.08,217.08,0,0,0,25.34,1.3A210.151,210.151,0,0,0,155.614,373.28,105.119,105.119,0,0,1,57.5,300.508a132.331,132.331,0,0,0,19.818,1.624,110.982,110.982,0,0,0,27.614-3.573A104.948,104.948,0,0,1,20.791,195.574v-1.3a105.679,105.679,0,0,0,47.431,13.319A105.09,105.09,0,0,1,35.735,67.249,298.271,298.271,0,0,0,252.1,177.056a118.458,118.458,0,0,1-2.6-24.04,105.034,105.034,0,0,1,181.6-71.8,206.6,206.6,0,0,0,66.6-25.34,104.651,104.651,0,0,1-46.132,57.827A210.362,210.362,0,0,0,512,97.463a225.567,225.567,0,0,1-52.628,54.253Z" transform="translate(0 -48.082)" fill="#fff"/>
+                          </svg>
+                          </span> <span title="share on linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 448 448">
+                            <path id="linkedin" d="M416,32H31.9A32.138,32.138,0,0,0,0,64.3V447.7A32.138,32.138,0,0,0,31.9,480H416a32.223,32.223,0,0,0,32-32.3V64.3A32.223,32.223,0,0,0,416,32ZM135.4,416H69V202.2h66.5V416ZM102.2,173a38.5,38.5,0,1,1,38.5-38.5A38.517,38.517,0,0,1,102.2,173ZM384.3,416H317.9V312c0-24.8-.5-56.7-34.5-56.7-34.6,0-39.9,27-39.9,54.9V416H177.1V202.2h63.7v29.2h.9c8.9-16.8,30.6-34.5,62.9-34.5,67.2,0,79.7,44.3,79.7,101.9Z" transform="translate(0 -32)" fill="#fff"/>
+                          </svg>
+                          </span> <span title="share on facebook"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 496 493">
+                            <path id="facebook" d="M504,256C504,119,393,8,256,8S8,119,8,256C8,379.78,98.69,482.38,217.25,501V327.69h-63V256h63V201.36c0-62.15,37-96.48,93.67-96.48,27.14,0,55.52,4.84,55.52,4.84v61H335.16c-30.8,0-40.41,19.12-40.41,38.73V256h68.78l-11,71.69H294.75V501C413.31,482.38,504,379.78,504,256Z" transform="translate(-8 -8)" fill="#fff"/>
+                          </svg>
+                          </span>
+                    </div>
+
+                </div>
+            </section>
+            <section class="section-2 ">
+                <div class="header-img-container">
+                    {% if not article.is_video %}
+                    <a href="{{article.header_image.url}}"> <img src="{{article.header_image.url}}" alt="{{article.alt_text}}"></a>
+                    {%else%}
+                    <iframe src="{{article.video}}" frameborder="0" allowfullscreen></iframe> {%endif%}
+                </div>
+
+            </section>
+            <section class="section-3-0 ">
+                <div>
+                    {{article.content|safe}}
+                </div>
+                <div class="article-group">
+                    <span> <b> category: </b> <a href="{% url 'blog:articles'  %}?category={{article.category}}"> {{article.category}}</a></span><span> <b> tags: </b>{% for tag in article.tags.all %}
+                      <a href="{%url 'blog:articles' %}?tag={{tag}}"> #{{tag}}</a>,  
+                    {%endfor%}</span>
+                </div>
+            </section>
+            <section class="section-4 ">
+                <h3>What's your reactions</h3>
+                <div class="reactions-container">
+                    <!-- <span>likes</span> <span>rate this article</span><span>share</span> -->
+                    <div class="react">
+                        <a href="{% url 'blog:love_article' article.slug %}"><svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">
+                        <path id="heart" d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z" transform="translate(0 -42.152)" fill="#971ade"/>
+                      </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">
+                        <path id="heart" d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z" transform="translate(0 -42.152)" fill="#f50add"/>
+                      </svg>
+                    </a>
+                        <span>{{article.love.count}}</span>
+                    </div>
+                    <div class="react article-comment">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                            <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#971ade"/>
+                          </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                        <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#ec17bb"/>
+                      </svg>
+                        <span>{{article.comment_set.count}}</span>
+                    </div>
+                    <div class="react">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21.46" height="21.46" viewBox="0 0 21.46 21.46">
+                            <path id="share-nodes" d="M13.671,39.909,9.164,42.16a4.667,4.667,0,0,1-.01.57,4.4,4.4,0,0,1,.01.57l4.508,2.251a4.6,4.6,0,1,1-1.408,3.31,4.057,4.057,0,0,1,.034-.57L7.789,46.04a4.6,4.6,0,1,1,0-6.62L12.3,37.169a5.008,5.008,0,0,1-.034-.57,4.6,4.6,0,1,1,1.408,3.31Z" transform="translate(0 -32)" fill="#971ade"/>
+                          </svg>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="21.46" height="21.46" viewBox="0 0 21.46 21.46">
+                        <path id="share-nodes" d="M13.671,39.909,9.164,42.16a4.667,4.667,0,0,1-.01.57,4.4,4.4,0,0,1,.01.57l4.508,2.251a4.6,4.6,0,1,1-1.408,3.31,4.057,4.057,0,0,1,.034-.57L7.789,46.04a4.6,4.6,0,1,1,0-6.62L12.3,37.169a5.008,5.008,0,0,1-.034-.57,4.6,4.6,0,1,1,1.408,3.31Z" transform="translate(0 -32)" fill="#f50add"/>
+                      </svg>
+                        <span>4</span>
+                    </div>
+                    <div class="socials ">
+                        <span title="share on instagram"><svg  xmlns="http://www.w3.org/2000/svg" width="14.25" height="14.15" viewBox="0 0 448.25 448.15">
+                            <path id="instagram" d="M224.1,141A114.9,114.9,0,1,0,339,255.9,114.718,114.718,0,0,0,224.1,141Zm0,189.6a74.7,74.7,0,1,1,74.7-74.7,74.836,74.836,0,0,1-74.7,74.7ZM370.5,136.3a26.8,26.8,0,1,1-26.8-26.8A26.738,26.738,0,0,1,370.5,136.3Zm76.1,27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9,0C95.8,35.1,64,43.3,37.7,69.5s-34.4,58-36.2,93.9c-2.1,37-2.1,147.9,0,184.9,1.7,35.9,9.9,67.7,36.2,93.9s58,34.4,93.9,36.2c37,2.1,147.9,2.1,184.9,0,35.9-1.7,67.7-9.9,93.9-36.2,26.2-26.2,34.4-58,36.2-93.9,2.1-37,2.1-147.8,0-184.8ZM398.8,388a75.627,75.627,0,0,1-42.6,42.6c-29.5,11.7-99.5,9-132.1,9s-102.7,2.6-132.1-9A75.627,75.627,0,0,1,49.4,388c-11.7-29.5-9-99.5-9-132.1s-2.6-102.7,9-132.1A75.628,75.628,0,0,1,92,81.2c29.5-11.7,99.5-9,132.1-9s102.7-2.6,132.1,9a75.628,75.628,0,0,1,42.6,42.6c11.7,29.5,9,99.5,9,132.1S410.5,358.6,398.8,388Z" transform="translate(0.075 -31.825)" fill="#fff"/>
+                          </svg>
+                          </span> <span title="share on twitter"><svg xmlns="http://www.w3.org/2000/svg" width="21.998" height="15.837" viewBox="0 0 511.998 415.837">
+                            <path id="twitter" d="M459.37,151.716c.325,4.548.325,9.1.325,13.645,0,138.72-105.583,298.558-298.558,298.558A296.534,296.534,0,0,1,0,416.813a217.08,217.08,0,0,0,25.34,1.3A210.151,210.151,0,0,0,155.614,373.28,105.119,105.119,0,0,1,57.5,300.508a132.331,132.331,0,0,0,19.818,1.624,110.982,110.982,0,0,0,27.614-3.573A104.948,104.948,0,0,1,20.791,195.574v-1.3a105.679,105.679,0,0,0,47.431,13.319A105.09,105.09,0,0,1,35.735,67.249,298.271,298.271,0,0,0,252.1,177.056a118.458,118.458,0,0,1-2.6-24.04,105.034,105.034,0,0,1,181.6-71.8,206.6,206.6,0,0,0,66.6-25.34,104.651,104.651,0,0,1-46.132,57.827A210.362,210.362,0,0,0,512,97.463a225.567,225.567,0,0,1-52.628,54.253Z" transform="translate(0 -48.082)" fill="#fff"/>
+                          </svg>
+                          </span> <span title="share on linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 448 448">
+                            <path id="linkedin" d="M416,32H31.9A32.138,32.138,0,0,0,0,64.3V447.7A32.138,32.138,0,0,0,31.9,480H416a32.223,32.223,0,0,0,32-32.3V64.3A32.223,32.223,0,0,0,416,32ZM135.4,416H69V202.2h66.5V416ZM102.2,173a38.5,38.5,0,1,1,38.5-38.5A38.517,38.517,0,0,1,102.2,173ZM384.3,416H317.9V312c0-24.8-.5-56.7-34.5-56.7-34.6,0-39.9,27-39.9,54.9V416H177.1V202.2h63.7v29.2h.9c8.9-16.8,30.6-34.5,62.9-34.5,67.2,0,79.7,44.3,79.7,101.9Z" transform="translate(0 -32)" fill="#fff"/>
+                          </svg>
+                          </span> <span title="share on facebook"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 496 493">
+                            <path id="facebook" d="M504,256C504,119,393,8,256,8S8,119,8,256C8,379.78,98.69,482.38,217.25,501V327.69h-63V256h63V201.36c0-62.15,37-96.48,93.67-96.48,27.14,0,55.52,4.84,55.52,4.84v61H335.16c-30.8,0-40.41,19.12-40.41,38.73V256h68.78l-11,71.69H294.75V501C413.31,482.38,504,379.78,504,256Z" transform="translate(-8 -8)" fill="#fff"/>
+                          </svg>
+                          </span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-4-0 ">
+                {% post_to_facebook object_or_url "facebook" %} {% post_to_linkedin object_or_url %} {% post_to_telegram "New Song: " object_or_url %} {% send_email object.title "New post: {{article.title}}. Check it out!" object_or_url "Share via email" % {% post_to_whatsapp
+                object_or_url "Share via WhatsApp" %} {% save_to_pinterest object_or_url %} {% add_pinterest_script %} // Required for save_to_pinterest. Add to the end of body tag. {% copy_to_clipboard object_or_url "Copy to clipboard!" %} {% add_copy_script
+                %}
+                <h2>Related Articles</h2>
+                <div class="division-1">
+                    <section class="section-2 couroser-section">
+                        <div class="couroser">
+                            {%for article in articles %}{% if article.id != id%} {% if not article.is_video%}
+                            <div class="article">
+                                <ul>
+                                    <div class="absolute-bg">
+                                        <div class="profile-container">
+                                            <span>
+                                            <img class="profile-pics" src="{{article.author.image.url}}" alt="{{article.author.username}}">
+                                            {{article.author.user.username}} </span>
+                                            <small><em>{{article.created|timesince}} ago</em></small>
+                                        </div>
+                                        <div class="stats-container">
+                                            <div class="article-stats"><svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">
+                                            <path id="heart" d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z" transform="translate(0 -42.152)" fill="#971ade"/>
+                                          </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">
+                                            <path id="heart" d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z" transform="translate(0 -42.152)" fill="#f50add"/>
+                                          </svg>
+                                                <span>5</span>
+                                            </div>
+                                            <div class="article-stats">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                                                <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#971ade"/>
+                                              </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                                            <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#ec17bb"/>
+                                          </svg>
+                                                <span>3</span>
+                                            </div>
+                                            <div class="article-stats">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="21.46" height="21.46" viewBox="0 0 21.46 21.46">
+                                                <path id="share-nodes" d="M13.671,39.909,9.164,42.16a4.667,4.667,0,0,1-.01.57,4.4,4.4,0,0,1,.01.57l4.508,2.251a4.6,4.6,0,1,1-1.408,3.31,4.057,4.057,0,0,1,.034-.57L7.789,46.04a4.6,4.6,0,1,1,0-6.62L12.3,37.169a5.008,5.008,0,0,1-.034-.57,4.6,4.6,0,1,1,1.408,3.31Z" transform="translate(0 -32)" fill="#971ade"/>
+                                              </svg>
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="21.46" height="21.46" viewBox="0 0 21.46 21.46">
+                                            <path id="share-nodes" d="M13.671,39.909,9.164,42.16a4.667,4.667,0,0,1-.01.57,4.4,4.4,0,0,1,.01.57l4.508,2.251a4.6,4.6,0,1,1-1.408,3.31,4.057,4.057,0,0,1,.034-.57L7.789,46.04a4.6,4.6,0,1,1,0-6.62L12.3,37.169a5.008,5.008,0,0,1-.034-.57,4.6,4.6,0,1,1,1.408,3.31Z" transform="translate(0 -32)" fill="#f50add"/>
+                                          </svg>
+                                                <span>4</span>
+                                            </div>
+                                            <div class="article-stats article-details"><a href="{{ article.get_absolute_url }}"><b>More >></b> </a></div>
+                                        </div>
+                                    </div>
+                                    <div class="img-container">
+                                        <img src="{{ article.header_image.url }}">
+                                    </div>
+                                    <div class="article-content">
+                                        <h1>{{article.title|title}}</h1>
+                                        <p>{{article.content|truncatechars:100|safe}} in <a href="{% url 'blog:articles' %}?category={{article.category.slug}}"> {{article.category|lower}}</a></p>
+                                    </div>
+                                </ul>
+                            </div>
+                            {%else%}
+
+                            <div class="article">
+                                <ul>
+                                    <div class="absolute-bg">
+                                        <div class="profile-container">
+                                            <span>
+                                            <img class="profile-pics" src="{{article.author.image.url}}" alt="{{article.author.username}}">
+                                            {{article.author.user.username}} </span>
+                                            <small><em>{{article.created|timesince}} ago</em></small>
+                                        </div>
+                                        <div class="stats-container">
+                                            <div class="article-stats"><svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">
+                                            <path id="heart" d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z" transform="translate(0 -42.152)" fill="#971ade"/>
+                                          </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">
+                                            <path id="heart" d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z" transform="translate(0 -42.152)" fill="#f50add"/>
+                                          </svg>
+                                                <span>5</span>
+                                            </div>
+                                            <div class="article-stats">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                                                <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#971ade"/>
+                                              </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                                            <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#ec17bb"/>
+                                          </svg>
+                                                <span>3</span>
+                                            </div>
+                                            <div class="article-stats">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="21.46" height="21.46" viewBox="0 0 21.46 21.46">
+                                                <path id="share-nodes" d="M13.671,39.909,9.164,42.16a4.667,4.667,0,0,1-.01.57,4.4,4.4,0,0,1,.01.57l4.508,2.251a4.6,4.6,0,1,1-1.408,3.31,4.057,4.057,0,0,1,.034-.57L7.789,46.04a4.6,4.6,0,1,1,0-6.62L12.3,37.169a5.008,5.008,0,0,1-.034-.57,4.6,4.6,0,1,1,1.408,3.31Z" transform="translate(0 -32)" fill="#971ade"/>
+                                              </svg>
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="21.46" height="21.46" viewBox="0 0 21.46 21.46">
+                                            <path id="share-nodes" d="M13.671,39.909,9.164,42.16a4.667,4.667,0,0,1-.01.57,4.4,4.4,0,0,1,.01.57l4.508,2.251a4.6,4.6,0,1,1-1.408,3.31,4.057,4.057,0,0,1,.034-.57L7.789,46.04a4.6,4.6,0,1,1,0-6.62L12.3,37.169a5.008,5.008,0,0,1-.034-.57,4.6,4.6,0,1,1,1.408,3.31Z" transform="translate(0 -32)" fill="#f50add"/>
+                                          </svg>
+                                                <span>4</span>
+                                            </div>
+                                            <div class="article-stats article-details"><a href="{{ article.get_absolute_url }}"><b>More >></b> </a></div>
+                                        </div>
+                                    </div>
+                                    <div class="img-container">
+                                        <iframe src="{{article.video}}" frameborder="0" allowfullscreen></iframe>
+
+                                    </div>
+                                    <div class="article-content">
+                                        <h1>{{article.title|title}}</h1>
+                                        <p>{{article.content|truncatechars:50|safe}} in <a href="{% url 'blog:articles' %}?category={{article.category.slug}}"> {{article.category|lower}}</a></p>
+                                    </div>
+                                </ul>
+                            </div>
+                            {%endif%} {%endif%} {%empty%}
+                            <div>no related article yet
+                            </div> {%endfor%}
+                        </div>
+                    </section>
+
+                    <section>
+                        <div>
+                            <button>1</button><button>2</button><button>3</button><button>Next</button>
+                        </div>
+                    </section>
+                </div>
+            </section>
+            <section class="section-5 ">
+                <div>
+                    <div class="comment-header">
+                        <h2>Comments <span>{{article.comment_set.count}}<svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                      <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#971ade"/>
+                    </svg></span> </h2><button>cancel</button></div>
+                    <div>See what people are saying</div><br>
+                    <div id="comment-container">
+                        {% for comment in article.comment_set.all %} {%if comment.get_parent%}
+                        <div class="comment-container"> <img src="{{comment.article.author.image.url}}" alt="user profile pics">
+                            <span class="comment"> 
+                              <div class="comment-header">
+                                <span ><b> {{comment.user.username}}</b></span> <small>{{comment.created}}</small>
+                        </div>
+                        <span class="comment-content">{{comment.content}}</span>
+                        <br><br>
+                        <div class="reactions">
+                            <div title="{{comment.love.count}}&nbsp;loved&nbsp;this" class="react">
+                                <a href="{% url 'blog:love_comment' article.slug comment.id %}"> <svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">
+                                    <path id="heart" d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z" transform="translate(0 -42.152)" fill="#971ade"/>
+                                  </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">
+                                    <path id="heart" d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z" transform="translate(0 -42.152)" fill="#f50add"/>
+                                  </svg></a>
+                                <span>{{comment.love.count}}</span>
+                            </div>
+                            <div class="react">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                                          <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#971ade"/>
+                                    </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                                      <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#ec17bb"/>
+                                    </svg>
+                                <span><em class="comment-reply" comment_id="{{comment.id}}" author="{{comment.user.username}}">Reply</em></span>
+                            </div>
+                            {% if comment.get_children %}
+                            <div class="react">
+                                <span class="view-replies">view&nbsp;<b>{{comment.get_children.count}}</b>&nbsp;Replies</span>
+                            </div>
+                            {%endif%}
+                            <div class="react">
+                                <a href="{% url 'blog:edit_comment' article.slug  comment.id %}" class="edit">Edit </a><b>|</b>
+                                <a href="{% url 'blog:delete_comment' article.slug  comment.id %}" class="delete"> Delete</a>
+                            </div>
+                        </div>
+                        </span>
+                    </div>
+                    {%endif%} {% for reply in comment.get_children%}
+                    <div class="comment-container comment-replies" style="margin-left:3em"> <img src="{{comment.article.author.image.url}}" alt="user profile pics">
+                        <span class="comment"> 
+                        <div class="comment-header">
+                          <span ><b> {{reply.user.username}}</b></span> <small>{{reply.created}}</small>
+                    </div>
+                    <span class="comment-content">{{reply.content}}</span>
+                    <br><br>
+                    <div class="reactions">
+                        <div title="{{reply.love.count}}&nbsp;loved&nbsp;this" class="react">
+                            <a href="{% url 'blog:love_comment' article.slug reply.id %}"> <svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">
+                            <path id="heart" d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z" transform="translate(0 -42.152)" fill="#971ade"/>
+                          </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">
+                            <path id="heart" d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z" transform="translate(0 -42.152)" fill="#f50add"/>
+                          </svg></a>
+                            <span>{{reply.love.count}}</span>
+                        </div>
+                        <div class="react">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                                    <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#971ade"/>
+                              </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="29.176" height="25.574" viewBox="0 0 29.176 25.574">
+                                <path id="comment" d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z" transform="translate(-0.002 -32)" fill="#ec17bb"/>
+                              </svg>
+                            <span><em class="comment-reply" comment_id="{{comment.id}}"  author="{{reply.user.username}}" reply_id="{{reply.id}}">Reply</em></span>
+                        </div>
+
+                        <div class="react">
+                            <a href="{% url 'blog:edit_comment' article.slug  reply.id %}" class="edit">Edit </a><b>|</b>
+                            <a href="{% url 'blog:delete_comment' article.slug  reply.id %}" class="delete"> Delete</a>
+                        </div>
+                    </div>
+                    </span>
+                </div>
+                {%endfor%} {%empty%}
+                <div>
+                    Drop your comment here
+                </div>
+                {%endfor%}
+        </div>
+        <div id="comment-form">
+            <em>What do you have to say?</em>
+            <form class="comment-form" {% if "edit" in request.get_full_path %} action="{% url 'blog:edit_comment' article.slug comment_id %}" {% else %} action="{% url 'blog:comment' article.slug  %}" {%endif%} method="POST">
+                {% csrf_token %} {{ comment_form.as_p}}
+                <input class="submit_comment" type="submit" value="send">
+            </form>
+        </div>
+</div>
+</section>
+</div>
+
+
+</main>
+</div>
+{%endblock%} {%block scripts%}
+<script src="{% static 'script/blog/article_details.js' %}"></script>
+{%endblock%}

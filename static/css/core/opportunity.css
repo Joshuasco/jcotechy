@@ -1,0 +1,37 @@
+.hero-section {
+    position: relative;
+    background-color: rgba(97, 40, 231, 0.75);
+    background: url("/static/images/account/login2.jpg");
+    background-position: right!important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding: 2.5em;
+    text-align: center;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to right, rgb(138, 43, 226, .5), rgb(138, 43, 226, .25));
+}
+
+.hero-section div {
+    position: relative;
+}
+
+.hero-section .h1-45 {
+    text-transform: capitalize;
+}
+
+.hero-section .p-20 {
+    font-size 20px;
+}
+
+.hero-section .p-20 a {
+    text-shadow: 0 2px 2px white!important;
+}

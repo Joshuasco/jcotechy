@@ -1,0 +1,477 @@
+.detail-page {
+    padding .5em;
+}
+
+.header-bg {
+    background-color: rgba(97, 40, 231, 0.75);
+    height: 15em;
+    padding: 0!important;
+}
+
+main {
+    display: flex;
+    flex-flow: wrap;
+    max-width: 100%;
+}
+
+.main-content-container {
+    flex: 3;
+    padding: 1em;
+}
+
+.section-1 {
+    padding-bottom: 1em;
+}
+
+.section-1 .article-title {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: .5em!important;
+    padding-bottom: .5em!important;
+}
+
+.section-1 .author-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.section-1 .author {
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-1 #author {
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-1 #author span:first-child {
+    font-weight: bold;
+    font-size: large;
+    text-transform: capitalize;
+}
+
+.section-1 .socials {
+    background-color: rgb(184, 125, 240);
+}
+
+.section-1 img {
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+    margin-right: 1em;
+}
+
+.section-2 .header-img-container {
+    /* width: 100%;
+    max-height: 25em;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    justify-content: ;
+    align-items: center;
+    vertical-align: middle!important;
+    margin-bottom: 1.5em;
+    background-color: rgba(97, 40, 231, 0.5); */
+}
+
+.section-2 img {
+    width: 100%;
+    width: 100%;
+    max-height: 35em;
+    flex: 1;
+    transition: linear .5s;
+}
+
+.section-2 img:hover {
+    /* transform: scale(1.5); */
+    transition: linear .5s;
+}
+
+.section-3-0 .article-group {
+    display: flex;
+    flex-flow: wrap;
+    width: 100%;
+    margin: 1em .5em 1em .5em;
+}
+
+.section-3-0 .article-group span:first-of-type {
+    margin-right: auto;
+}
+
+.section-4 .reactions-container {
+    display: flex;
+    width: 100%;
+}
+
+.section-4 .react {
+    margin: .5em;
+}
+
+.section-4 .react:nth-child(2) {
+    margin-right: auto;
+}
+
+.section-4 .react svg:first-child {
+    display: none;
+}
+
+.section-4 .socials {
+    background-color: rgb(184, 125, 240);
+}
+
+
+/*----------------- begin-section-44 ---------------*/
+
+
+/* ----------------begin couroser blog--------------------- */
+
+.couroser {
+    display: flex;
+    flex-flow: wrap;
+    margin: auto 5%;
+    justify-content: space-around;
+}
+
+.couroser .article {
+    color: black!important;
+}
+
+.couroser .article {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    flex: 1;
+    flex-grow: 1;
+    text-align center;
+    width: 20em;
+    min-width: 15em;
+    margin: .5em;
+    padding: 0;
+    padding-bottom: 0;
+}
+
+.couroser ul {
+    margin: 0;
+    padding: 0;
+}
+
+.absolute-bg {
+    width: 100%;
+    height: 0%;
+    position: absolute;
+    border-radius: 15px 15px 0 0;
+    background-color: rgb(138, 43, 226, .5);
+    transition: ease-out .5s;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.absolute-bg .profile-pics {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    padding: .5em;
+}
+
+.absolute-bg .profile-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: .5em;
+    color: #f8f5f8;
+}
+
+.absolute-bg .profile-container span {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+.absolute-bg .stats-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: white;
+    margin-top: 4em;
+    padding: .5em 1em;
+    border-radius: 2px;
+}
+
+.absolute-bg .stats-container .article-stats {
+    margin: .5em;
+    position: relative;
+}
+
+.absolute-bg .stats-container .article-stats:hover {
+    transform: scaleX(1.25);
+}
+
+.stats-container svg:first-of-type {
+    display: none;
+    transition: linear .5s;
+}
+
+.stats-container .article-stats span {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.couroser .article:hover .absolute-bg {
+    height: 100%;
+    background-color: rgb(138, 43, 226, .5);
+    transition: ease-out .5s;
+}
+
+.couroser .img-container {
+    background-position: center;
+    background-size: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    height: 10em;
+    padding: 0;
+    overflow: hidden;
+}
+
+.couroser .img-container {
+    background-color: rgb(138, 43, 226);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease-out .5s;
+}
+
+.couroser .img-container:hover {
+    background-color: rgb(138, 43, 226, .5);
+    transition: ease-out .5s;
+}
+
+.couroser .img-container img {
+    max-width: 25em!important;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: ease-out .5s;
+}
+
+.couroser .article:hover .img-container img {
+    transform: scale(1.25);
+    transition: ease-out .5s;
+}
+
+.couroser .article-content {
+    padding: .5em;
+}
+
+
+/* -------------------end couroser blog------------------------- */
+
+
+/* --------------------end section-44 ----------------------*/
+
+.section-5 {
+    display none;
+    position fixed;
+    top: 0%;
+    background-color: rgb(255, 255, 255, .95);
+    padding: 0 1em;
+    width: 90%;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.section-5 .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-5 .comment-header button:hover {
+    color: white;
+    background-color: red;
+}
+
+.section-5 #comment-container {
+    overflow-y: scroll;
+    position: 'relative';
+    min-width: '100%';
+    margin: '0';
+    padding: '0';
+}
+
+.section-5 .comment-container {
+    display: flex;
+    align-items: flex-start;
+    margin: .5em;
+}
+
+.section-5 img {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    background-color: rgb(194, 154, 231);
+    margin-right: .5em;
+}
+
+.section-5 .comment {
+    box-shadow: 0 0 4px rgb(194, 154, 231);
+    padding: .5em;
+    width: 100%;
+}
+
+.section-5 .comment-header {
+    display: flex;
+    width: 100%;
+    margin-bottom: .5em;
+}
+
+.section-5 .comment-header span {
+    margin-right: auto;
+}
+
+.section-5 .reactions {
+    display: flex;
+    align-items: center;
+}
+
+.section-5 .reactions .react {
+    margin-right: 1em;
+}
+
+.section-5 .reactions .react:nth-of-type(2) {
+    margin-right: auto;
+}
+
+.section-5 .reactions svg:first-of-type {
+    display: none;
+}
+
+.section-5 .reactions .comment-reply:hover {
+    cursor: pointer;
+    color: #F50ADD!important;
+}
+
+.section-5 .reactions .edit {
+    color: green!important;
+    padding: .25em 1em;
+}
+
+.section-5 .reactions .edit:hover {
+    color: white!important;
+    background-color: green;
+    border-radius: 2px;
+}
+
+.section-5 .reactions .delete {
+    color: red!important;
+    padding: .25em 1em;
+}
+
+.section-5 .reactions .delete:hover {
+    color: white!important;
+    background-color: red;
+    border-radius: 2px;
+}
+
+.section-5 .view-replies {
+    cursor: pointer;
+}
+
+.section-5 .view-replies:hover {
+    color: #F50ADD;
+}
+
+.section-5 .comment-replies {
+    display none;
+}
+
+.section-5 #comment-form {
+    background-color: white;
+    bottom: 0;
+    margin: .5em auto;
+    width: 90%;
+}
+
+.section-5 .comment-form {
+    display: flex;
+    align-items: flex-end;
+}
+
+.section-5 .comment-form p {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    margin-right: 1em;
+    padding: 0;
+}
+
+.section-5 #id_content {
+    max-height: 3em;
+    width: 100%;
+}
+
+.section-5 .comment-form .submit_comment {
+    padding: .25em .5em;
+    border-radius: 5px;
+    border: 2px solid #F50ADD;
+    color: #F50ADD;
+    text-transform: capitalize;
+    font-family: fantasy;
+}
+
+.section-5 .comment-form .submit_comment:hover {
+    color: white;
+    background-color: #F50ADD;
+}
+
+@media screen and (max-width: 992px) {
+    main {
+        display: block;
+        width: 100%;
+    }
+    .section-1 .socials,
+    .section-4 .socials {
+        display: flex!important;
+        display: block;
+    }
+    .section-5 {
+        width: 90%;
+    }
+    .section-5 .comment-container {
+        width: 90%;
+        margin-right: 0;
+    }
+    .section-5 #comment-form {
+        width: 100%;
+    }
+    .section-5 .comment-form {
+        width: 100%;
+    }
+    .section-5 .comment-form p {
+        margin-right: .5em;
+        max-width: 90%;
+    }
+    .section-5 #id_content {
+        max-height: 3em;
+        width: 80%;
+    }
+}

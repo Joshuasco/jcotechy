@@ -1,0 +1,18 @@
+{% extends 'base.html'%}{%load static%}{%block styles%}
+<link rel="stylesheet" href="{% static 'css/account/base.css' %}">{%block account-styles%}
+<!-- singin and signup styles goes here -->
+{%endblock account-styles%}{%endblock styles%} {%block content%}
+<section class="section-1 hero-section">
+    <!-- <img src="" alt=""> -->
+    <div>
+        <br><br><br>
+        <h1 class="h1-45"> Let's Get Going.</h1>
+        <p class="p-20">
+            <a href="{% url 'account:signin' %}">Login</a>/<a href="{% url 'account:signup' %}">Register</a> <br>
+        </p>
+    </div>
+
+</section>
+{%block account-content%}
+<!-- singin and signup contents goes here -->
+{%endblock account-content%}{%endblock content%}

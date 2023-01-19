@@ -1,0 +1,155 @@
+{% extends 'base.html' %} {%load static%} {%block styles%}
+<link rel="stylesheet" href="{% static 'css/blog/base.css' %}"> {%block blog-styles%} {%endblock%} {%endblock%}{%block content %}
+<script src="{% static 'script/libraries/jquery_com-3.5.1.min.js' %} "></script>
+<script src="{% static 'script/libraries/htmx.min.js' %} "></script>
+<section class="section-1 hero-section">
+    <!-- <img src="" alt=""> -->
+    <div>
+        <br><br><br>
+        <h1 class="h1-45"> Get the latest gist, from JCOTECH.</h1>
+        <p class="p-20">
+            See what is happening <br>
+        </p>
+    </div>
+
+</section>
+<div class="category-container">
+    <a href="{% url 'blog:articles'%}" {% if not '?' in request.get_full_path %}class="active-link" {%endif%}><small>All</small></a>{%for category in categories %}
+    <a href="{% url 'blog:articles'%}?category={{category.slug}}" {% if category.slug in request.get_full_path %} class="active-link" {%endif%}><small>{{category.title|title}}</small></a> {%endfor%}
+</div>
+<div class="blog-base-container">
+    <div class="division-1">
+        {%block blog-content %} {%endblock%}
+    </div>
+    <div class="aside-container division-2">
+        <div>
+            <section style="position: sticky;">
+                <h3 class="sub-header">Ads <a href="">Explore</a></h3>
+                <hr>
+                <div class="all-trending-post-conatainer">
+                    <div class="trending-post-conatainer">
+                        <div hx-get="" hx-trigger="every 350s" style="text-align: center;">
+                            <img id="ads-img" style="max-height:10em" src="{{trending_articles.1.image.url}}" alt="">
+                            <p id="ads-content"> {{ trending_articles.1.content|truncatechars:50|safe }}
+                            </p>
+                            <!-- <script>
+                                let articles = JSON.parse("{{trending_articles|safe}}");
+                                let len = articles.length();
+                                for (let a = 0; a < len; a++) {
+                                    articles
+                                }
+
+                                let ads_img = articles[1];
+                                console.log(len + 'is lent');
+                                console.log(articles);
+                                $('#ads-img').prop('src') = ads_img;
+                            </script> -->
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section class="section-3">
+                <h3 class="sub-header">Recent posts <a href="">Explore</a></h3>
+                <hr>
+                <div class="all-trending-post-conatainer">
+                    {%for article in trending_articles|slice:3 %}
+                    <a href="{{ article.get_absolute_url }}" class="trending-post">
+                        <div class="trending-post-conatainer">
+                            <div class="author-container">
+                                <small>
+                          <img class="author-img" src="{{article.author.image.url}}" alt="{{article.author.user.username}}">
+                          {%if article.author.first_name%}{{article.author.first_name}}{{article.author.last_name}}{%else%}{{article.author.user.username}}{%endif%}
+                      </small>
+                                <small> <em>{{article.created|timesince}} ago</em></small>
+
+                            </div>
+                            <div class="content-container">
+                                <div class="article-img-conatainer"><img src="{{article.header_image.url}}" alt=""></div>
+                                <div>
+                                    <h4>{{article.title|title|truncatechars:25}}</h4>
+                                    <div>
+                                        {{article.content|truncatechars:40}} in <a href=""><small>{{article.category}}</small></a>
+                                    </div>
+                                    <div class="stats">
+                                        <small><span>{{article.love.count}} likes </span><span>  2 views  </span><span>  {{article.comment_set.count}} comments</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {%empty%}
+                    <div>no Trending posts yet</div>
+                    {%endfor%}
+                </div>
+            </section>
+            <section class="section-3">
+                <h3 class="sub-header">Trending posts <a href="">Explore</a></h3>
+                <hr>
+                <div class="all-trending-post-conatainer">
+                    {%for article in trending_articles|slice:3 %}
+                    <a href="{{ article.get_absolute_url }}" class="trending-post">
+                        <div class="trending-post-conatainer">
+                            <div class="author-container">
+                                <small>
+                          <img class="author-img" src="{{article.author.image.url}}" alt="{{article.author.user.username}}">
+                          {%if article.author.first_name%}{{article.author.first_name}}{{article.author.last_name}}{%else%}{{article.author.user.username}}{%endif%}
+                      </small>
+                                <small> <em>{{article.created|timesince}} ago</em></small>
+
+                            </div>
+                            <div class="content-container">
+                                <div class="article-img-conatainer"><img src="{{article.header_image.url}}" alt=""></div>
+                                <div>
+                                    <h4>{{article.title|title|truncatechars:25}}</h4>
+                                    <div>
+                                        {{article.content|truncatechars:40}} in <a href=""><small>{{article.category}}</small></a>
+                                    </div>
+                                    <div class="stats">
+                                        <small><span>{{article.love.count}} likes </span><span>  2 views  </span><span>  {{article.comment_set.count}} comments</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {%empty%}
+                    <div>no Trending posts yet</div>
+                    {%endfor%}
+                </div>
+            </section>
+            <section>
+                <h3 class="sub-header">Reviewed posts <a href="">Explore</a></h3>
+                <hr> {%for article in reviewed_articles|slice:3 %}
+                <a href="{{ article.get_absolute_url }}" class="trending-post">
+                    <div class="trending-post-conatainer">
+                        <div class="author-container">
+                            <small>
+                          <img class="author-img" src="{{article.author.image.url}}" alt="{{article.author.user.username}}">
+                          {%if article.author.first_name%}{{article.author.first_name}}{{article.author.last_name}}{%else%}{{article.author.user.username}}{%endif%}
+                      </small>
+                            <small> <em>{{article.created|timesince}} ago</em></small>
+
+                        </div>
+                        <div class="content-container">
+                            <div class="article-img-conatainer"><img src="{{article.header_image.url}}" alt=""></div>
+                            <div>
+                                <h4>{{article.title|title|truncatechars:25}}</h4>
+                                <div>
+                                    {{article.content|truncatechars:40}} in <a href=""><small>{{article.category}}</small></a>
+                                </div>
+                                <div class="stats">
+                                    <small><span>{{article.love.count}} likes </span><span>  2 views  </span><span>  {{article.comment_set.count}} comments</span></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {%empty%}
+                <div>no Reviewed posts yet</div>
+                {%endfor%}
+            </section>
+
+        </div>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {%load static%} {%block styles%}
+<link rel="stylesheet" href="{% static 'css/core/opportunity.css' %}"> {%endblock styles%} {%block content%}
+<section class="section-1 hero-section">
+    <!-- <img src="" alt=""> -->
+    <div>
+        <br><br><br>
+        <h1 class="h1-45"> We Are Recuiting.</h1>
+        <p class="p-20">
+            <a href="{% url 'account:signin' %}">Login</a>/<a href="{% url 'account:signup' %}">Register</a> <br>
+        </p>
+    </div>
+
+</section>
+<section class="section-2">
+    {%for opportunity in opportunities%}
+    <div class="card">
+        <h2>{{opportunity.position|upper}}</h2>
+        <p>{{opportunity.content|safe}}</p>
+    </div>
+    {%empty%}
+    <div>No any opportunity yet, Subscribe to our news later to know when opportunity is available</div>
+    {%endfor%}
+</section>
+{%endblock content%}

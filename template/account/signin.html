@@ -1,0 +1,16 @@
+{% extends 'account/base.html'%} {%load static%}{% block account-styles %}
+<link rel="stylesheet" href="{% static 'css/account/signin.css' %}"> {% endblock account-styles%} {%block account-content%}
+<section class="section-2 form-section">
+    <p>
+        {%for message in messages%} {{message}} {%endfor%}
+    </p>
+    <div class="form-container">
+        <div class="img-container"><img src="{% static 'images/account/login.jpg' %}" alt=""></div>
+        <form method="POST" action="{%url 'account:signin' %}">
+            {%csrf_token%}
+            <p><input type="text" name="email_or_username" id="" placeholder="email or username"></p>
+            <p><input type="password" name="password" id="" placeholder='password'></p>
+            <input type="submit" class="submit" value="Signin">
+        </form>
+    </div>
+</section>{%endblock account-content%}

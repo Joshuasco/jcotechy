@@ -1,0 +1,916 @@
+/* section header text format */
+
+.h1-center {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+}
+
+.h1-center span {
+    color: #FD21CA;
+}
+
+.title-header {
+    text-align: center;
+    text-transform: initial;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 1em;
+}
+
+section {
+    padding: 5em;
+}
+
+
+/* end section  header text formating */
+
+.home-page {
+    margin-right: 0;
+    padding-right: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.hero-section {
+    position: relative;
+    background-position: right!important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color rgb(53, 5, 97);
+    color: white;
+    max-width: 100%;
+    padding: 0;
+}
+
+.hero-animation {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.hero-animation .hero-content-container {
+    padding: 2.5em;
+    min-width: 100%;
+    height: 30em;
+    margin: 0;
+    margin-top -1em;
+    padding-top -1em;
+}
+
+.hero-animation img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .75;
+}
+
+.hero-content {
+    position: absolute;
+    margin-top: 5em;
+    margin-right .5em;
+    flex 3;
+    left: 0;
+    z-index: 2;
+}
+
+#hero-globe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to left, #971ADE, rgb(138, 43, 226, .25));
+}
+
+.hero-section div {
+    position: relative;
+}
+
+.hero-section .h1-45 {
+    font-size: xx-large;
+    text-transform capitalize;
+    max-width: 55%;
+}
+
+.hero-section .h1-45 small {
+    margin-top: 1em!important;
+    font-size: 20px!important;
+}
+
+.h1-animate1 {
+    transform: translateY(-200%);
+    transition: all linear 2s;
+}
+
+.h1-animate {
+    transform: translateY(0%);
+    transition: all linear 2s;
+}
+
+.hero-section .p-20 {
+    font-size: 17px;
+    max-width: 40%;
+}
+
+.hero-section .action-btn {
+    padding: 1em;
+    margin: .5em;
+    border-radius: 10px;
+    border: 2px solid #FD21CA;
+    transition: all ease .25s;
+}
+
+.hero-section .action-btn:hover {
+    background-image: linear-gradient(to left, #971ADE, #de1aad);
+    border: none;
+    transition: all ease .25s;
+}
+
+.hero-section .action-link {
+    padding: 1em;
+    font-weight: bold;
+    font-size: large;
+}
+
+.hero-section .action-btn:hover .action-link {
+    color: white !important;
+}
+
+.hero-content-container .mobile-app {
+    max-width: 50%;
+    right: 0;
+    display: none;
+}
+
+.hero-section .primary-action-btn {
+    position: absolute;
+    z-index: 2;
+    top: 70%;
+    left: 0;
+    right: 0;
+    padding-left: 2.5em;
+}
+
+.hero-section .scroll-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.hero-section .scroll-btn .btn {
+    margin: .5em;
+    width: 1em;
+    height: 1em;
+    border: 4px solid white;
+}
+
+.scroll-btn .btn:hover {
+    background-color: white;
+    opacity: .5;
+}
+
+.hero-aside {
+    flex: 2;
+    display: flex;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.hero-aside div {
+    min-width: 100%;
+    height: 100%;
+    background-color: ;
+    background: #de1aad;
+    margin-right: .5em;
+    padding: .5em;
+}
+
+.hero-section .about-container {
+    position: absolute;
+    top: 90%;
+    padding: .5em;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.hero-section .about {
+    color: white;
+    background-image: linear-gradient(to left, rgb(53, 5, 97), rgb(80, 5, 151));
+    padding: 1em;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+
+/* --------------------begin section-2-0 -----------------------*/
+
+.section-2-0 {
+    background-color: white;
+    padding: 7em 0 3em;
+}
+
+.section-2-0 h1 {
+    text-align: center;
+}
+
+.section-2-0 .stats {
+    display: flex;
+    flex-flow: wrap;
+    color: white;
+    margin: .5em;
+    justify-content: space-around;
+}
+
+.section-2-0 .stats ul {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 50%;
+    background-image: linear-gradient(to top, #971ADE, rgb(233, 19, 179));
+    background-color: #971ADE;
+    max-width: 20%;
+    min-width: 8em;
+    padding: .5em;
+    margin: .5em;
+    transition: linear .5s;
+}
+
+.section-2-0 .stats ul:hover {
+    background-image: linear-gradient(to left, rgb(53, 5, 97), rgb(80, 5, 151));
+    background-color: rgb(30, 5, 53);
+    transition: linear .5s;
+}
+
+.section-2-0 .stats ul li {
+    font-size: larger;
+    font-weight: bold;
+    text-shadow: 3px 0 0 black;
+    padding: .5em;
+}
+
+.section-2-0 .stats ul em {
+    margin: .5em .5em 1.5em .5em;
+    text-shadow: 1px 0 0 black;
+}
+
+
+/* ------------------end .section-2-0 ----------------- */
+
+.section-2 {
+    padding: 3em 0;
+}
+
+.section-2 .couroser {
+    position: relative;
+    display: flex;
+    flex-flow: wrap;
+    margin: auto 5%;
+    width 100%;
+}
+
+.section-2 .service-cancel-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: .5em;
+    color: gray;
+    display: none;
+}
+
+.section-2 .couroser img {
+    position: fixed;
+    top: 10%;
+    bottom 10%;
+    z-index: -2;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 90%;
+}
+
+.section-2 .couroser .service-container {
+    border-radius: 15px;
+    background-image: linear-gradient(to bottom, rgb(245, 245, 245, 0), rgb(245, 245, 245, 0), rgb(245, 245, 245, 0), rgb(245, 245, 245, 0), whitesmoke, whitesmoke, whitesmoke, whitesmoke);
+    flex: 1;
+    flex-grow: 1;
+    text-align center;
+    width: 20em;
+    min-width: 15em;
+    height 15em;
+    margin: .5em;
+    padding: .5em;
+    transition: linear .25s;
+}
+
+.service-details {
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    top: 30%;
+    width: 90%!important;
+    margin: auto;
+    padding: 1em;
+    z-index: 3;
+    background-image: linear-gradient(to left, rgb(138, 43, 226, .95), rgb(138, 43, 226, .95))!important;
+    color: white;
+}
+
+.section-2 .couroser .service-container:hover {
+    transform: translateY(-5%);
+    color: white;
+    background-image: linear-gradient(to left, rgb(138, 43, 226, .75), rgb(138, 43, 226, .75));
+    transition: linear .5s;
+}
+
+.section-2 .couroser .service-container:hover h3 {
+    text-align: center;
+}
+
+.section-2 .couroser .service-container .svg_img-container {
+    background-position: center;
+    background-size: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    height: 10em;
+    padding: 0;
+    margin: 0;
+    /* background-color: rgb(138, 43, 226, .5)!important; */
+    text-align: center;
+    vertical-align: middle;
+}
+
+.section-2 .couroser .service-container svg {
+    width: 159px!important;
+    height: 152px !important;
+}
+
+
+/* .section-2 .couroser .service-container .service-description {
+    background-color whitesmoke;
+    padding: 0 .5em;
+    z-index: 2;
+} */
+
+.section-2 .service-content {
+    display: none;
+}
+
+.section-2 .couroser .service-container .service-description span {
+    margin: .5em!important;
+}
+
+.section-3 {
+    background-color: white;
+    background-image: linear-gradient(to top, #971ADE, rgba(158, 33, 216, 0.75), rgb(158, 33, 216, .5), rgb(158, 33, 216, 0));
+}
+
+.section-3 .features {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+    transform: translateY(150%);
+    transition: all 2s ease;
+    opacity: 0;
+}
+
+.section-3 .features.active {
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+.features p {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 15em;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 5px;
+    background-color: rgba(212, 237, 235, 0);
+    transition: linear .5s;
+}
+
+.features p:hover {
+    background-color: rgb(205, 157, 250);
+    transition: linear .5s;
+}
+
+.features img {
+    background-color: whitesmoke;
+    border-radius: 50%;
+    width: 6em;
+    min-height: 6em;
+    padding: 1em;
+}
+
+.section-3 em {
+    color: white;
+    font-size: medium;
+}
+
+.section-3 {
+    padding: 5em;
+}
+
+.features p:hover em {
+    color: black;
+}
+
+
+/* start development life cycle */
+
+
+/* end development life cycle */
+
+
+/* -----------------start project css---------------- */
+
+.section-23 {
+    background-color: white;
+    padding: 5em;
+}
+
+.section-23 .project-container {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.section-23 .project {
+    width: 45%;
+    overflow: hidden;
+    background-color: whitesmoke;
+    margin: .5em;
+}
+
+.section-23 .img-container {
+    height: 15em;
+    overflow-y: scroll;
+    width: 110%;
+}
+
+.section-23 img {
+    width: 100%;
+}
+
+.section-23 .content-container {
+    padding: 0 .5em;
+}
+
+.section-23 .url-container {
+    text-align: right;
+    padding: .5em 0;
+}
+
+.section-23 .url-container button {
+    padding: .5em 1em;
+    border-radius: 10px;
+    border: 2px solid #FD21CA;
+    transition: all ease .25s;
+}
+
+.section-23 .url-container button:hover {
+    border: none;
+    background-image: linear-gradient(to right, #971ADE, rgb(233, 19, 179));
+    transition: all ease .25s;
+}
+
+.section-23 .url-container button:hover .project-url {
+    color: white;
+}
+
+
+/* ----------------end project css ------------------*/
+
+
+/*---------------------- start blog css------------------------ */
+
+.section-14 {
+    padding-top: 2.5em;
+    background-color: white;
+}
+
+.section-14 .title-header {
+    text-align: center;
+    text-transform: initial;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 1em;
+}
+
+.section-14 .couroser {
+    display: flex;
+    flex-flow: wrap;
+    margin: auto;
+    justify-content: center;
+}
+
+.section-14 .couroser .article {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    color: black!important;
+    background-color: whitesmoke;
+    flex: 1;
+    flex-grow: 0;
+    text-align center;
+    width: 20em;
+    min-width: 15em;
+    margin: .5em;
+    padding: 0;
+    padding-bottom: 0;
+}
+
+.section-14 .couroser ul {
+    margin: 0;
+    padding: 0;
+}
+
+.section-14 .absolute-bg {
+    width: 100%;
+    height: 0%;
+    position: absolute;
+    border-radius: 15px 15px 0 0;
+    background-color: rgb(138, 43, 226, .5);
+    transition: ease-out .5s;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.section-14 .absolute-bg .profile-pics {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    padding: .5em;
+}
+
+.section-14 .absolute-bg .profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: .5em;
+    color: #F50ADD;
+}
+
+.section-14 .absolute-bg .profile-container span {
+    display: flex;
+    align-items: center;
+}
+
+.section-14 .absolute-bg .stats-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: white;
+    margin-top: 4em;
+    padding: .5em 1em;
+    border-radius: 2px;
+}
+
+.section-14 .absolute-bg .stats-container .article-stats {
+    margin: .5em;
+    position: relative;
+}
+
+.section-14 .absolute-bg .stats-container .article-stats:hover {
+    transform: scaleX(1.25);
+}
+
+.section-14 .stats-container svg:first-of-type {
+    display: none;
+    transition: linear .5s;
+}
+
+.section-14 .stats-container .article-stats span {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-14 .couroser .article:hover .absolute-bg {
+    height: 100%;
+    background-color: rgb(138, 43, 226, .5);
+    transition: ease-out .5s;
+}
+
+.section-14 .couroser .img-container {
+    background-position: center;
+    background-size: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    height: 10em;
+    padding: 0;
+    overflow: hidden;
+}
+
+.section-14 .couroser .img-container {
+    /* background-color: rgba(97, 40, 231, 0.5); */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease-out .5s;
+}
+
+
+/* .section-14 .couroser .img-container:hover {
+    background-color: rgba(97, 40, 231, 0.5);
+    transition: ease-out .5s;
+} */
+
+.section-14 .couroser .img-container img {
+    max-width: 100%!important;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: ease-out .5s;
+}
+
+.section-14 .couroser .article:hover .img-container img {
+    transform: scale(1.25);
+    transition: ease-out .5s;
+}
+
+.section-14 .couroser .article-content {
+    padding: .5em;
+}
+
+
+/* -------------------end blog css-------------------------------- */
+
+.section-4 {
+    margin: 0;
+    background-color: white;
+    padding-top: 3em;
+}
+
+.section-4 .h1-center {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.section-4 .slider {
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.section-4 .testimony-container {
+    display: flex;
+    background-color green;
+    /* flex-wrap: wrap; */
+    width: 100%;
+    margin-left 50%;
+    /* margin auto; */
+    /* overflow: hidden; */
+    /* overflow-x: scroll; */
+}
+
+.section-4 .testimony {
+    flex: 1;
+    max-width: 31%;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 8px gray;
+    border-radius: 40px;
+    min-width: 31%;
+    margin: 3em .25em .5em;
+    padding: .5em;
+    border-bottom-right-radius: 0;
+    background-color: #a155e780;
+    /* transform: translateX(-200px); */
+}
+
+.section-4 .testimony img {
+    position: absolute;
+    right: 50%;
+    top: -15%;
+    background-image: linear-gradient(to bottom, rgb(245, 245, 245, .5), rgb(245, 245, 245, .5));
+    border-radius: 50%;
+    width: 5em;
+    height: 5em;
+}
+
+.section-4 .testimony b {
+    font-size: 1.25em;
+}
+
+.section-4 .testimony p h3 {
+    top: 2em!important;
+    text-transform: capitalize;
+}
+
+
+/* -----------------begin faqs section -----------------*/
+
+.section-5 {
+    background-color: white;
+    margin: 0;
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+.section-5 .title-header {
+    text-align: center;
+    text-transform: initial;
+    font-size: large;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 1em;
+}
+
+.section-5 .question {
+    margin: .5em;
+    max-width: 80%;
+    margin: auto;
+    background-image: linear-gradient(to bottom, rgb(245, 245, 245, .5), rgb(245, 245, 245, .5));
+}
+
+.section-5 p {
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+    font-weight: bolder;
+    text-transform: capitalize;
+    padding: .5em;
+    background-color: whitesmoke;
+}
+
+.btn-2 {
+    display: none;
+}
+
+.section-5 .reply {
+    display: none;
+    padding: 0 .5em .5em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.section-5 .contact-support {
+    text-align: center;
+}
+
+
+/*---------------------- end faqs section----------------- */
+
+.section-6 {
+    position: absolute;
+    top: 20%;
+    transition: all 2s ease;
+}
+
+@media screen and (max-width: 992px) {
+    /* .social-contact {
+        height: 0;
+        overflow: hidden;
+    } */
+    .hero-section .hero-content-container {
+        padding: .5em;
+    }
+    .hero-section .hero-content {
+        max-width: 90%;
+        margin auto;
+    }
+    .hero-section .h1-45 {
+        font-size: xx-large;
+        max-width: 70%;
+    }
+    .hero-section .p-20 {
+        font-size: medium;
+        max-width: 55%;
+        margin-top: -.5em;
+    }
+    .hero-section .primary-action-btn {
+        padding-left: 0;
+        top: 75%;
+    }
+    .hero-section .action-btn {
+        padding: .5em;
+    }
+    .hero-section .action-link {
+        padding: .5em;
+    }
+    .about-container {
+        background-color: white;
+    }
+    .section-2 h2 {
+        font-size: medium;
+    }
+    .title-header {
+        width: 100%;
+        margin: .25em;
+        font-size: medium;
+    }
+    .section-2-0 {
+        margin-top: 3em
+    }
+    .section-14 {
+        padding: 1em;
+    }
+    .section-14 .title-header {
+        margin: .25em;
+        font-size: medium;
+    }
+    .section-14 .couroser {
+        margin: auto .5em;
+    }
+    .section-23 {
+        padding: 1em;
+    }
+    .features p {}
+    .couroser .article {
+        width: 22.5em;
+        min-width: 19.5em;
+    }
+}
+
+@media screen and ( max-width: 600px) {
+    .hero-section .hero-content-container {
+        padding: 2em .5em;
+        height: 20em;
+    }
+    .hero-section .hero-content {
+        max-width: 100%;
+        margin: 0;
+        padding 1em;
+    }
+    .hero-section .h1-45 {
+        font-size: 25px !important;
+        max-width: 100%;
+        padding-right: .5em;
+        line-height: 1em;
+    }
+    .hero-section .h1-45 small {
+        line-height: .5em;
+        padding-top: 1em!important;
+    }
+    .hero-section .p-20 {
+        font-size: 14px;
+        max-width: 100%;
+        padding-right: .5em;
+    }
+    .hero-section .primary-action-btn {
+        padding-left: 0;
+        top: 75%;
+    }
+    .hero-section .action-btn {
+        padding: .25em;
+    }
+    .hero-section .action-link {
+        padding: .25em;
+    }
+    section {
+        padding: 3em 2.5em;
+    }
+    .title-header {
+        font-size: medium!important;
+        margin: 0!important;
+    }
+    .section-2-0 {
+        margin-top: 15em
+    }
+    .slider {
+        width: 100%!important;
+    }
+    .section-4 .testimony {
+        min-width: 100%;
+    }
+    .section-5 .question {
+        max-width: 100%;
+    }
+    .section-23 .project {
+        width: 100%!important;
+    }
+}

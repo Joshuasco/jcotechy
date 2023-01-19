@@ -1,0 +1,339 @@
+img {
+    max-width: 15em;
+    max-height 15em;
+}
+
+.blog-container {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.blog-container .division-1 {
+    flex: 3;
+}
+
+.blog-container .division-2 {
+    flex: 1;
+}
+
+
+/* begin featured posts */
+
+.section-post {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+/* .sub-header {
+    margin-top: 2em;
+} */
+
+.featured-posts {
+    max-width: 52em;
+    max-height: 17em;
+    margin: auto;
+    margin-bottom: 2em;
+    overflow: hidden;
+}
+
+.featured-posts .couroser {
+    display: flex !important;
+    flex-flow: row !important;
+    justify-content: left !important;
+    margin: auto;
+    height: 18em;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.featured-posts .couroser .article {
+    width: 15em;
+    min-width: 12.5em;
+    margin: .15em;
+}
+
+.featured-posts .couroser .img-container {
+    height: 6em;
+}
+
+.featured-posts .couroser .img-container img {
+    max-width: 12.5em!important;
+    /* border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: ease-out .5s; */
+}
+
+
+/* end featured posts */
+
+
+/* ----------------begin couroser blog--------------------- */
+
+.couroser {
+    display: flex;
+    flex-flow: wrap;
+    margin: auto 5%;
+    justify-content: center;
+}
+
+.couroser .article {
+    position: relative;
+    border: 2px solid whitesmoke;
+    border-radius: 15px;
+    color: black!important;
+    background-color: whitesmoke;
+    flex: 1;
+    flex-grow: 0;
+    width: 20em;
+    min-width: 15em;
+    margin: .5em;
+    padding: 0;
+    padding-bottom: 0;
+}
+
+.couroser ul {
+    margin: 0;
+    padding: 0;
+}
+
+.absolute-bg {
+    width: 100%;
+    height: 0%;
+    position: absolute;
+    border-radius: 15px 15px 0 0;
+    background-color: rgb(138, 43, 226, .5);
+    transition: ease-out .5s;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.absolute-bg .profile-pics {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    padding: .5em;
+}
+
+.absolute-bg .profile-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: .5em;
+    color: #f8f5f8;
+}
+
+.absolute-bg .profile-container span {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+.absolute-bg .stats-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: white;
+    margin-top: 4em;
+    padding: .5em 1em;
+    border-radius: 2px;
+}
+
+.absolute-bg .stats-container .article-stats {
+    margin: .5em;
+    position: relative;
+}
+
+.absolute-bg .stats-container .article-stats:hover {
+    transform: scaleX(1.25);
+}
+
+.stats-container svg:first-of-type {
+    display: none;
+    transition: linear .5s;
+}
+
+.stats-container .article-stats span {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.couroser .article:hover .absolute-bg {
+    height: 100%;
+    background-color: rgb(138, 43, 226, .5);
+    transition: ease-out .5s;
+}
+
+.couroser .img-container {
+    background-color: rgb(138, 43, 226);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease-out .5s;
+    background-position: center;
+    background-size: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    height: 10em;
+    padding: 0;
+    overflow: hidden;
+}
+
+.couroser .img-container:hover {
+    background-color: rgb(138, 43, 226, .5);
+    transition: ease-out .5s;
+}
+
+.couroser .img-container img {
+    max-width: 25em!important;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: ease-out .5s;
+}
+
+.couroser .article:hover .img-container img {
+    transform: scale(1.25);
+    transition: ease-out .5s;
+}
+
+.couroser .article-content {
+    padding: .5em;
+}
+
+
+/* -------------------end couroser blog------------------------- */
+
+
+/* -------------begin aside----------------------  */
+
+.aside-container {
+    /* max-height: 20em;
+    max-width: 100%; */
+    overflow-y: scroll;
+    min-width: 15em;
+    position: relative;
+}
+
+.aside-container div:first-child {
+    /* position: absolute; */
+}
+
+.section-3 .trending-post-conatainer {
+    display flex;
+    justify-content space-between;
+}
+
+.aside-container h4 {
+    padding: 0;
+    margin: 0;
+}
+
+.aside-container .trending-post {
+    color: black!important;
+}
+
+.aside-container .trending-post-conatainer {
+    padding: .5em;
+}
+
+.aside-container .trending-post-conatainer:hover {
+    color: black!important;
+    background-color: rgb(138, 43, 226, .5);
+}
+
+.author-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.author-container small:first-of-type {
+    display: flex;
+    align-content: center;
+}
+
+.author-img {
+    width: 1em;
+    height: auto;
+    margin-right: .25em;
+}
+
+.content-container {
+    display: flex;
+    justify-content space-between;
+    align-items: center;
+}
+
+.article-img-conatainer {
+    width: 5em;
+    height: 5em;
+    padding-right: .5em;
+}
+
+.article-img-conatainer img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*---------------- end aside--------------------- */
+
+@media screen and (max-width: 992px) {
+    .blog-container {
+        display: flex;
+        flex-flow: wrap;
+        flex-direction: column;
+    }
+    .featured-posts {
+        max-width: 40em;
+    }
+    .couroser .article {
+        width: 22.5em;
+        min-width: 19.5em;
+        margin-bottom: 1em !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .hero-section {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .featured-posts {
+        max-width: 25em;
+    }
+    .couroser .article {
+        width: 95%;
+        min-width: 19.5em;
+        margin: auto;
+        margin-bottom: 1em !important;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .hero-section {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .featured-posts {
+        max-width: 17.5em;
+        margin: 0!important;
+    }
+    .couroser .article {
+        width: 95%;
+        min-width: 19.5em;
+        margin: auto;
+        margin-bottom: 1em !important;
+    }
+}

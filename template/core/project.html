@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {%load static%} {%load read_svg%} {%block styles%}
+<link rel="stylesheet" href="{% static 'css/core/project.css' %}"> {%endblock%} {%block content%}
+<div>
+    <section class="section-1 hero-section">
+        <div>
+            <br><br><br>
+            <h1 class="h1-45"> Let's Make Your Dreams A Reality</h1>
+            <p class="p-20">
+                <em> We can help you with your Project</em> <br><br> <button class="get-quote"><a href="">Get Quote</a> </button>
+            </p>
+        </div>
+
+    </section>
+
+    <section class="section-2">
+        <h2>Take a tour,<a href=""> Explore our projects below</a></h2>
+        <div class="project-container">
+            {%for project in portfolios %}
+            <div class="project">
+                <div class="img-container"><img src="{{project.image.url}}" alt="{{project.alt_text}}"></div>
+                <div class="content-container">
+                    <h3>{{project.title}}</h3>
+                    {% if project.content%}{{project.content}}{%endif%}
+                    <div class="url-container"> <button><a class="project-url" href="{{project.url}}">View project</a></button></div>
+                </div>
+            </div>
+            {%empty%}
+            <div>No completed projects yet</div>
+            {%endfor%}
+        </div>
+    </section>
+
+</div>
+{%endblock%}
