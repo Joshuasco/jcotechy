@@ -159,7 +159,8 @@ STATICFILES_DIRS = [BASE_DIR/'static']
 STATIC_ROOT = BASE_DIR/'staticfiles'
 
 #whitenoise static files storage and compression for production
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (user uploaded files)
 
