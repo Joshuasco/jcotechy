@@ -1,1 +1,1 @@
-web: gunicorn jcotechy.wsgi --log-file -
+web: gunicorn jcotechy.wsgi:application
