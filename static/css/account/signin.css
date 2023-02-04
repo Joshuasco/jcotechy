@@ -30,9 +30,11 @@
 .section-2 form input {
     flex: 2;
     padding: .5em;
+    height: 2em!important;
     width: 50%;
     border-radius: 10px;
-    border: 2px solid blueviolet;
+    border: none;
+    background-color: gainsboro;
 }
 
 .section-2 input[type=text]:focus {
@@ -41,9 +43,11 @@
 
 .section-2 form .submit {
     flex: 2;
-    padding: .5em;
+    padding: 1em 0 2em 0;
     width: 25%;
-    border 2px solid #FD21CA;
+    height: 2em!important;
+    border: 2px solid #FD21CA;
+    color: #FD21CA;
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -52,7 +56,7 @@
     background-image: linear-gradient(to left, #971ADE, #de1aad);
     border: none;
     color: white;
-    padding: .65em;
+    padding: 1.15em 0 2.15em 0;
 }
 
 @media screen and (max-width: 992px) {

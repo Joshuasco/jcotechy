@@ -45,32 +45,32 @@ from .tokens import account_activation_token
 from django.contrib.auth.models import User  
 from django.core.mail import EmailMessage  
   
-def signup(request):  
-    if request.method == 'POST':  
-        form = SignupForm(request.POST)  
-        if form.is_valid():  
-            # save form in the memory not in database  
-            user = form.save(commit=False)  
-            user.is_active = False  
-            user.save()  
-            # to get the domain of the current site  
-            current_site = get_current_site(request)  
-            mail_subject = 'Activation link has been sent to your email id'  
-            message = render_to_string('acc_active_email.html', {  
-                'user': user,  
-                'domain': current_site.domain,  
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
-                'token':account_activation_token.make_token(user),  
-            })  
-            to_email = form.cleaned_data.get('email')  
-            email = EmailMessage(  
-                        mail_subject, message, to=[to_email]  
-            )  
-            email.send()  
-            return HttpResponse('Please confirm your email address to complete the registration')  
-    else:  
-        form = SignupForm()  
-    return render(request, 'account/signup.html', {'form': form}) 
+# def signup(request):  
+#     if request.method == 'POST':  
+#         form = SignupForm(request.POST)  
+#         if form.is_valid():  
+#             # save form in the memory not in database  
+#             user = form.save(commit=False)  
+#             user.is_active = False  
+#             user.save()  
+#             # to get the domain of the current site  
+#             current_site = get_current_site(request)  
+#             mail_subject = 'Activation link has been sent to your email id'  
+#             message = render_to_string('acc_active_email.html', {  
+#                 'user': user,  
+#                 'domain': current_site.domain,  
+#                 'uid':urlsafe_base64_encode(force_bytes(user.pk)),  
+#                 'token':account_activation_token.make_token(user),  
+#             })  
+#             to_email = form.cleaned_data.get('email')  
+#             email = EmailMessage(  
+#                         mail_subject, message, to=[to_email]  
+#             )  
+#             email.send()  
+#             return HttpResponse('Please confirm your email address to complete the registration')  
+#     else:  
+#         form = SignupForm()  
+#     return render(request, 'account/signup.html', {'form': form}) 
 
 
 #end signup
@@ -93,18 +93,18 @@ def activate(request, uidb64, token):
 #end activate
 
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Your account has been created! You are now able to log in')
-            # should verify email before login
-            return redirect('login')
-    else:
-        form = SignupForm()
-    return render(request, 'account/signup.html', {'form': form})
+# def signup(request):
+#     if request.method == 'POST':
+#         form = SignupForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             messages.success(request, f'Your account has been created! You are now able to log in')
+#             # should verify email before login
+#             return redirect('login')
+#     else:
+#         form = SignupForm()
+#     return render(request, 'account/signup.html', {'form': form})
 
 
 
@@ -166,36 +166,36 @@ def signin(request):
             
     return render(request, 'account/signin.html')
 
-# def signup(request):
-#     username=request.POST.get('username', None)
-#     email=request.POST.get('email', None)
-#     password_1=request.POST.get('password', None)
-#     password_2=request.POST.get('confirm_password', None)
-#     context={
-#         'username':username,
-#         'email' :email,
-#         'password_1':password_1,
-#         'password_2':password_2,
-#     }
-#     if request.method == 'POST':
-#         if username !=None and email !=None and password_1 !=None and password_2 !=None:
+def signup(request):
+    username=request.POST.get('username', None)
+    email=request.POST.get('email', None)
+    password_1=request.POST.get('password', None)
+    password_2=request.POST.get('confirm_password', None)
+    context={
+        'username':username,
+        'email' :email,
+        'password_1':password_1,
+        'password_2':password_2,
+    }
+    if request.method == 'POST':
+        if username !=None and email !=None and password_1 !=None and password_2 !=None:
             
-#             if User.objects.filter(username=username).exists():
-#                 messages.warning(request, 'username already exist, please use another username')
-#                 return redirect('account:signup')
-#             if User.objects.filter(email=email).exists():
-#                 messages.warning(request, 'email already exist, please use another email')
-#                 return redirect('account:signup')
-#             if password_1 != password_2:
-#                 messages.warning(request, 'passwords do not match, ensure to enter the correct password')
-#                 return redirect('account:signup')
-#             User.objects.create(username=username, email=email, password=password_2)
-#             messages.success(request, 'signup successfull, click the signin button to signin')
-#             return redirect('account:signup')
-#         else:
-#             messages.warning(request, 'one or more filed(s) is(are) empty please fill all filleds')
-#             return redirect('account:signup')
-#     return render(request, 'account/signup.html', context)
+            if User.objects.filter(username=username).exists():
+                messages.warning(request, 'username already exist, please use another username')
+                return redirect('account:signup')
+            if User.objects.filter(email=email).exists():
+                messages.warning(request, 'email already exist, please use another email')
+                return redirect('account:signup')
+            if password_1 != password_2:
+                messages.warning(request, 'passwords do not match, ensure to enter the correct password')
+                return redirect('account:signup')
+            User.objects.create_user(username=username, email=email, password=password_1)
+            messages.success(request, 'signup successfull, click the signin button to signin')
+            return redirect('account:signup')
+        else:
+            messages.warning(request, 'one or more filed(s) is(are) empty please fill all filleds')
+            return redirect('account:signup')
+    return render(request, 'account/signup.html', context)
  
 @login_required
 def signout(request):

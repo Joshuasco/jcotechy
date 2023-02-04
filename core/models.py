@@ -53,7 +53,6 @@ class ServiceManager(models.Manager):
         return super(ServiceManager, self).get_queryset().filter(published=True)
 
 class Service(models.Model):
-    user= models.ForeignKey(User, on_delete = models.CASCADE)
     image = models.ImageField(upload_to='core/service/images', blank=True, null= True)
     alt_text = models.CharField(max_length=50, help_text='enter an alternate text for this image', default='jcotech services')
     svg_img = models.FileField(upload_to='core/service/svg_img', blank= True, null= True, validators=[FileExtensionValidator(['pdf', 'doc', 'svg'])], help_text='copy and paste the svg image code here' )

@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# load_dotenv(BASE_DIR/'.env')
+load_dotenv(BASE_DIR / 'env')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -34,8 +34,12 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
-
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+# DEBUG=True
+if DEBUG:
+    SECRET_KEY = '788y8h988'
+    ALLOWED_HOSTS =['*']
+else:
+    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
 
 # Application definition
@@ -58,6 +62,7 @@ INSTALLED_APPS = [
     # 'admin_interface',
     # 'colorfield',
     'django_social_share',
+    'storages',
 
 ]
 
@@ -96,22 +101,21 @@ WSGI_APPLICATION = 'jcotechy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+else:
+    #configure render postgres database for deployment
+    import dj_database_url
 
-#configure render postgres database for deployment
-import dj_database_url
-
-# DATABASES['default'].update(dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600))
-
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
-}
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -151,21 +155,95 @@ EMAIL_HOST_PASSWORD = 'yourpassword'
 EMAIL_PORT = 587 
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
+#browser login session expiration settings
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True     # opional, as this will log you out when browser is closed
+SESSION_COOKIE_AGE = 1800                  # 0r 5 * 60, same thing
+SESSION_SAVE_EVERY_REQUEST = True          # Will prevent from logging you out after 300 seconds
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR/'static']
-STATIC_ROOT = BASE_DIR/'staticfiles'
+#configure cookie settings for production
+# SECURE_SSL_REDIRECT=True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SAMESITE = 'None'
+#SESSION_COOKIE_SAMESITE = 'None'
 
-#whitenoise static files storage and compression for production
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-# 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files (user uploaded files)
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/ 'media/'
+# AWS CONFIFURATION SETTINGS FOR MEDIA FILES
+if not DEBUG:
+    try:
+        """
+        using AWS setup for django media files
+        """
+        
+        # aws settings
+        # AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+        # AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+        AWS_ACCESS_KEY_ID = "AKIAVGK3LSCTQWDQTZBS"
+        AWS_SECRET_ACCESS_KEY = "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"
+        AWS_STORAGE_BUCKET_NAME = "jcotech"
+        AWS_DEFAULT_ACL = "public-read"
+        AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+        AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+        AWS_HEADERS= {
+            'Access-Control-Allow-Origin':'*',
+        }
+        # TEXT_CKEDITOR_BASE_PATH = 'https://%s/djangocms_text_ckeditor/ckeditor/' % AWS_S3_CUSTOM_DOMAIN
+
+    
+        # s3 static settings
+        STATIC_LOCATION = 'static'
+        STATICFILES_DIRS = [BASE_DIR/'static']
+        STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+        STATICFILES_STORAGE = 'custom_storage.StaticStorage'
+
+        """
+        use whitenoise alternatively for static files storage and compression in production
+        """
+        # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+        # s3 public media settings
+        PUBLIC_MEDIA_LOCATION = 'media'
+        MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+        DEFAULT_FILE_STORAGE = 'custom_storage.PublicMediaStorage'
+        
+
+        #ckeditor 
+                # CKEDITOR_CONFIGS = {
+                # "default": {
+                #     "removePlugins": "stylesheetparser",
+                # }
+                # }
+                # AWS_QUERYSTRING_AUTH = False
+        # CKEDITOR_BROWSE_SHOW_DIRS = True
+        # CKEDITOR_RESTRICT_BY_USER = True
+        # CKEDITOR_RESTRICT_BY_DATE = False
+        #CKEDITOR_BASEPATH = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STORAGE_BUCKET_NAME}/{STATIC_LOCATION}/ckeditor/ckeditor/"
+        #"https://blogteck.s3.us-east-2.amazonaws.com/static/ckeditor/ckeditor/"
+        # TEXT_CKEDITOR_BASE_PATH = 'https://%s/djangocms_text_ckeditor/ckeditor 
+    except:
+        pass
+else:
+# except:
+    """
+    use local setup for django static and media files
+    """
+    print("-------------using LOCAL SETUP-------------")
+
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+    # local static settings
+    STATIC_URL = '/static/'
+    STATICFILES_DIRS = [BASE_DIR/'static']
+    STATIC_ROOT = BASE_DIR/'staticfiles'
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
+    # locak mediafiles settings (user uploaded files)
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = BASE_DIR/ 'media/'
+    # DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
 
 # Account login and redirect url
 

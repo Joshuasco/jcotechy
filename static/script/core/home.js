@@ -140,18 +140,19 @@ $(document).ready(function() {
     //reviews
     var animationSpeed = 2000; // How quickly the next slide animates.
     var pause = 3000; // The pause between each slide
-    var width = 100 / 3;
+    // var width = 15.75;
     var currentSlide = 1;
     var interval;
 
     function review() {
-
+        let width = $('.section-4 .testimony').outerWidth() + 10;
+        console.log('testimony width = ' + outerWidth);
         $('.testimony-container').animate({
-            marginLeft: '-=' + width + '%',
+            marginLeft: '-=' + width,
 
         }, animationSpeed, function() {
             currentSlide++;
-            if (currentSlide >= ($('.testimony').length) - 3) {
+            if (currentSlide >= ($('.testimony').length) - 1) {
                 $('.testimony-container').css({ marginLeft: '0' });
                 currentSlide = 0;
             }

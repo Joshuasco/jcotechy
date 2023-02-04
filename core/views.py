@@ -3,7 +3,9 @@ from django.urls import reverse
 from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView
 from .models import (Review, Faq, Service, Portfolio, Position, Opportunity, Gallary, Event, Contact, Quote)
 from blog.models import Article
+from .services import Services
 from django.contrib import messages
+from django.core.files import File
 
 # Create your views here.
 class HomeView(ListView):
@@ -12,12 +14,40 @@ class HomeView(ListView):
     context_object_name = 'services'
     queryset= Service.services.all()
 
+    
+    """
+    AUTOMATE SERVICES CREATION ON CALL TO HOME PAGE. 
+    SHOULD EXECUTE ONCE
+
+    """
+    
+    for service in Services:
+        
+            if Service.objects.filter(title=service['title'], short_description=service['short_dscript'],
+            content=service['content'], published=service['published']).exists():
+
+                print("######################################")
+                print('{} service already exist'.format(service['title']))
+                print("######################################")
+
+            else:
+                with open('{}'.format(service["svg_img"]), 'rb') as get_svg:
+                    servicej, created = Service.objects.get_or_create(svg_img=File(get_svg), title=service['title'],
+                    short_description=service['short_dscript'],content=service['content'], published=service['published'])
+
+                    print("######################################")
+                    print('{} service created'.format(service['title']))
+                    print("######################################")
+            
+
     def get_context_data(self):
         context = super(HomeView, self).get_context_data()
         context['reviews']=Review.reviews.all()
         context['faqs']=Faq.faqs.all()
         context['articles']=Article.articles.all()
         context['portfolios']=Portfolio.portfolios.all()
+
+        
         return context
 
 class ProjectView(ListView):

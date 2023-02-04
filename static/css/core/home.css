@@ -22,6 +22,10 @@ section {
     padding: 5em;
 }
 
+.sectors-section {
+    background-image: none!important;
+}
+
 
 /* end section  header text formating */
 
@@ -37,7 +41,6 @@ section {
     background-position: right!important;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color rgb(53, 5, 97);
     color: white;
     max-width: 100%;
     padding: 0;
@@ -56,8 +59,6 @@ section {
     min-width: 100%;
     height: 30em;
     margin: 0;
-    margin-top -1em;
-    padding-top -1em;
 }
 
 .hero-animation img {
@@ -73,7 +74,7 @@ section {
     position: absolute;
     margin-top: 5em;
     margin-right .5em;
-    flex 3;
+    max-width: 40%;
     left: 0;
     z-index: 2;
 }
@@ -104,16 +105,18 @@ section {
     position: relative;
 }
 
-.hero-section .h1-45 {
+
+/* .hero-section .h1-45 {
     font-size: xx-large;
     text-transform capitalize;
     max-width: 55%;
-}
+} */
 
-.hero-section .h1-45 small {
+
+/* .hero-section .h1-45 small {
     margin-top: 1em!important;
     font-size: 20px!important;
-}
+} */
 
 .h1-animate1 {
     transform: translateY(-200%);
@@ -125,10 +128,11 @@ section {
     transition: all linear 2s;
 }
 
-.hero-section .p-20 {
+
+/* .hero-section .p-20 {
     font-size: 17px;
     max-width: 40%;
-}
+} */
 
 .hero-section .action-btn {
     padding: 1em;
@@ -221,61 +225,10 @@ section {
 }
 
 
-/* --------------------begin section-2-0 -----------------------*/
-
-.section-2-0 {
-    background-color: white;
-    padding: 7em 0 3em;
-}
-
-.section-2-0 h1 {
-    text-align: center;
-}
-
-.section-2-0 .stats {
-    display: flex;
-    flex-flow: wrap;
-    color: white;
-    margin: .5em;
-    justify-content: space-around;
-}
-
-.section-2-0 .stats ul {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border-radius: 50%;
-    background-image: linear-gradient(to top, #971ADE, rgb(233, 19, 179));
-    background-color: #971ADE;
-    max-width: 20%;
-    min-width: 8em;
-    padding: .5em;
-    margin: .5em;
-    transition: linear .5s;
-}
-
-.section-2-0 .stats ul:hover {
-    background-image: linear-gradient(to left, rgb(53, 5, 97), rgb(80, 5, 151));
-    background-color: rgb(30, 5, 53);
-    transition: linear .5s;
-}
-
-.section-2-0 .stats ul li {
-    font-size: larger;
-    font-weight: bold;
-    text-shadow: 3px 0 0 black;
-    padding: .5em;
-}
-
-.section-2-0 .stats ul em {
-    margin: .5em .5em 1.5em .5em;
-    text-shadow: 1px 0 0 black;
-}
+/*-------------- end hero section -----------------*/
 
 
-/* ------------------end .section-2-0 ----------------- */
+/* ------------------begin .section-2 ----------------- */
 
 .section-2 {
     padding: 3em 0;
@@ -344,6 +297,22 @@ section {
     transition: linear .5s;
 }
 
+.section-2 .couroser .service-container:hover svg {
+    animation: service-svg-icon .75s infinite ease;
+}
+
+@keyframes service-svg-icon {
+    0% {
+        transform: scale(1.05);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+
 .section-2 .couroser .service-container:hover h3 {
     text-align: center;
 }
@@ -382,6 +351,207 @@ section {
     margin: .5em!important;
 }
 
+
+/* ------------------end .section-2 ----------------- */
+
+
+/* ------------------begin .development section----------------- */
+
+.development-section {
+    /* color: purple; */
+    background-color: white;
+}
+
+.development-section h4 {
+    margin: .5em 0;
+}
+
+.development-section .d-container {
+    margin-top: 2.5em;
+    display: flex;
+    justify-content: center;
+}
+
+.development-section .sub-d-container .arrow-chord div {
+    width: 12em;
+    height: 1em;
+    background-color: #971ADE;
+}
+
+.development-section .row {
+    display: flex;
+    align-items: center;
+    font-size: smaller;
+}
+
+.development-section .row .svg-icon {
+    background-color: #971ADE;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    padding: .5em;
+}
+
+.development-section .row svg {
+    width: 2em;
+    height: 2em;
+}
+
+.development-section .row .descriptn {
+    color: white;
+    width: 16em;
+    padding: .5em;
+    border-radius: 10px 10px 0 10px;
+}
+
+.development-section .row:hover .descriptn {
+    background-color: #971ADE!important;
+}
+
+.development-section .row .integration-testing,
+.development-section .row .deployment,
+.development-section .row .maintenance {
+    background-color: rgb(9, 64, 66);
+    margin-left: 14em;
+}
+
+.development-section .row .requirements {
+    background-color: rgb(45, 0, 128);
+}
+
+.development-section .row .design {
+    background-color: rgb(59, 4, 59);
+}
+
+.development-section .row .implementation {
+    background-color: rgb(77, 24, 175);
+}
+
+
+/* begin first .sub-container-1 */
+
+.development-section .sub-container-1 .row .integration-testing {
+    background-color: rgb(9, 64, 66);
+    margin-left: 0em;
+}
+
+.development-section .sub-container-1 .row .deployment {
+    background-color: rgb(7, 7, 49);
+    margin-left: 5em;
+}
+
+.development-section .sub-container-1 .row .maintenance {
+    background-color: rgb(124, 0, 128);
+    margin-left: 8.5em;
+    /* end first .sub-container-1 */
+    /* begin second .sub-container-2 */
+}
+
+.development-section .row .integration-testing {
+    background-color: rgb(9, 64, 66);
+    margin-left: 10em;
+}
+
+.development-section .row .deployment {
+    background-color: rgb(7, 7, 49);
+    margin-left: 5em;
+}
+
+.development-section .row .maintenance {
+    background-color: rgb(124, 0, 128);
+    margin-left: 0;
+}
+
+
+/* end second .sub-container-2 */
+
+.row:hover svg {
+    animation: dev-svg-icon .75s infinite ease;
+}
+
+@keyframes dev-svg-icon {
+    0% {
+        transform: rotate(-20deg);
+        /* transform: scale(1.1); */
+    }
+    50% {
+        transform: rotate(20deg);
+        /* transform: scale(1); */
+    }
+    100% {
+        transform: rotate(-20deg);
+    }
+}
+
+.development-section .link-chord {
+    background-color: #971ADE;
+    height: .25em;
+}
+
+.development-cycle .requirement-chord {
+    width: .5em;
+}
+
+.development-cycle .design-chord {
+    width: 5em;
+}
+
+.development-cycle .implementation-chord {
+    width: 10em;
+}
+
+.development-cycle .sub-container-2 {
+    display: none;
+}
+
+.development-cycle .mid-arrow-chord-1 {
+    display: none;
+}
+
+.development-cycle .mid-arrow-chord {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1.5em;
+}
+
+.development-cycle .sub-container-1 .integration-testing-chord {
+    width: 9em;
+}
+
+.development-cycle .sub-container-1 .deployment-chord {
+    width: 4em;
+}
+
+.development-cycle .sub-container-1 .maintenance-chord {
+    width: .5em;
+}
+
+.development-cycle .integration-testing-chord {
+    width: .5em;
+}
+
+.development-cycle .deployment-chord {
+    width: 4em;
+}
+
+.development-cycle .maintenance-chord {
+    width: 9em;
+}
+
+.development-section .arrow-chord {
+    margin: 0;
+    padding: 0;
+    margin-bottom: -.5em;
+    margin-top: -.15em;
+    margin-left: 11.5em;
+}
+
+
+/* ------------------end .development section ----------------- */
+
+
+/* ----------------begin section-3 why choose us/features------------- */
+
 .section-3 {
     background-color: white;
     background-image: linear-gradient(to top, #971ADE, rgba(158, 33, 216, 0.75), rgb(158, 33, 216, .5), rgb(158, 33, 216, 0));
@@ -394,6 +564,7 @@ section {
     transform: translateY(150%);
     transition: all 2s ease;
     opacity: 0;
+    z-index: -2!important;
 }
 
 .section-3 .features.active {
@@ -419,6 +590,22 @@ section {
 .features p:hover {
     background-color: rgb(205, 157, 250);
     transition: linear .5s;
+}
+
+.features p:hover svg {
+    animation: features-svg-icon .75s infinite ease;
+}
+
+@keyframes features-svg-icon {
+    0% {
+        transform: translateY(5px);
+    }
+    50% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(5px);
+    }
 }
 
 .features img {
@@ -449,7 +636,7 @@ section {
 /* end development life cycle */
 
 
-/* -----------------start project css---------------- */
+/* -----------------start project section---------------- */
 
 .section-23 {
     background-color: white;
@@ -689,29 +876,22 @@ section {
 
 .section-4 .testimony-container {
     display: flex;
-    background-color green;
-    /* flex-wrap: wrap; */
     width: 100%;
-    margin-left 50%;
-    /* margin auto; */
-    /* overflow: hidden; */
-    /* overflow-x: scroll; */
 }
 
 .section-4 .testimony {
     flex: 1;
-    max-width: 31%;
+    min-width: 30em!important;
+    max-width: 30em;
     justify-content: center;
     text-align: center;
     position: relative;
     box-shadow: 0 0 8px gray;
     border-radius: 40px;
-    min-width: 31%;
-    margin: 3em .25em .5em;
+    margin: 3em 5px .5em;
     padding: .5em;
     border-bottom-right-radius: 0;
     background-color: #a155e780;
-    /* transform: translateX(-200px); */
 }
 
 .section-4 .testimony img {
@@ -800,17 +980,8 @@ section {
         padding: .5em;
     }
     .hero-section .hero-content {
-        max-width: 90%;
-        margin auto;
-    }
-    .hero-section .h1-45 {
-        font-size: xx-large;
-        max-width: 70%;
-    }
-    .hero-section .p-20 {
-        font-size: medium;
         max-width: 55%;
-        margin-top: -.5em;
+        margin auto;
     }
     .hero-section .primary-action-btn {
         padding-left: 0;
@@ -849,11 +1020,28 @@ section {
     .section-23 {
         padding: 1em;
     }
-    .features p {}
     .couroser .article {
         width: 22.5em;
         min-width: 19.5em;
     }
+    /* begin .development-cycle section */
+    .development-section .d-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .development-cycle .mid-arrow-chord-1 {
+        display: block;
+    }
+    .development-cycle .mid-arrow-chord {
+        display: none;
+    }
+    .development-cycle .sub-container-1 {
+        display: none;
+    }
+    .development-cycle .sub-container-2 {
+        display: block;
+    }
+    /* end .development-cycle section */
 }
 
 @media screen and ( max-width: 600px) {
@@ -864,32 +1052,13 @@ section {
     .hero-section .hero-content {
         max-width: 100%;
         margin: 0;
-        padding 1em;
-    }
-    .hero-section .h1-45 {
-        font-size: 25px !important;
-        max-width: 100%;
-        padding-right: .5em;
-        line-height: 1em;
-    }
-    .hero-section .h1-45 small {
-        line-height: .5em;
-        padding-top: 1em!important;
-    }
-    .hero-section .p-20 {
-        font-size: 14px;
-        max-width: 100%;
-        padding-right: .5em;
     }
     .hero-section .primary-action-btn {
         padding-left: 0;
-        top: 75%;
+        top: 65%;
     }
     .hero-section .action-btn {
-        padding: .25em;
-    }
-    .hero-section .action-link {
-        padding: .25em;
+        font-size: xx-small;
     }
     section {
         padding: 3em 2.5em;
@@ -905,7 +1074,8 @@ section {
         width: 100%!important;
     }
     .section-4 .testimony {
-        min-width: 100%;
+        min-width: 15em!important;
+        max-width: 15em;
     }
     .section-5 .question {
         max-width: 100%;
@@ -913,4 +1083,21 @@ section {
     .section-23 .project {
         width: 100%!important;
     }
+}
+
+@media screen and (max-width:400px) {
+    /* ---------begin .development-cycle section------------- */
+    .development-section .row .integration-testing {
+        margin-left: 0em;
+    }
+    .development-section .row .deployment {
+        margin-left: 0em;
+    }
+    .development-section .row .maintenance {
+        margin-left: 0;
+    }
+    .development-section .arrow-chord {
+        margin-left: 8.5em;
+    }
+    /* ---------end .development-cycle section------------- */
 }

@@ -1,12 +1,12 @@
 {% extends 'account/base.html'%}{%load static%} {%block account-styles%}
 
 <link rel="stylesheet" href="{% static 'css/account/signup.css' %}">{%endblock account-styles%} {%block account-content%}
-<!-- <div>
+<div>
     <form method="POST">
         {%csrf_token%} {{form.as_p}}
         <input type="submit" value="Submit">
     </form>
-</div> -->
+</div>
 
 <section class="section-2 form-section">
     <p>
@@ -27,4 +27,6 @@
             <input type="submit" class="submit" value="Signup">
         </form>
     </div>
-</section>{% endblock account-content%}
+</section>{% endblock account-content%} {% block scripts %}
+
+<script src="{% static 'script/account/signup.js' %}"></script>{% endblock scripts %}

@@ -3,17 +3,6 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-
-/* .header-img-container {
-    width: 100%;
-    height: 100%;
-}
-
-.header-img {
-    width: 100%;
-    height: 100%;
-} */
-
 .about-container .hero-section {
     position: relative;
     width: 100%;
@@ -70,61 +59,15 @@
 /* end about page default css */
 
 
-/* --------------------begin section-2-0 -----------------------*/
+/* begin .section-2 */
 
 .section-2-0 {
     background-color: white;
-    padding: 2em 0;
-}
-
-.section-2-0 h1 {
-    text-align: center;
-}
-
-.section-2-0 .stats {
-    display: flex;
-    flex-flow: wrap;
-    color: white;
-    margin: .5em;
-    justify-content: space-around;
-}
-
-.section-2-0 .stats ul {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border-radius: 50%;
-    background-image: linear-gradient(to top, #971ADE, rgb(233, 19, 179));
-    background-color: #971ADE;
-    max-width: 20%;
-    min-width: 8em;
-    padding: .5em;
-    margin: .5em;
-    transition: linear .5s;
-}
-
-.section-2-0 .stats ul:hover {
-    background-image: linear-gradient(to left, rgb(53, 5, 97), rgb(80, 5, 151));
-    background-color: rgb(30, 5, 53);
-    transition: linear .5s;
-}
-
-.section-2-0 .stats ul li {
-    font-size: larger;
-    font-weight: bold;
-    text-shadow: 3px 0 0 black;
-    padding: .5em;
-}
-
-.section-2-0 .stats ul em {
-    margin: .5em .5em 1.5em .5em;
-    text-shadow: 1px 0 0 black;
+    padding: 1.5em 0 !important;
 }
 
 
-/* ------------------end .section-2-0 ----------------- */
+/* end .section-2 */
 
 .about-container .section-2 h1 {
     text-align: center;
@@ -175,15 +118,6 @@
     justify-content: center;
 }
 
-
-/* .about-container img {
-    width: 2.5em;
-    height: 2.5em;
-    border-radius: 50%;
-    padding: .5em;
-    margin-left: .5em;
-} */
-
 .about-container .section-4 {
     display: flex;
     justify-content: space-around;
@@ -196,6 +130,22 @@
     max-width: 45%;
     padding: .25em;
     min-width: 15em;
+}
+
+.about-container .section-4 div:hover svg {
+    animation: goalVision-svg-icon .75s infinite ease;
+}
+
+@keyframes goalVision-svg-icon {
+    0% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
 }
 
 .about-container .section-4 p {

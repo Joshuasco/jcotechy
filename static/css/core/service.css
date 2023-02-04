@@ -149,3 +149,16 @@ button:hover {
 button:hover a {
     color: white;
 }
+
+@media screen and (max-width:996px) {
+    .service-container {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .service-container svg {
+        width: 12em;
+        height: 12em;
+    }
+}

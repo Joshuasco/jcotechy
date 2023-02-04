@@ -32,8 +32,16 @@ $(document).ready(function() {
 
 
     // tablet and mobile view
-    $('.menu').click(function() {
-        $('.header').slideToggle(500);
+    $('.menu-icon').click(function() {
+        $('.header').slideToggle(250);
+        $('.mobile-header .menu-icon').toggle(250);
+    });
+    $('.search-icon').click(function() {
+        $(' .search-icon').toggle(250);
+        $(' .search-field').slideToggle(250);
+        // if($('.search-field').width =='80%'){
+        //     $('.search-field').css('width','10%')
+        // }
     });
     $('.account').click(function(e) {
         e.preventDefault();
