@@ -206,7 +206,7 @@ if not DEBUG:
         # aws settings
         AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
         AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-        AWS_STORAGE_BUCKET_NAME = "jcotech"
+        AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 
         # AWS_DEFAULT_ACL = "public-read"
         AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
