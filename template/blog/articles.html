@@ -9,6 +9,7 @@
         <div class="division-1">
             <!-- begin featured posts section -->
             <section>
+                {% if featured_articles %}
                 <div class="section-post">
                     <h3 class=" sub-header"> Featured posts
                         <a href="{% url 'blog:articles'%}?category={{category.slug}}">Explore</a></h3>
@@ -68,6 +69,7 @@
                         {%endfor%}
                     </div>
                 </div>
+                {%endif%}
             </section>
             <!-- end featured posts section -->
 
@@ -187,6 +189,10 @@
                                 <p>{{article.content|truncatechars:100|safe}} in <a href="{% url 'blog:articles' %}?category={{article.category.slug}}">  {{article.category|lower}}</a></p>
                             </div>
                         </ul>
+                    </div>
+                    {%empty%}
+                    <div class="comming-soon">
+                        <h1>COMMING SOON!</h1> <span><a href="{% url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTEk on our realeased <em>BLOG POSTS</em> and other events</span>
                     </div>
                     {%endfor%}
                 </div>

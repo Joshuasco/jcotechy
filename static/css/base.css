@@ -30,13 +30,12 @@ main {
 
 .get-quote-form {
     background-color: white;
+    color: gray;
     border-radius: 10px;
     width: 50%;
-    height 60%;
     margin: auto;
     padding: .5em;
     margin-top: 7em;
-    /* transform: scale(0); */
     display: none;
 }
 
@@ -45,17 +44,61 @@ main {
     justify-content: space-evenly;
 }
 
+
+/* .get-quote-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+} */
+
 .get-quote-form input,
 .get-quote-form select {
-    width: 100%;
+    width: 98%;
     border-radius: 5px;
     height: 2em;
+    border: none;
+    background-color: lavender;
+    padding: .25em;
+}
+
+.get-quote-form select {
+    color: gray;
 }
 
 .get-quote-form p textarea {
     top: 15%;
-    width: 100%;
+    width: 98%;
     border-radius: 5px;
+    padding: .25em;
+    background-color: lavender;
+    border: none;
+}
+
+.get-quote-form #get_quote {
+    border: 2px solid #FD21CA;
+    color: #FD21CA;
+    background-color: white;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.get-quote-form #get_quote:hover {
+    background-image: linear-gradient(to left, #971ADE, #de1aad);
+    border: none;
+    color: white;
+    /* padding: 1.15em 0 2.15em 0; */
+}
+
+.comming-soon {
+    color: grey;
+    text-align: center!important;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (max-width:992px) {

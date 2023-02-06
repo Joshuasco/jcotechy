@@ -11,12 +11,21 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+# import os
+# from dotenv import load_dotenv
+
 import os
 from dotenv import load_dotenv
+
+load_dotenv() #Note that by default python-dontenv package passes the .env as a path to load_dotenv function to retreive all .env files using either os.getenv(file variable name) or os.environ.get(file variable name)
+# also note that, os.environ.get(variable name) fetches it as a dictionary while os.getevn(variable name) fetches it as a assigned value.
+
+# load_dotenv(BASE_DIR / 'env'), alternative 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(BASE_DIR / 'env')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -35,11 +44,17 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
 # DEBUG=True
-if DEBUG:
+print("print debug value ##############################")
+print(os.getenv('DEBUG'))
+print(os.environ.get('DEBUG'))
+print(os.environ.get('SECRET_KEY'))
+
+if not DEBUG:
     SECRET_KEY = '788y8h988'
     ALLOWED_HOSTS =['*']
-else:
+else:    
     ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
+   
 
 
 # Application definition
@@ -112,7 +127,7 @@ if DEBUG:
 else:
     #configure render postgres database for deployment
     import dj_database_url
-
+    
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600),
     }
@@ -175,14 +190,25 @@ if not DEBUG:
         """
         using AWS setup for django media files
         """
-        
+        print("##############################")
+        print("---------using AWS storage system----------------")
+        print("##############################")
+
+        """
+        SHOW AWS STATIC LOGGINGS ON UPLOADING FILES
+        """
+        import logging
+
+        logger = logging.getLogger('boto3')
+        logger.setLevel(logging.INFO)
+       
+       
         # aws settings
-        # AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-        # AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-        AWS_ACCESS_KEY_ID = "AKIAVGK3LSCTQWDQTZBS"
-        AWS_SECRET_ACCESS_KEY = "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"
+        AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+        AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
         AWS_STORAGE_BUCKET_NAME = "jcotech"
-        AWS_DEFAULT_ACL = "public-read"
+
+        # AWS_DEFAULT_ACL = "public-read"
         AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
         AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
         AWS_HEADERS= {
@@ -190,22 +216,40 @@ if not DEBUG:
         }
         # TEXT_CKEDITOR_BASE_PATH = 'https://%s/djangocms_text_ckeditor/ckeditor/' % AWS_S3_CUSTOM_DOMAIN
 
-    
-        # s3 static settings
-        STATIC_LOCATION = 'static'
-        STATICFILES_DIRS = [BASE_DIR/'static']
-        STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-        STATICFILES_STORAGE = 'custom_storage.StaticStorage'
 
+        # S3 Static and Media Files Storage
+        DEFAULT_FILE_STORAGE = 'custom_storage.MediaStorage'
+        # 'storages.backends.s3boto3.S3Boto3Storage'
+        AWS_S3_FILE_OVERWRITE = True
+        # AWS_DEFAULT_ACL = 'public-read'
+
+
+        # S3 Static Files Storage
+        STATICFILES_DIRS = [BASE_DIR/'static']
+        STATIC_LOCATION = 'static'
+        STATICFILES_STORAGE = 'custom_storage.StaticStorage'
+        # 'storages.backends.s3boto3.S3Boto3Storage'
+        STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+        AWS_STATIC_LOCATION = 'static'
+        # 'custom_storage.StaticStorage'
         """
         use whitenoise alternatively for static files storage and compression in production
         """
         # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-        # s3 public media settings
-        PUBLIC_MEDIA_LOCATION = 'media'
-        MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-        DEFAULT_FILE_STORAGE = 'custom_storage.PublicMediaStorage'
+        # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+        # STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
+
+        # S3 Media Files Storage
+        AWS_MEDIA_LOCATION = 'media'
+        MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
+        # MEDIA_ROOT = 'media'
+
+        # MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
+        # MEDIA_ROOT = MEDIA_URL
+
+
+       
         
 
         #ckeditor 

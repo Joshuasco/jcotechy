@@ -100,6 +100,7 @@
             <ul class="service-container ">
                 <button class="service-cancel-btn ">cancel</button>
                 <div class="svg_img-container ">
+                    <!-- use this alterenatively to read_svg temploate tag <img src="https://jcotech.s3.amazonaws.com/media/{{service.svg_img}}" alt="{{service.title}}"> -->
                     {%if service.svg_img %} {% read_svg service.svg_img.url %} {%endif%}
                 </div>
                 <div>
@@ -114,7 +115,9 @@
 
             </ul>
             {%empty%}
-            <div>no services has being published</div>
+            <div class="comming-soon">
+                <h1>COMMING SOON!</h1> <span><a href="{% url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTEk on our realeased <em>SERVICES</em> and other events</span>
+            </div>
             {%endfor%}
         </div>
     </section>
@@ -432,7 +435,9 @@
                 </div>
             </div>
             {%empty%}
-            <div>No completed projects yet</div>
+            <div class="comming-soon">
+                <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTEk on our realeased <em>PROJECTS</em> and other events</span>
+            </div>
             {%endfor%}
         </div>
     </section>
@@ -754,6 +759,10 @@
                     </div>
                 </ul>
             </div>
+            {%empty%}
+            <div class="comming-soon">
+                <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTEk on our realeased <em>BLOG POSTS</em> and other events</span>
+            </div>
             {%endfor%}
         </div>
     </section>
@@ -796,7 +805,9 @@
         </div>
 
         {%empty%}
-        <div>there are no published faqs yet</div>
+        <div class="comming-soon">
+            <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTEk on our realeased <em>FAQS</em> and other events</span>
+        </div>
         {%endfor%}
         <div class="contact-support">Have more questiona to ask or didn't get what you are looking for? <a href="{% url 'core:contact' %}">contact our support team</a></div>
     </section>

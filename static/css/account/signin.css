@@ -10,7 +10,7 @@
 
 .section-2 .img-container {
     width: 15%;
-    background-color: green;
+    background-color: lavender;
     margin: auto;
     overflow: hidden;
     display: flex;
@@ -34,12 +34,13 @@
     width: 50%;
     border-radius: 10px;
     border: none;
-    background-color: gainsboro;
+    background-color: lavender;
 }
 
-.section-2 input[type=text]:focus {
+
+/* .section-2 input[type=text]:focus {
     border: 2px solid blueviolet;
-}
+} */
 
 .section-2 form .submit {
     flex: 2;
@@ -47,6 +48,7 @@
     width: 25%;
     height: 2em!important;
     border: 2px solid #FD21CA;
+    background-color: white;
     color: #FD21CA;
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

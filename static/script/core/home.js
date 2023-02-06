@@ -84,7 +84,6 @@ $(document).ready(function() {
 
 
     $('.faqs').click(function(e) {
-        e.preventDefault();
         console.log("just cliked");
         $('html, body').animate({
             scrollTop: $("#faqs").offset().top
@@ -93,10 +92,17 @@ $(document).ready(function() {
 
     $('.hiws').click(function(e) {
         e.preventDefault();
-        console.log("just cliked");
         $('html, body').animate({
             scrollTop: $("#hiws").offset().top
         }, 1000);
+    });
+
+    $('.subscribe').click(function(e) {
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop: $("#subscribe").offset().top
+        }, 1000);
+        $("#subscribe input").focus()
     });
 
 

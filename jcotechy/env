@@ -1,7 +1,0 @@
-SECRET_KEY='django-insecure-jyuud#739^1z2z_ma-w^_8rl#+_p)n!c+n1blle2711m@t#xur'
-ALLOWED_HOSTS='*'
-
-DEBUG = 1
-
-AWS_ACCESS_KEY_ID = "AKIAVGK3LSCTQWDQTZBS"
-AWS_SECRET_ACCESS_KEY = "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"

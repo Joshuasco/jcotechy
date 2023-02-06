@@ -26,6 +26,16 @@ section {
     background-image: none!important;
 }
 
+.comming-soon {
+    color: grey;
+    text-align: center!important;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /* end section  header text formating */
 
@@ -881,8 +891,8 @@ section {
 
 .section-4 .testimony {
     flex: 1;
-    min-width: 30em!important;
-    max-width: 30em;
+    min-width: 28em;
+    max-width: 28em;
     justify-content: center;
     text-align: center;
     position: relative;
@@ -1007,6 +1017,10 @@ section {
     .section-2-0 {
         margin-top: 3em
     }
+    .section-4 .testimony {
+        min-width: 15em;
+        max-width: 15em;
+    }
     .section-14 {
         padding: 1em;
     }
@@ -1074,8 +1088,8 @@ section {
         width: 100%!important;
     }
     .section-4 .testimony {
-        min-width: 15em!important;
-        max-width: 15em;
+        min-width: 13em!important;
+        max-width: 13em;
     }
     .section-5 .question {
         max-width: 100%;
@@ -1100,4 +1114,8 @@ section {
         margin-left: 8.5em;
     }
     /* ---------end .development-cycle section------------- */
+    .section-4 .testimony {
+        min-width: 10em;
+        max-width: 10em;
+    }
 }

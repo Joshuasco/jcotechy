@@ -4,5 +4,10 @@ from django.contrib.sites.shortcuts import get_current_site
 register = template.Library()
 @register.simple_tag
 def read_svg(file_name):
-    file=open(file_name[1:]).read()
+    print("#########################")
+    print(f"----------{file_name}------------")
+    index_no=file_name.index('media')
+    actual_file=file_name[index_no:]
+    print(actual_file)
+    file=open(actual_file).read()
     return mark_safe(file)
