@@ -30,31 +30,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ.get('SECRET_KEY') or 'django-insecure-jyuud#739^1z2z_ma-w^_8rl#+_p)n!c+n1blle2711m@t#xur'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-
-# ALLOWED_HOSTS = ['*']
-
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', '0').lower() in ['true', 't', '1']
-# DEBUG=True
 print("print debug value ##############################")
 print(os.getenv('DEBUG'))
-print(os.environ.get('DEBUG'))
-print(os.environ.get('SECRET_KEY'))
 
-if not DEBUG:
-    SECRET_KEY = '788y8h988'
-    ALLOWED_HOSTS =['*']
-else:    
-    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
-   
+
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
 
 # Application definition
@@ -73,11 +57,10 @@ INSTALLED_APPS = [
     'blog',
     'core',
     'account',
-    'tinymce',
     # integrated library apps
-    
     # 'admin_interface',
     # 'colorfield',
+    'tinymce',
     'django_social_share',
     'storages',
     
@@ -85,11 +68,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    #default middlewares
+    #default security middleware
      'django.middleware.security.SecurityMiddleware',
      #whitenoise middleware for static files in production
     'whitenoise.middleware.WhiteNoiseMiddleware',
-     #default middlewares
+     #other default middlewares
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -190,7 +173,7 @@ SESSION_SAVE_EVERY_REQUEST = True          # Will prevent from logging you out a
 
 
 # AWS CONFIFURATION SETTINGS FOR MEDIA FILES
-if DEBUG:
+if not DEBUG:
     try:
         """
         using AWS setup for django media files
@@ -225,7 +208,7 @@ if DEBUG:
         # S3 Static and Media Files Storage
         DEFAULT_FILE_STORAGE = 'custom_storage.MediaStorage'
         # 'storages.backends.s3boto3.S3Boto3Storage'
-        AWS_S3_FILE_OVERWRITE = True
+        # AWS_S3_FILE_OVERWRITE = True
         # AWS_DEFAULT_ACL = 'public-read'
 
         # S3 Media Files Storage
@@ -234,21 +217,21 @@ if DEBUG:
 
 
         # S3 Static Files Storage
-        # STATICFILES_DIRS = [BASE_DIR/'static']
-        # STATIC_LOCATION = 'static'
-        # STATICFILES_STORAGE = 'custom_storage.StaticStorage'
+        STATICFILES_DIRS = [BASE_DIR/'static']
+        STATIC_LOCATION = 'static'
+        STATICFILES_STORAGE = 'custom_storage.StaticStorage'
         # 'storages.backends.s3boto3.S3Boto3Storage'
-        # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-        # AWS_STATIC_LOCATION = 'static'
+        STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+        AWS_STATIC_LOCATION = 'static'
         # 'custom_storage.StaticStorage'
         """
         use whitenoise alternatively for static files storage and compression in production
         """ 
         # Using whitenoise  static settings
-        STATIC_URL = '/static/'
-        STATICFILES_DIRS = [BASE_DIR/'static']
-        STATIC_ROOT = BASE_DIR/'staticfiles'
-        STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+        # STATIC_URL = '/static/'
+        # STATICFILES_DIRS = [BASE_DIR/'static']
+        # STATIC_ROOT = BASE_DIR/'staticfiles'
+        # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
    
 
        
@@ -283,9 +266,9 @@ else:
     STATIC_URL = '/static/'
     STATICFILES_DIRS = [BASE_DIR/'static']
     STATIC_ROOT = BASE_DIR/'staticfiles'
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+    # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-    # locak mediafiles settings (user uploaded files)
+    # local mediafiles settings (user uploaded files)
     MEDIA_URL = '/media/'
     MEDIA_ROOT = BASE_DIR/ 'media/'
     # DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
