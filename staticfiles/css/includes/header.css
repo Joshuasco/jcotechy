@@ -1,0 +1,236 @@
+        /* .relateheader {
+    position: relative;
+    animation: animaterelate 1s linear;
+}
+
+@keyframes animaterelate {
+    from {
+        opacity: .9;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.fixedheader {
+    position: fixed;
+    width: 95%;
+    animation: animatefixed 1s ease-out;
+    animation-fill-mode: both;
+    background-image: linear-gradient(to right, green, green, rgb(58, 219, 120, .75), rgb(58, 219, 120, .25));
+}
+
+@keyframes animatefixed {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */
+        /* make changes to header */
+        
+        .header-div {
+            width: 100%!important;
+            position: fixed;
+            transition: linear .5s;
+            z-index: 100;
+            background-image linear-gradient(to right, rgb(0, 128, 0, 0), rgb(58, 219, 120, 0), rgb(58, 219, 120, 0));
+            background-color white;
+        }
+        
+        .header-div-bg {
+            top: 0;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            /* background-image linear-gradient(to left, rgb(138, 43, 226, .5), rgb(138, 43, 226, .25));
+            background-color: #971ADE;  */
+        }
+        /* end changes to header */
+        
+        .header-div a {
+            color: white;
+            z-index: 2;
+            font-weight: bolder;
+        }
+        
+        .header-div a:hover {
+            opacity: .75;
+        }
+        
+        .header-div {
+            background-color goldenrod;
+        }
+        
+        .mobile-header {
+            display: none;
+        }
+        
+        .socials {
+            display: flex;
+            align-items: center;
+        }
+        
+        .socials span {
+            padding: .25em 1em;
+            border-right: white solid 2px;
+            opacity: .75;
+        }
+        
+        .socials span:nth-child(4) {
+            margin-right: auto;
+        }
+        
+        .social-contact {
+            background-image: linear-gradient(to right, #971ADE, #de1aad);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: .5em!important;
+            margin: 0!important;
+        }
+        
+        .header li {
+            list-style-type: none;
+            padding: .5em;
+        }
+        
+        .header li a {
+            font-weight: bold;
+        }
+        
+        .header .header-logo a {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        
+        .header .header-logo a svg {
+            margin: 0 -.45em;
+        }
+        
+        .header .header-logo a img {
+            width: 2.5em;
+            height: 2.5em;
+            border-radius: 50%;
+        }
+        
+        .header .contact-link {
+            margin-right: auto;
+        }
+        
+        .services-container {
+            background-image: linear-gradient(to left, rgb(53, 5, 97), rgb(80, 5, 151));
+        }
+        
+        .services-container {
+            position: relative;
+        }
+        
+        .services-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            z-index: 1;
+            background-image: linear-gradient(to left, rgb(53, 5, 97), rgb(80, 5, 151));
+            border-radius: 15px;
+            border-top-left-radius: 0;
+            margin: 0;
+            padding: 0;
+            min-width: 325%;
+        }
+        
+        .services-dropdown li:hover {
+            background-image: linear-gradient(to left, rgb(245, 245, 245, .35), rgb(245, 245, 245, .35));
+            border-radius: 10px;
+        }
+        
+        .services-dropdown li a {
+            color #971ADE!important;
+        }
+        
+        .services-container:hover .services-dropdown {
+            display: block;
+        }
+        
+        .search-field {
+            position: absolute;
+            display: none;
+            width: 95%;
+            left: 0;
+            top: 45%;
+            margin: .25em;
+            height: 2em;
+        }
+        
+        .search-close-icon {
+            display: none;
+        }
+        /* tablet and mobile devices */
+        
+        @media screen and (max-width: 992px) {
+            .header-div {
+                max-height: 100%;
+                background-image linear-gradient(to right, green, green, rgb(58, 219, 120, .75))!important;
+            }
+            .header .header-logo {
+                display: none;
+            }
+            .mobile-header {
+                position: relative;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: .5em;
+                z-index: 3;
+                max-width: 100%;
+            }
+            .mobile-header span {
+                padding-right: .5em;
+            }
+            .mobile-header .menu-close-icon {
+                display: none;
+            }
+            .mobile-header span a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white!important;
+                font-weight: bolder;
+            }
+            .mobile-header span a {
+                display: flex;
+                align-items: center;
+                justify-items: center;
+            }
+            .mobile-header span a svg:nth-child(1) {
+                margin-right: -1.25em;
+            }
+            .mobile-header .search-field {
+                width: 80%;
+                left: 0;
+                top: 0;
+                margin: .25em;
+                height: 2em;
+            }
+            .header {
+                max-height: 15em;
+                display: none;
+                overflow-y: scroll;
+                transition: linear .5s;
+            }
+            .services-dropdown {
+                position: static;
+                background-color rgba(186, 228, 186);
+            }
+        }

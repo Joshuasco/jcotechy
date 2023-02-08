@@ -245,3 +245,15 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# class Subscriber(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+#     email = models.EmailField()
+#     is_subscriber=models.BooleanField(default=False)
+
+#     verbose_name = 'subscriber'
+#     verbose_name_plural='subscribers'
+
+#     def __str__(self):
+#         return self.email

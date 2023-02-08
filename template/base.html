@@ -15,16 +15,27 @@
 <body>
     <header>
         {% include 'includes/header.html' %}
+
     </header>
+    <div class="msg-alert-container"> {%for message in messages %}{%if message%}
+        <div class="msg-alert"> {{message}} <span class="close-msg-alert"><svg xmlns="http://www.w3.org/2000/svg" width="10.632" height="10.502" viewBox="0 0 17.632 17.502">
+    <path id="xmark" d="M16.016,109.661a1.649,1.649,0,1,1-2.332,2.332L8.25,106.562l-5.433,5.43a1.65,1.65,0,0,1-2.333-2.333l5.435-5.435L.483,98.792a1.65,1.65,0,0,1,2.333-2.333L8.25,101.9l5.435-5.435a1.65,1.65,0,0,1,2.333,2.333l-5.435,5.435Z" transform="translate(0.5 -95.475)" fill="#800ba2" stroke="#fff" stroke-width="1"/>
+  </svg></span></div>{%endif%}{%endfor%} </div>
     <main>
         <div class="content">
             {% block content %}{%endblock%}
         </div>
         <div class="get-quote-form-container">
-            {%for message in messages %} {{message}} {%endfor%}
+
             <div class="get-quote-form">
                 <div class="quote-header">
-                    <small><b> Get a Quote for any of our services you are interested in</b></small> <button class="cancel-get-quote">Cancel</button></div>
+                    <small><b> Get a Quote for any of our services you are interested in</b></small>
+                    <span class="cancel-get-quote">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10.632" height="10.502" viewBox="0 0 17.632 17.502">
+                              <path id="xmark" d="M16.016,109.661a1.649,1.649,0,1,1-2.332,2.332L8.25,106.562l-5.433,5.43a1.65,1.65,0,0,1-2.333-2.333l5.435-5.435L.483,98.792a1.65,1.65,0,0,1,2.333-2.333L8.25,101.9l5.435-5.435a1.65,1.65,0,0,1,2.333,2.333l-5.435,5.435Z" transform="translate(0.5 -95.475)" fill="#800ba2" stroke="#fff" stroke-width="1"/>
+                            </svg>
+                          </span>
+                </div>
                 <form action="{% url 'core:quote' %}?next={{request.get_full_path}}" method='POST'>
                     {%csrf_token%}
                     <p><input tpe="text" name='full_name' placeholder="your full name" required></p>

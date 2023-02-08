@@ -1,0 +1,71 @@
+/* --------------------begin section-2-0 -----------------------*/
+
+.section-2-0 {
+    background-color: white;
+    padding: 7em 0 3em;
+}
+
+.section-2-0 h1 {
+    text-align: center;
+}
+
+.section-2-0 .stats {
+    display: flex;
+    flex-flow: wrap;
+    color: white;
+    margin: .5em;
+    justify-content: space-around;
+}
+
+.section-2-0 .stats ul {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 50%;
+    background-image: linear-gradient(to top, #971ADE, rgb(233, 19, 179));
+    background-color: #971ADE;
+    max-width: 20%;
+    min-width: 8em;
+    padding: .5em;
+    margin: .5em;
+    transition: linear .5s;
+}
+
+.section-2-0 .stats ul:hover {
+    background-image: linear-gradient(to left, rgb(53, 5, 97), rgb(80, 5, 151));
+    background-color: rgb(30, 5, 53);
+    transition: linear .5s;
+}
+
+.section-2-0 .stats ul:hover svg {
+    animation: stats-svg-icon .75s infinite ease;
+}
+
+@keyframes stats-svg-icon {
+    0% {
+        transform: rotate(-20deg);
+    }
+    50% {
+        transform: rotate(20deg);
+    }
+    100% {
+        transform: rotate(-20deg);
+    }
+}
+
+.section-2-0 .stats ul li {
+    font-size: larger;
+    font-weight: bold;
+    text-shadow: 3px 0 0 black;
+    padding: .5em;
+}
+
+.section-2-0 .stats ul em {
+    margin: .5em .5em 1.5em .5em;
+    text-shadow: 1px 0 0 black;
+}
+
+
+/* ------------------end .section-2-0 ----------------- */

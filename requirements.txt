@@ -8,6 +8,7 @@ Django==4.1.5
 django-jazzmin==2.6.0
 django-social-share==2.3.0
 django-storages==1.13.2
+django-tinymce==3.5.0
 gunicorn==20.1.0
 jmespath==1.0.1
 Pillow==9.4.0

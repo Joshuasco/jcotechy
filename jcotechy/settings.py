@@ -62,29 +62,34 @@ else:
 INSTALLED_APPS = [
     # integrated library apps
     'jazzmin', #custom admin interface
+    # Default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-     'blog',
+    # custom apps
+    'blog',
     'core',
-        'account',
-# integrated library apps
-    # 'tinymce',
+    'account',
+    'tinymce',
+    # integrated library apps
+    
     # 'admin_interface',
     # 'colorfield',
     'django_social_share',
     'storages',
+    
 
 ]
 
 MIDDLEWARE = [
+    #default middlewares
      'django.middleware.security.SecurityMiddleware',
      #whitenoise middleware for static files in production
     'whitenoise.middleware.WhiteNoiseMiddleware',
+     #default middlewares
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -185,7 +190,7 @@ SESSION_SAVE_EVERY_REQUEST = True          # Will prevent from logging you out a
 
 
 # AWS CONFIFURATION SETTINGS FOR MEDIA FILES
-if not DEBUG:
+if DEBUG:
     try:
         """
         using AWS setup for django media files
@@ -223,31 +228,28 @@ if not DEBUG:
         AWS_S3_FILE_OVERWRITE = True
         # AWS_DEFAULT_ACL = 'public-read'
 
-
-        # S3 Static Files Storage
-        STATICFILES_DIRS = [BASE_DIR/'static']
-        STATIC_LOCATION = 'static'
-        STATICFILES_STORAGE = 'custom_storage.StaticStorage'
-        # 'storages.backends.s3boto3.S3Boto3Storage'
-        STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-        AWS_STATIC_LOCATION = 'static'
-        # 'custom_storage.StaticStorage'
-        """
-        use whitenoise alternatively for static files storage and compression in production
-        """
-        # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-        # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-        # STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
-
         # S3 Media Files Storage
         AWS_MEDIA_LOCATION = 'media'
         MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
-        # MEDIA_ROOT = 'media'
 
-        # MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/'
-        # MEDIA_ROOT = MEDIA_URL
 
+        # S3 Static Files Storage
+        # STATICFILES_DIRS = [BASE_DIR/'static']
+        # STATIC_LOCATION = 'static'
+        # STATICFILES_STORAGE = 'custom_storage.StaticStorage'
+        # 'storages.backends.s3boto3.S3Boto3Storage'
+        # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+        # AWS_STATIC_LOCATION = 'static'
+        # 'custom_storage.StaticStorage'
+        """
+        use whitenoise alternatively for static files storage and compression in production
+        """ 
+        # Using whitenoise  static settings
+        STATIC_URL = '/static/'
+        STATICFILES_DIRS = [BASE_DIR/'static']
+        STATIC_ROOT = BASE_DIR/'staticfiles'
+        STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+   
 
        
         
@@ -293,6 +295,38 @@ else:
 
 LOGIN_URL='account/signin'
 LOGIN_REDIRECT_URL='account/profile'
+
+
+# TINYMCE CONFIFURATION SETTINGS
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 360,
+    'width': 1120,
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'theme': 'modern',
+    'plugins': '''
+        textcolor save link image media preview codesample contextmenu
+        table code lists fullscreen  insertdatetime  nonbreaking
+        contextmenu directionality searchreplace wordcount visualblocks
+        visualchars code fullscreen autolink lists  charmap print  hr
+        anchor pagebreak
+    ''',
+    'toolbar1': '''
+        fullscreen preview bold italic underline | fontselect,
+        fontsizeselect  | forecolor backcolor | alignleft alignright |
+        aligncenter alignjustify | indent outdent | bullist numlist table |
+        | link image media | codesample |
+    ''',
+    'toolbar2': '''
+        visualblocks visualchars |
+        charmap hr pagebreak nonbreaking anchor |  code |
+        ''',
+    'contextmenu': 'formats | link image',
+    'menu': '[]',
+    'statusbar': 'false',
+}
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

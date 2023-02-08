@@ -1,0 +1,214 @@
+.about-container {
+    position: relative;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.about-container .hero-section {
+    position: relative;
+    width: 100%;
+    height: 27.5em;
+    background-color: lightgreen;
+    background: url('/static/images/core/about-jcotech.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+    padding: 0;
+}
+
+.about-container .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to left, rgb(53, 5, 97, .5), rgb(80, 5, 151, .5));
+}
+
+.hero-section .header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    color: #FD21CA;
+    flex-direction: column;
+    text-shadow: 4px 0 0 white;
+    z-index: 6;
+    position: absolute;
+}
+
+.hero-section .header-content div {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.about-container section:not(.hero-section) {
+    margin: 2.5em 5em!important;
+}
+
+
+/* about default/constant css */
+
+.about-container span {
+    color: #de1aad;
+}
+
+
+/* end about page default css */
+
+
+/* begin .section-2 */
+
+.section-2-0 {
+    background-color: white;
+    padding: 1.5em 0 !important;
+}
+
+
+/* end .section-2 */
+
+.about-container .section-2 h1 {
+    text-align: center;
+}
+
+.about-container .section-2 .stats {
+    display: flex;
+    flex-flow: wrap;
+    color: white;
+    margin: .5em;
+    justify-content: space-around;
+}
+
+.section-2 .stats ul {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 50%;
+    background-color: green;
+    max-width: 20%;
+    min-width: 8em;
+    padding: .5em;
+    margin: .5em;
+}
+
+.section-2 .stats ul li {
+    font-size: larger;
+    font-weight: bold;
+    text-shadow: 3px 0 0 black;
+    padding: .5em;
+}
+
+.section-2 .stats ul em {
+    margin: .5em .5em 1.5em .5em;
+    text-shadow: 1px 0 0 black;
+}
+
+.about-container .h1-1 {
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    color: green;
+    text-shadow: 3px 0 0 white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-container .section-4 {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
+    margin: 2em;
+    background-image: linear-gradient(to top, #971ADE, #971ade, rgba(158, 33, 216, 0.75), rgb(158, 33, 216, .5), rgb(158, 33, 216, 0));
+}
+
+.about-container .section-4 div {
+    max-width: 45%;
+    padding: .25em;
+    min-width: 15em;
+}
+
+.about-container .section-4 div:hover svg {
+    animation: goalVision-svg-icon .75s infinite ease;
+}
+
+@keyframes goalVision-svg-icon {
+    0% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+.about-container .section-4 p {
+    color: whitesmoke;
+    text-shadow: 0 0 2px black;
+}
+
+.about-container .section-5 {
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    margin: 5em 0;
+}
+
+.about-container .section-5 div {
+    flex: 1;
+    min-width: 15em;
+}
+
+.about-container .section-5 img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.section-6 h1 {
+    text-align: center;
+}
+
+.section-6 .partners {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
+    padding: 0;
+    width: 100%;
+    margin: auto;
+}
+
+.section-6 .partners li {
+    flex: 1;
+    margin: .5em;
+    min-width: 5em;
+    padding: 0;
+}
+
+.section-6 .partners img {
+    max-width: 10em;
+    max-height: 6em;
+    min-width: 5em;
+    min-height: 2.5em;
+    border-radius: 2px;
+    padding: .5em;
+}
+
+@media screen and (max-width:992px) {
+    .about-container section:not(.hero-section) {
+        margin: 2.5em 2.5em!important;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .about-container section:not(.hero-section) {
+        margin: 2.5em 1.5em!important;
+    }
+}

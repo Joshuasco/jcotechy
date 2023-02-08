@@ -1,0 +1,119 @@
+.section-2 {
+    width: 80%;
+    margin: 2.5em auto;
+}
+
+.section-2 .form-container {
+    display: flex;
+    background-color: whitesmoke;
+}
+
+.section-2 .img-container {
+    width: 20%;
+    background-color: lavender;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.section-2 img {
+    width 100%;
+    height: 15em;
+}
+
+.section-2 form {
+    flex: 2;
+    padding: .5em;
+}
+
+.section-2 form input {
+    flex: 2;
+    height: 2em;
+    padding: .5em;
+    width: 50%;
+    border-radius: 10px;
+    border: none;
+    background-color: lavender;
+}
+
+.section-2 .form-control {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.section-2 .form-control p {
+    flex: 1;
+    width: 100%;
+    margin-right: .5em;
+}
+
+.section-2 .form-control input {
+    width: 100%;
+    background-color: lavender;
+}
+
+.section-2 form .submit {
+    flex: 2;
+    padding: 1em 0 2em 0;
+    width: 25%;
+    border: 2px solid #FD21CA;
+    color: #FD21CA;
+    background-color: white;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.section-2 form .submit:hover {
+    background-image: linear-gradient(to left, #971ADE, #de1aad);
+    border: none;
+    color: white;
+    padding: 1.12em 0 2.12em 0;
+}
+
+@media screen and (max-width: 992px) {
+    .section-2 .img-container {
+        width: 25%;
+    }
+    .section-2 img {
+        height: 15em;
+    }
+    .section-2 form input {
+        width: 75%;
+    }
+    .section-2 .form-control {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .section-2 .form-control input:first-of-type {
+        margin-bottom: 1em;
+    }
+    .section-2 form .submit {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .section-2 {
+        width: 90%;
+        margin: 2.5em auto;
+    }
+    .section-2 .img-container {
+        width: 35%;
+    }
+    .section-2 img {
+        height: 15em;
+    }
+    .section-2 form {
+        margin-right: 1em;
+    }
+    .section-2 form input {
+        width: 100%;
+        margin-right: 1em;
+    }
+    .section-2 form .submit {
+        width: 50%;
+    }
+}
