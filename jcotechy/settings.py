@@ -40,6 +40,9 @@ print(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
+# superuser authentication configuration
+ADMIN_USER = os.environ.get('ADMIN_USER')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWD')
 
 # Application definition
 

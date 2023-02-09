@@ -6,6 +6,8 @@ from blog.models import Article
 from .services import Services
 from django.contrib import messages
 from django.core.files import File
+from django.conf import settings as _S
+
 
 # Create your views here.
 class HomeView(ListView):
@@ -20,23 +22,23 @@ class HomeView(ListView):
     SHOULD EXECUTE ONCE
 
     """
-    
-    # for service in Services:
+    if _S.DEBUG:
+        for service in Services:
 
-    #     obj, created = Service.objects.get_or_create(title=service['title'],
-    #                 short_description=service['short_dscript'],content=service['content'], published=service['published'])
-        
-    #     if created:
-    #         # with open('{}'.format(service["svg_img"]), 'rb') as get_svg:
-    #         print("######################################")
-    #         print('{} service created'.format(service['title']))
-    #         print("######################################")
-
-    #     else:
-    #         print("######################################")
-    #         print('{} service already exist'.format(service['title']))
-    #         print("######################################")
+            obj, created = Service.objects.get_or_create(title=service['title'],
+                        short_description=service['short_dscript'],content=service['content'], published=service['published'])
             
+            if created:
+                # with open('{}'.format(service["svg_img"]), 'rb') as get_svg:
+                print("######################################")
+                print('{} service created'.format(service['title']))
+                print("######################################")
+
+            else:
+                print("######################################")
+                print('{} service already exist'.format(service['title']))
+                print("######################################")
+                
 
     def get_context_data(self):
         context = super(HomeView, self).get_context_data()
