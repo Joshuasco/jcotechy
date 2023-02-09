@@ -21,21 +21,21 @@ class HomeView(ListView):
 
     """
     
-    for service in Services:
+    # for service in Services:
 
-        obj, created = Service.objects.get_or_create(title=service['title'],
-                    short_description=service['short_dscript'],content=service['content'], published=service['published'])
+    #     obj, created = Service.objects.get_or_create(title=service['title'],
+    #                 short_description=service['short_dscript'],content=service['content'], published=service['published'])
         
-        if created:
-            # with open('{}'.format(service["svg_img"]), 'rb') as get_svg:
-            print("######################################")
-            print('{} service created'.format(service['title']))
-            print("######################################")
+    #     if created:
+    #         # with open('{}'.format(service["svg_img"]), 'rb') as get_svg:
+    #         print("######################################")
+    #         print('{} service created'.format(service['title']))
+    #         print("######################################")
 
-        else:
-            print("######################################")
-            print('{} service already exist'.format(service['title']))
-            print("######################################")
+    #     else:
+    #         print("######################################")
+    #         print('{} service already exist'.format(service['title']))
+    #         print("######################################")
             
 
     def get_context_data(self):
@@ -45,7 +45,6 @@ class HomeView(ListView):
         context['articles']=Article.articles.all()
         context['portfolios']=Portfolio.portfolios.all()
 
-        
         return context
 
 class ProjectView(ListView):
