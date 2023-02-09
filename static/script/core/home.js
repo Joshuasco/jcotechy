@@ -90,10 +90,10 @@ $(document).ready(function() {
         }, 1000);
     });
 
-    $('.hiws').click(function(e) {
+    $('.services').click(function(e) {
         e.preventDefault();
         $('html, body').animate({
-            scrollTop: $("#hiws").offset().top
+            scrollTop: $("#services").offset().top
         }, 1000);
     });
 
