@@ -11,7 +11,7 @@ class ReviewManager(models.Manager):
         return super(ReviewManager, self).get_queryset().filter(published=True)
 
 class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_review')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_review")
     content = models.TextField()
     published = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -29,7 +29,6 @@ class FaqManager(models.Manager):
         return super(FaqManager, self).get_queryset().filter(published=True)
 
 class Faq(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     question= models.CharField(max_length=350)
     answer = models.TextField()
     published = models.BooleanField(default=False)
@@ -84,13 +83,13 @@ class PortfolioManager(models.Manager):
         return super(PortfolioManager, self).get_queryset().filter(published= True)
 
 class Portfolio(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField( upload_to= 'core/portfolio/images', null=True, blank=True )
     alt_text = models.CharField(max_length=50, help_text='enter an alternate text for this image', default= 'image')
     video = models.FileField(upload_to="core/portfolio/videos", null=True, blank=True)
     title= models.CharField( max_length=150)
     content= models.TextField(blank=True, null=True)
     url = models.URLField(blank=True, null=True)
+    review = models.ForeignKey(Review, on_delete=models.SET_NULL, related_name="project_review", null=True, blank=True)
     published = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     update_on = models.DateTimeField(auto_now= True)
@@ -247,13 +246,13 @@ class Product(models.Model):
         return self.name
 
 
-# class Subscriber(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-#     email = models.EmailField()
-#     is_subscriber=models.BooleanField(default=False)
+class Subscriber(models.Model):
+    email = models.EmailField()
+    is_subscriber=models.BooleanField(default=True)
 
-#     verbose_name = 'subscriber'
-#     verbose_name_plural='subscribers'
+    verbose_name = 'subscriber'
+    verbose_name_plural='subscribers'
 
-#     def __str__(self):
-#         return self.email
+    def __str__(self):
+        return self.email
+

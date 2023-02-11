@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView
-from .models import (Review, Faq, Service, Portfolio, Position, Opportunity, Gallary, Event, Contact, Quote)
+from .models import (Review, Faq, Service, Portfolio, Position, Opportunity, Gallary, Event, Contact, Quote,Subscriber)
 from blog.models import Article
 from .services import Services
 from django.contrib import messages
@@ -127,3 +127,15 @@ def event(request):
         'events':Event.events.all()
     }
     return render(request, 'core/event.html', context)
+
+
+def subscribe(request):
+    if request.method == "POST":
+        email=request.POST.get('email')
+        path=request.POST.get('next')
+        if Subscriber.objects.filter(email=email, is_subscriber=True):
+            messages.success(request, f"{email} is already a subsciber")
+        else:
+            Subscriber.objects.create(email=email,is_subscriber=True)
+            messages.success(request, "you have successfully subscribe to Jcoteck email list, You can now receive updates and news from us")
+        return redirect(path)

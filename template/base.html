@@ -69,8 +69,10 @@
         <div class="footer-contact">
             <div class="subscription-container">
                 <h3>Stay Updated With Jcotek</h3>
-                <form id="subscribe" method="POST" action="">
-                    <input type="email" name="email" id="" placeholder="enter email address"><br>
+                <form id="subscribe" method="POST" action="{% url 'core:subscribe' %}">
+                    {% csrf_token %}
+                    <input type="email" name="email" id="" placeholder="enter email address">
+                    <input type="hidden" name="next" value="{{request.get_full_path}}">
                     <input class="submit-btn" type="submit" value="Subscribe">
                 </form>
             </div>

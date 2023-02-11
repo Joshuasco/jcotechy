@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     # 'admin_interface',
     # 'colorfield',
     'tinymce',
+    'ckeditor',
     'django_social_share',
     'storages',
     
@@ -220,21 +221,21 @@ if not DEBUG:
 
 
         # S3 Static Files Storage
-        STATICFILES_DIRS = [BASE_DIR/'static']
-        STATIC_LOCATION = 'static'
-        STATICFILES_STORAGE = 'custom_storage.StaticStorage'
+        # STATICFILES_DIRS = [BASE_DIR/'static']
+        # STATIC_LOCATION = 'static'
+        # STATICFILES_STORAGE = 'custom_storage.StaticStorage'
         # 'storages.backends.s3boto3.S3Boto3Storage'
-        STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-        AWS_STATIC_LOCATION = 'static'
+        # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+        # AWS_STATIC_LOCATION = 'static'
         # 'custom_storage.StaticStorage'
         """
         use whitenoise alternatively for static files storage and compression in production
         """ 
         # Using whitenoise  static settings
-        # STATIC_URL = '/static/'
-        # STATICFILES_DIRS = [BASE_DIR/'static']
-        # STATIC_ROOT = BASE_DIR/'staticfiles'
-        # STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+        STATIC_URL = '/static/'
+        STATICFILES_DIRS = [BASE_DIR/'static']
+        STATIC_ROOT = BASE_DIR/'staticfiles'
+        STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
    
 
        
@@ -273,7 +274,9 @@ else:
 
     # local mediafiles settings (user uploaded files)
     MEDIA_URL = '/media/'
+    # Absolute filesystem path to the directory that will hold user-uploaded files locally.
     MEDIA_ROOT = BASE_DIR/ 'media/'
+    
     # DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 
@@ -283,14 +286,49 @@ LOGIN_URL='account/signin'
 LOGIN_REDIRECT_URL='account/profile'
 
 
+
+
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CKEDITOR CONFIFURATION SETTINGS
+
+# URL to the directory where the CKEditor JavaScript files are stored
+CKEDITOR_BASEPATH = STATIC_URL + "ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+CKEDITOR_CONFIGS = {
+     'default': {
+    #     'toolbar': 'Custom',
+    #     'toolbar_Custom': [
+    #         ['Bold', 'Italic', 'Underline'],
+    #         ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
+    #         ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+    #         ['Link', 'Unlink'],
+    #         ['RemoveFormat', 'Source'],
+    #         ['Maximize', 'ShowBlocks'],
+    #     ],
+        'width': '100%',
+        'height': 300,
+        # 'filebrowserWindowWidth': 940,
+        # 'filebrowserWindowHeight': 725,
+        # 'extraPlugins': 'image2,video',
+    }
+}
+
+
+
 # TINYMCE CONFIFURATION SETTINGS
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
-    'width': 1120,
+    'width': "100%",
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',
-    'theme': 'modern',
+    'theme': 'silver',
     'plugins': '''
         textcolor save link image media preview codesample contextmenu
         table code lists fullscreen  insertdatetime  nonbreaking
@@ -312,9 +350,3 @@ TINYMCE_DEFAULT_CONFIG = {
     'menu': '[]',
     'statusbar': 'false',
 }
-
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

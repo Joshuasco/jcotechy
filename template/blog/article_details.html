@@ -101,9 +101,20 @@
             </section>
 
             <section class="section-4-0 ">
-                {% post_to_facebook object_or_url "facebook" %} {% post_to_linkedin object_or_url %} {% post_to_telegram "New Song: " object_or_url %} {% send_email object.title "New post: {{article.title}}. Check it out!" object_or_url "Share via email" % {% post_to_whatsapp
-                object_or_url "Share via WhatsApp" %} {% save_to_pinterest object_or_url %} {% add_pinterest_script %} // Required for save_to_pinterest. Add to the end of body tag. {% copy_to_clipboard object_or_url "Copy to clipboard!" %} {% add_copy_script
-                %}
+                <div>{% post_to_facebook object_or_url "{{article.title}}" "facebook" %}</div>
+                <div>{% post_to_linkedin object_or_url "{{article.title}}" %}</div>
+                <div>{% post_to_telegram "{{article.title}} " object_or_url %}</div>
+                <div>{% send_email object.title "{{article.title}}" object_or_url "Share via email" %}</div>
+                <div>{% save_to_pinterest object_or_url %}</div>
+                <div>{% add_pinterest_script %}</div>
+                <div>{% copy_to_clipboard object_or_url "Copy to clipboard!" %} </div>
+                <div>{% add_copy_script %} {% post_to_whatsapp object_or_url "Share via WhatsApp" %}</div>
+                <div>
+                    <a href="whatsapp://send?text={{ request.build_absolute_uri }}" data-action="share/whatsapp/share">
+                        <img src="{{ article.image }}" alt="Image">
+                        <img src="https://i.imgur.com/l14m8H2.png" alt="WhatsApp share icon" width="32" height="32">
+                    </a>
+                </div>
                 <h2>Related Articles</h2>
                 <div class="division-1">
                     <section class="section-2 couroser-section">

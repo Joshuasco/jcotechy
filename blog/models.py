@@ -5,6 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
 from tinymce.models import HTMLField
+from ckeditor.fields import RichTextField
 # from tinymce.models import HTMLField  should be replaced with ckeditor
 # Create your models here.
 class CategoryManager(models.Manager):
@@ -58,7 +59,8 @@ class Article(models.Model):
     author            = models.ForeignKey(Profile, on_delete=models.CASCADE)
     video              =models.URLField(blank=True, null=True, help_text='when adding a video url ensure to check the \'is_video\' \
     field and add video description in content field. Also upload an image to be use as thumbnail')
-    content           = HTMLField()
+    # content           = HTMLField( help_text='use this field as video description when providing video url')
+    content =RichTextField(default='',help_text='use this field as video description when providing video url')
     category          = models.ForeignKey(Category, max_length=50,related_name='category_articles', on_delete=models.SET_NULL, null= True )
     tags               = models.ManyToManyField(Tag, related_name='tags', blank=True)
     love             = models.ManyToManyField(Profile,  related_name='love', blank=True )
@@ -144,16 +146,7 @@ class Comment(models.Model):
 # use the line of  code above to check for field with the field name first and the filter attribute second for multiple filtering of a foreign key
 
 
-class Subscriber(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    email = models.EmailField()
-    is_subscriber=models.BooleanField(default=False)
 
-    verbose_name = 'subscriber'
-    verbose_name_plural='subscribers'
-
-    def __str__(self):
-        return self.email
 
 
 # class Advert(models.Model):

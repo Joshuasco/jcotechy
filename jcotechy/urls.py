@@ -24,7 +24,8 @@ urlpatterns = [
     path('', include('core.urls', namespace='core')),
     path('account/', include('account.urls', namespace='account')),
     path('blog/', include('blog.urls', namespace='blog')),
-    path('tinymce/', include('tinymce.urls')),
-    
+    path('tynymce/', include('tinymce.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+   
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
