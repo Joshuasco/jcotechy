@@ -22,7 +22,7 @@
                 </div>
                 <div>
                     <h3>{{service.title}}</h3>
-                    <div class="service-content">{{service.content}}</div>
+                    <div class="service-content">{{service.content|safe}}</div>
                 </div>
             </ul>
         </div>
@@ -35,7 +35,7 @@
                 <div class="img-container"><img src="{{project.image.url}}" alt="{{project.alt_text}}"></div>
                 <div class="content-container">
                     <h3>{{project.title}}</h3>
-                    {% if project.content%}{{project.content}}{%endif%}
+                    {% if project.content%}{{project.content|safe}}{%endif%}
                     <div class="url-container"> <button><a class="project-url" href="{{project.url}}">View project</a></button></div>
                 </div>
             </div>

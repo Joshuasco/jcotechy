@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 # from tinymce.models import HTMLField
+from ckeditor.fields import RichTextField
 from django.shortcuts import reverse
 import datetime
 
@@ -12,7 +13,7 @@ class ReviewManager(models.Manager):
 
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_review")
-    content = models.TextField()
+    content = models.TextField() 
     published = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     update_on = models.DateTimeField(auto_now= True)
@@ -58,7 +59,7 @@ class Service(models.Model):
     title= models.CharField( max_length=150)
     short_description = models.CharField( max_length=300, default='')
     slug = models.SlugField()
-    content = models.TextField()
+    content = RichTextField()
     published = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     update_on = models.DateTimeField(auto_now= True)
@@ -87,7 +88,7 @@ class Portfolio(models.Model):
     alt_text = models.CharField(max_length=50, help_text='enter an alternate text for this image', default= 'image')
     video = models.FileField(upload_to="core/portfolio/videos", null=True, blank=True)
     title= models.CharField( max_length=150)
-    content= models.TextField(blank=True, null=True)
+    content= RichTextField(blank=True, null=True)
     url = models.URLField(blank=True, null=True)
     review = models.ForeignKey(Review, on_delete=models.SET_NULL, related_name="project_review", null=True, blank=True)
     published = models.BooleanField(default=False)
@@ -127,7 +128,7 @@ class OpportunityManager(models.Manager):
 class Opportunity(models.Model):
     user= models.ForeignKey(User, on_delete = models.CASCADE)
     position = models.ForeignKey(Position, on_delete= models.CASCADE, help_text='select the position you are appling for')
-    content= models.TextField(default='')
+    content= RichTextField(default='')
     portfolio_url= models.URLField(blank=True, null=True, help_text='enter link to your portfolio')
     published= models.BooleanField(default= False)
     is_applicant =models.BooleanField(default=False)
@@ -216,7 +217,7 @@ class Event(models.Model):
     keywords = models.CharField(max_length=25, blank=True, null=True)
     short_description = models.CharField( max_length=300, default='')
     slug = models.SlugField(unique=True)
-    content = models.TextField(default='')
+    content = RichTextField(default='')
     url =models.URLField(blank=True, null=True)
     published = models.BooleanField(default=False)
     scheduled_on= models.DateTimeField(default=datetime.datetime.now)
@@ -240,7 +241,7 @@ class Event(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=150)
     slug = models.SlugField(default='y')
-    description =models.TextField()
+    description = RichTextField(default='')
 
     def __str__(self):
         return self.name
