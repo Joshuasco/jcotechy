@@ -13,7 +13,7 @@ import os
 from io import BytesIO
 import io
 from gtts import gTTS  
-import pyttsx3         
+# import pyttsx3         
 import math
 from django.utils.html import strip_tags                                                                                      
 # Create your views here.
@@ -68,30 +68,58 @@ def get_audio(title, html_content):
     path=f'static/myaudio/{title.replace(" ", "_")}.mp3'
     tts = gTTS(text, lang='en', slow=False)
     tts.save(path)
+
+    
     # Create an in-memory file object
-    audio_file = io.BytesIO()
+        # audio_file = io.BytesIO()
     # Save the audio to the file object
-    tts.write_to_fp(audio_file)
+        # tts.write_to_fp(audio_file)
     # Seek to the beginning of the file object
-    audio_file.seek(0)
+        # audio_file.seek(0)
     # Return the file object
     return path
 
 
 
-def get_audio_1(title, html_content):
-    text =strip_tags(title) + '. ' + strip_tags(html_content)
-    # initialize Text-to-speech engine  
-    engine = pyttsx3.init()  
-    # convert this text to speech  
-    path=f'static/myaudio/{title.replace(" ", "_")}.mp3'
-    engine.save_to_file(text, path )
-    # engine.say(text)  
-    engine.setProperty('rate', 275)  # set the speaking rate
-    engine.setProperty('voice', 'en-us')  # set the language of the audio
-    return engine
+# def get_audio_1(title, html_content):
+#     text =strip_tags(title) + '. ' + strip_tags(html_content)
+#     # initialize Text-to-speech engine  
+#     engine = pyttsx3.init()  
+#     # convert this text to speech  
+#     path=f'static/myaudio/{title.replace(" ", "_")}.mp3'
+#     engine.save_to_file(text, path )
+#     # engine.say(text)  
+#     engine.setProperty('rate', 275)  # set the speaking rate
+#     engine.setProperty('voice', 'en-us')  # set the language of the audio
+#     return engine
 
 
+def playAudio(request, slug):
+    article=get_object_or_404(Article, slug=slug)
+    title= article.title
+    content=article.content
+
+    data={}
+    path= f'static/myaudio/{title.replace(" ", "_")}.mp3'
+    try:
+        # with open(path, 'rb') as audio_file:
+        #     if audio_file:
+                #  print("audio file exists+++++++++++++")
+
+        audio=get_audio(title, content)
+        print("audio file processing....")
+
+       
+    except:
+        print("please check your internet connection ")
+        # print("audio file does mot exists+++++++++++++ creating one")
+        
+
+        # audio.runAndWait() 
+        # audio.stop() 
+   
+    data['path']=path
+    return JsonResponse(data)
 
 def article(request):
 
@@ -170,26 +198,6 @@ def articleDetails(request, slug):
 
     return render(request, 'blog/article_details.html', context)
 
-def playAudio(request, slug):
-    article=get_object_or_404(Article, slug=slug)
-    title= article.title
-    content=article.content
-
-    data={}
-    path= f'static/myaudio/{title.replace(" ", "_")}.mp3'
-    try:
-        with open(path, 'rb') as audio_file:
-            if audio_file:
-                print("audio file exists+++++++++++++")
-    except:
-        print("audio file does mot exists+++++++++++++ creating one")
-        audio=get_audio_1(title, content)
-
-        audio.runAndWait() 
-        audio.stop() 
-   
-    data['path']=path
-    return JsonResponse(data)
     
 
 @login_required

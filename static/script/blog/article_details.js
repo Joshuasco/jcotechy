@@ -22,8 +22,10 @@ $(document).ready(function() {
         let url = $('.play').attr('url');
         $('.audio').toggle(250);
         audio = document.getElementById('audio');
+
         if (audio) {
             audio.play();
+            $("#article-audio audio").css('display', 'block');
             return false
         }
         $.get("http://" + url,
@@ -38,7 +40,7 @@ $(document).ready(function() {
 
                 var audio = $('<audio  >', {
                     id: 'audio',
-                    hidden: true,
+                    // hidden: true,
                     controls: 'controls',
                     autoplay: 'autoplay',
                     //   loop : 'loop',
@@ -46,6 +48,7 @@ $(document).ready(function() {
                     src: url
                 });
                 $("#article-audio").html(audio);
+                $("#article-audio audio").css('display', 'block');
             }
         );
     });
@@ -54,6 +57,7 @@ $(document).ready(function() {
         let url = $('.play').attr('url');
         document.getElementById('audio').pause();
         $('.audio').toggle(250);
+        $("#article-audio audio").css('display', 'none');
 
     });
 
