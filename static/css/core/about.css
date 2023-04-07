@@ -165,10 +165,10 @@
     min-width: 15em;
 }
 
-.about-container .section-5 img {
+.about-container .section-5 div svg {
     width: 100%;
-    height: 100%;
-    border-radius: 50px;
+    height: auto;
+    border-radius 50px;
     text-align: center;
 }
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Tag, Article, Comment
+from .models import (Category, Tag, Article, Comment, Share, Viewer)
 from django.db.models import Count
 from django.utils.html import format_html, mark_safe
 from django.shortcuts import reverse
@@ -8,29 +8,26 @@ from django.shortcuts import reverse
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = [ 'id' ,'title','header_img', 'author_by',  'category','all_tags','likes','comments','is_published', 'created', 'updated']
+    list_display = [ 'id' ,'title','header_img', 'author_by',  'category','all_tags','likes','shares', 'views','comments','is_published', 'is_approved','created', 'updated']
     list_display_links=['title',]
     list_filter = ['is_published','created']
     list_select_related = True
-    readonly_fields=['author','header_img']
-    list_editable = ['is_published', ]
-    fields=[('is_published','is_featured','is_sponsored','is_project','is_product','is_event','is_video'),'header_img','author',\
-    ('header_image','alt_text'),('title','slug'),'video','content',('category','tags')]
+    readonly_fields=['author','header_img','updated','created']
+    list_editable = ['is_published', 'is_approved',]
+    fields=[('is_published','is_featured','is_sponsored','is_approved','is_reviewed','is_video'),'header_img','author',\
+    'header_image','alt_text',"keywords","short_description",'title','slug','video','content','category','tags','created','updated']
     prepopulated_fields = {'slug': ('title',)}
-    list_per_page=3
+    # list_per_page=3
     actions=['update_field',]
     date_hierarchy = 'created'
     search_help_text = 'search article by field id, title, or date_created'
     date_hierarchy = None
-    save_as = True
-    save_as_continue = False
-    save_on_top = False
     # paginator = Paginator
     preserve_filters = False
 
     admin.site.site_header = "User Admin"
-    admin.site.site_title = "JCOTECH Admin Portal"
-    admin.site.index_title = "Welcome to JCOTECH Admin"
+    admin.site.site_title = "Jcoteck Admin Portal"
+    admin.site.index_title = "Welcome to Jcoteck Admin"
 
     actions = ('update post',)
     # action_form = helpers.ActionForm
@@ -45,7 +42,7 @@ class ArticleAdmin(admin.ModelAdmin):
     #         lookup, value
     #     )
     # list_display = ("username", "email", "first_name", "last_name", "is_staff")
-    search_fields = ("title__icontains", "id",'is_published','created',)
+    search_fields = ("title", "id",'is_published','created',)
     # ordering = ("username",)
     filter_horizontal = (
         # "groups",
@@ -70,7 +67,7 @@ class ArticleAdmin(admin.ModelAdmin):
         fd=super(ArticleAdmin, self).get_fields(request,obj)
         
         if not request.user.is_superuser:
-            fields=[('is_published','is_video'),'header_img',('header_image','alt_text'),('title','slug'),'video','content',('category','tags')]
+            fields=[('is_published', 'is_reviewed','is_sponsored','is_video'),'header_img',('header_image','alt_text'),'title','slug','video','content',('category','tags')]
             return fields
         return fd
 
@@ -78,9 +75,7 @@ class ArticleAdmin(admin.ModelAdmin):
     def header_img(self, obj):
         return mark_safe('<img src="{url}" width="{width}" height={height} />'.format(
             url = obj.header_image.url,
-            width='70',height='70',
-            # width=obj.header_image.width,
-            # height=obj.header_image.height,
+            width='50',height='50',
             )
     )
 
@@ -98,7 +93,6 @@ class ArticleAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
                 return qs
         return qs.filter(author=request.user.profile)
-        # admin.site.register(Tour,TourAdmin)
 
 
     def all_tags(self, obj):
@@ -115,11 +109,26 @@ class ArticleAdmin(admin.ModelAdmin):
 
     def likes(self, obj):
         return obj.total_love()
+    
+    def shares(self, obj):
+        url = format_html(
+                "<a  href=/admin/blog/share/?article__id__exact={}>{}</a>".format(
+    obj.id,str(obj.total_share()) )
+            )
+        return url
+    
+    def  views(self, obj):
+        url = format_html(
+                "<a  href=/admin/blog/viewer/?article__id__exact={}>{}</a>".format(
+    obj.id,str(obj.total_views()) )
+            )
+        return url
+        
 
     # investigate on mark_safe, format_html and format differences
     def comments(self, obj):
         url = format_html(
-                "<a style='padding:.5em;background-color:blue;border-radius:5px;color:white;' title='click to view' href=/admin/blog/comment/?article__id__exact={}>{}</a>".format(
+                "<a  href=/admin/blog/comment/?article__id__exact={}>{}</a>".format(
     obj.id,str(obj._comments) )
             )
         if url:
@@ -179,7 +188,7 @@ class CommentAdmin(admin.ModelAdmin):
         return mark_safe('<div><a href="/admin/blog/article/?id={id}"><img  src="{url}"  width="{width}" height={height} /><br>{username}</a></div>'.format(
             id=obj.article.id,
             url = obj.article.header_image.url,
-            width='70',height='60', 
+            width='50',height='50', 
             username=obj.article.title,
             )
         )
@@ -234,6 +243,25 @@ class TagAdmin(admin.ModelAdmin):
     list_display= ['slug','title']
     prepopulated_fields = {'slug': ('title',)}
 
+
+@admin.register(Share)
+class ShareAdmin(admin.ModelAdmin): 
+    list_display= ['social_medium','article','shared_date']
+    list_filter = ['shared_date']
+    search_fields=['social_medium','shared_date']
+    readonly_fields=['social_medium','article','shared_date']
+
+
+@admin.register(Viewer)
+class ViewerAdmin(admin.ModelAdmin): 
+    list_display= ['ip','article','viewed_date']
+    list_filter = ['viewed_date']
+    search_fields=['ip','viewed_date']
+    readonly_fields=['article','viewed_date']
+
+        
+    
+    
 
 
 

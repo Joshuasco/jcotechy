@@ -1,0 +1,59 @@
+{% extends 'base.html' %} {%load static%} {%block styles%}
+<link rel="stylesheet" href="{% static 'css/core/project_details.css' %}"> {%block aside_proj_styles %} {%endblock%}
+<link rel="stylesheet" href="{% static 'css/blog/django-social.css' %}">
+<meta name="description" content="{{project.short_description}}">
+<meta name="keywords" content="{{project.keywords}}">
+<meta name="author" content="JCOTeck">
+<title>{{project.title}}</title>
+{%endblock%}{%block content %}
+<script src="{% static 'script/libraries/jquery_com-3.5.1.min.js' %} "></script>
+<script src="{% static 'script/libraries/htmx.min.js' %} "></script>
+<section class="section-1 hero-section">
+    <div>
+        <br><br><br>
+        <h1 class="h1-45"> Let's Make Your Dreams A Reality</h1>
+        <p class="p-20">
+            <em> We can help you with your Project</em> <br><br> <button class="get-quote"><a href="">Get Quote</a> </button>
+        </p>
+    </div>
+
+</section>
+<section class="section-2">
+    <main>
+        <div class="detail-container">
+            <h1> {{project.title}}</h1>
+            <img class="header-img" src="{{project.image.url}}" alt="{{project.alt_text}}">
+            <div class="content">
+                {{project.content|safe}}
+            </div>
+
+        </div>
+        <div>
+            <h2>Related Projects</h2>
+            <div class="project-container">
+                {%for proj in portfolios %} {% if not proj.id == project.id %}
+                <div class="project">
+                    <div class="img-container"><img src="{{proj.image.url}}" alt="{{proj.alt_text}}"></div>
+                    <div class="content-container">
+                        <h3>{{proj.title}}</h3>
+                        {% if proj.content%}{{proj.content|truncatechars:150|safe}}{%endif%}
+                        <div class="url-container"> <button><a class="project-url" href="{%url 'core:project_details' proj.slug %}">View project</a></button></div>
+                    </div>
+                </div>
+                {%endif%} {%empty%}
+                <div class="comming-soon">
+
+                    <h1>No related project yet!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTeck on our realeased <em>PROJECTS</em> and other events</span>
+                </div>
+                {%endfor%}
+
+            </div>
+    </main>
+
+    <aside>
+        {% include 'core/includes/project_aside.html' %}
+    </aside>
+
+
+</section>
+{%endblock content %}

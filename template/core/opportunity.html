@@ -1,24 +1,70 @@
 {% extends 'base.html' %} {%load static%} {%block styles%}
 <link rel="stylesheet" href="{% static 'css/core/opportunity.css' %}"> {%endblock styles%} {%block content%}
 <section class="section-1 hero-section">
-    <!-- <img src="" alt=""> -->
     <div>
         <br><br><br>
-        <h1 class="h1-45"> We Are Recuiting.</h1>
+        <h1 class="h1-45"> We Are Hiring.</h1>
         <p class="p-20">
+            <div>You must be a registered and loggedin user to submit your application</div>
             <a href="{% url 'account:signin' %}">Login</a>/<a href="{% url 'account:signup' %}">Register</a> <br>
         </p>
     </div>
 
 </section>
 <section class="section-2">
-    {%for opportunity in opportunities%}
-    <div class="card">
-        <h2>{{opportunity.position|upper}}</h2>
-        <p>{{opportunity.content|safe}}</p>
+    <div class="container">
+        {%for opportunity in opportunities%}
+
+        <div class="item-list">
+            <div class="item-row"> <span> <b>Role:</b> {{opportunity.position}}</span> <span><b>Job Type:</b> {{opportunity.job_type|capfirst}}</span></div>
+            <div class="item-row"> <span><b>Location:</b> {{opportunity.location|capfirst}}</span> <span><b>Salary:</b> {{opportunity.salary|capfirst}}</span></div>
+            <hr>
+            <div class="info">
+                <div><b>See Details: </b> <button class="btn"><b class="btn-1">v</b><b class="btn-2">^</b></button></div>
+                <hr>
+                <div class="more">
+                    {{opportunity.details|safe}}
+                </div>
+            </div>
+        </div>
+        {%empty%}
+        <div class="comming-soon">
+            <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTECk on our realeased <em>OPPOERTUNITIES</em> and other events</span>
+        </div>{%endfor%}
     </div>
-    {%empty%}
-    <div>No any opportunity yet, Subscribe to our news later to know when opportunity is available</div>
-    {%endfor%}
 </section>
-{%endblock content%}
+
+
+<section class="section-3">
+    <div class="container">
+        <h1>
+            <div></div> Apply Now
+            <div></div>
+        </h1>
+        <div class="message">{%for message in messages %} {{message}} {%endfor%}
+        </div>
+        <div class="title-header">To apply, fill in the form below and select the role you are applying for</div>
+        <form class="contact-form" action="{% url 'core:contact' %}" method="POST">
+            {%csrf_token%}
+            <ul>
+                <li>
+                    Full name: {{form.full_name}}
+                </li>
+                <li>
+                    Role: {{form.position}}
+                </li>
+                <li>
+                    Message: {{form.details}}
+                </li>
+                <li>
+                    Linkedin/Portfolio url {{form.portfolio_url}}
+                </li>
+                <li><input class="submit" type="submit" value="Send Message "></li>
+            </ul>
+        </form>
+    </div>
+</section>
+
+{%endblock content%} {% block scripts %}
+<script src="{% static 'script/core/opportunity.js' %}"></script>
+{% endblock scripts %}

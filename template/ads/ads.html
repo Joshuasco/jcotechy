@@ -13,8 +13,8 @@
                         <div class="profile-container">
                             <span>
                             <img class="profile-pics" src="{{article.author.image.url}}" alt="{{article.author.username}}">
-                            {{article.author.user.username}} </span>
-                            <small><em>{{article.created|timesince}} ago</em></small>
+                            {{article.author_name|truncatechars:11}} </span>
+                            <small><em>{{article.created|truncatechars:10}} </em></small>
                         </div>
                         <div class="stats-container">
                             <div class="article-stats"><svg xmlns="http://www.w3.org/2000/svg" width="28.542" height="24.408" viewBox="0 0 28.542 24.408">

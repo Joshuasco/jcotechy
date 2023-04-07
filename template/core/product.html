@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {%load static%} {%load read_svg%} {%block styles%}
+<link rel="stylesheet" href="{% static 'css/core/project.css' %}"> {%endblock%} {%block content%}
+<div>
+    <section class="section-1 hero-section">
+        <div>
+            <br><br><br>
+            <h1 class="h1-45"> Our Products</h1>
+            <p class="p-20">
+                <em> See our available products</em>
+            </p>
+        </div>
+
+    </section>
+
+    <section class="section-2">
+
+        -->
+        <div class="project-container">
+            {%for project in portfolios %}
+            <div class="project">
+                <div class="img-container"><img src="{{project.image.url}}" alt="{{project.alt_text}}"></div>
+                <div class="content-container">
+                    <h3>{{project.title}}</h3>
+                    {% if project.content%}{{project.content|safe}}{%endif%}
+                    <div class="url-container"> <button><a class="project-url" href="{{project.url}}">View project</a></button></div>
+                </div>
+            </div>
+            {%empty%}
+            <div class="comming-soon">
+                <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTeck on our realeased <em>PRODUCTS</em> and  <em>SERVICES</em></span>
+            </div>
+            {%endfor%}
+        </div>
+    </section>
+
+</div>
+{%endblock%}

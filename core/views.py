@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView
-from .models import (Review, Faq, Service, Portfolio, Position, Opportunity, Gallary, Event, Contact, Quote,Subscriber)
+from django.views.generic import ListView,DetailView, CreateView, UpdateView, DeleteView, View
+from .models import (Review, Faq, Service, PortfolioCat, Portfolio, Position, 
+Opportunity, Gallary, Event, EventCat, Contact, Quote,Subscriber, PrivacyPolicy )
+from .forms import (OpportunityForm,)
 from blog.models import Article
 from .services import Services
 from django.contrib import messages
@@ -10,6 +12,55 @@ from django.conf import settings as _S
 
 
 # Create your views here.
+
+def search(request):
+    if request.method == "GET":
+        search_term = request.GET.get('search_term')
+        path = request.GET.get('next')
+        print(f"####################request receive##{path}################## {search_term}")
+        try:
+            if 'page' in search_term:
+                if 'home' in search_term:
+                    return redirect('core:home')
+                elif 'about' in search_term:
+                    return redirect('core:about')
+                elif 'contact' in search_term:
+                    print("contact page called--------------")
+                    return redirect("core:contact")
+                elif 'product' in search_term:
+                    return redirect("core:product")
+                elif 'project' in search_term or 'portfolio' in search_term:
+                    return redirect('core:portfolio')
+                elif 'blog' in search_term:
+                    return redirect('blog:articles')
+                elif 'signin' in search_term or 'login' in search_term:
+                    return redirect('account:signin')
+                elif 'signup' in search_term or 'register' in search_term:
+                    return redirect('account:signup')
+                else:
+                    print(f"######## {search_term.index('page')} ############")
+                    index = search_term.index('page')
+                    print(index)
+                    search_term=search_term[:index]
+                    print(f"#################{search_term}################")
+                    messages.warning(request, f"page with the name '{search_term}' does not exists")
+                    
+                    return redirect('core:home')
+                
+            else:
+                # search_article=Article.articles.filter(title__in=search_term)
+                return redirect(reverse('blog:articles')+f"?search_term={search_term}")
+        except:
+            print(f"#################{search_term}################")
+            index = search_term.index('page')
+            print(index)
+            search_term=search_term[:index]
+            print(f"#################{search_term}################")
+            messages.warning(request, f"page with the name '{search_term}' does not exists")
+            return redirect(reverse(path))
+    
+   
+
 class HomeView(ListView):
     model=Service
     template_name='core/home.html'
@@ -44,24 +95,76 @@ class HomeView(ListView):
         context = super(HomeView, self).get_context_data()
         context['reviews']=Review.reviews.all()
         context['faqs']=Faq.faqs.all()
-        context['articles']=Article.articles.all()
-        context['portfolios']=Portfolio.portfolios.all()
+        context['articles']=Article.articles.all()[:3]
+        context['portfolios']=Portfolio.portfolios.all()[:2]
 
         return context
 
-class ProjectView(ListView):
-    model=Service
+
+
+class ProjectList(ListView):
+    model=Portfolio
     template_name='core/project.html'
     context_object_name = 'projects'
     # queryset= Service.services.all()
 
     def get_context_data(self):
-        context = super(ProjectView, self).get_context_data()
-        context['reviews']=Review.reviews.all()
-        context['faqs']=Faq.faqs.all()
-        context['articles']=Article.articles.all()
+        context = super(ProjectList, self).get_context_data()
         context['portfolios']=Portfolio.portfolios.all()
+        context['portfolio_cats']=PortfolioCat.portfolio_cats.all()
         return context
+
+    def get(self, request):
+        if 'category' in self.request.get_full_path():
+            slug_cat= request.GET.get('category')
+            self.queryset= Portfolio.portfolios.filter(category=get_object_or_404(PortfolioCat, slug=slug_cat))
+        return super(ProjectList, self).get(request)
+
+
+class ProjectDetails(DetailView):
+    model=Portfolio
+    template_name='core/project_details.html'
+    context_object_name = 'project'
+   
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProjectDetails, self).get_context_data( *args, **kwargs)
+        context['portfolios']=Portfolio.portfolios.all()
+        context['portfolio_cats']=PortfolioCat.portfolio_cats.all()
+        return context
+
+
+class EventList(ListView):
+    model=Event
+    template_name='core/event.html'
+    context_object_name = 'events'
+    queryset= Event.events.all()
+
+    def get_context_data(self):
+        context = super(EventList, self).get_context_data()
+        context['event_cats']=EventCat.event_cats.all()
+        return context
+    
+    def get(self, request):
+        if 'category' in self.request.get_full_path():
+            slug_cat= request.GET.get('category')
+            self.queryset= Event.events.filter(category=get_object_or_404(EventCat, slug=slug_cat))
+        return super(EventList, self).get(request)
+
+
+class EventDetails(DetailView):
+    model=Event
+    template_name='core/event_details.html'
+    context_object_name = 'event'
+    # queryset= Service.services.all()
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(EventDetails, self).get_context_data( *args, **kwargs)
+        context['events']=Event.events.all()
+        context['event_cats']=EventCat.event_cats.all()
+        return context
+
+
+
 
 class ServiceView(DetailView):
     model=Service
@@ -71,22 +174,33 @@ class ServiceView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ServiceView, self).get_context_data( *args, **kwargs)
-        context['reviews']=Review.reviews.all()
-        context['faqs']=Faq.faqs.all()
-        context['articles']=Article.articles.all()
-        context['portfolios']=Portfolio.portfolios.all()
         return context
 
-class OpportunityView(ListView):
-    model=Opportunity
+
+
+def opportunity(request):
+    # form_class=OpportunityForm
     template_name='core/opportunity.html'
-    context_object_name = 'opportunities'
-    queryset= Opportunity.opportunities.all()
+
+    form = OpportunityForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid(self, form):
+            form.save(commit=False)
+            form.user=reques.user
+            form.save()
+            
+    context={
+        'opportunities':Opportunity.opportunities.all(),
+        'form':form,
+    }
+    return render(request, template_name, context)
 
     
 
 def about(request):
     return render(request, 'core/about.html')
+
+
 
 def contact(request):
     first_name=request.POST.get('first_name', None)
@@ -99,10 +213,12 @@ def contact(request):
     if request.method == 'POST':
         if first_name !=None and last_name !=None and email !=None and subject !=None and message !=None:
             Contact.objects.create(first_name=first_name, last_name=last_name, email=email, subject=subject, message=message)
-            messages.success(request, 'Thank you for contacting jcotech, we will respond to you shortly through your email ')
+            messages.success(request, 'Thank you for contacting JCOTeck, we will respond to you shortly through your email ')
         else:
             messages.error(request, 'plesase fill all fields')
     return render(request, 'core/contact.html')
+
+
 
 def quote(request):
     full_name=request.POST.get('full_name', None)
@@ -122,20 +238,39 @@ def quote(request):
     print(f"-----------path = --------------{request.GET.get('path', None)}--------------")
     return redirect(request.POST.get('path'))
 
-def event(request):
-    context={
-        'events':Event.events.all()
-    }
-    return render(request, 'core/event.html', context)
+
 
 
 def subscribe(request):
     if request.method == "POST":
         email=request.POST.get('email')
         path=request.POST.get('next')
-        if Subscriber.objects.filter(email=email, is_subscriber=True):
+        if not '@' in email :
+            return message.warning(request, 'please enter a vailid email')
+        if Subscriber.objects.filter(email=email, is_subscriber=True).exists():
             messages.success(request, f"{email} is already a subsciber")
         else:
             Subscriber.objects.create(email=email,is_subscriber=True)
             messages.success(request, "you have successfully subscribe to Jcoteck email list, You can now receive updates and news from us")
         return redirect(path)
+
+def unsubscribe(request):
+    if request.method == "POST":
+        email=request.POST.get('email')
+        path=request.POST.get('next')
+        if not '@' in email :
+            return message.warning(request, 'please enter a vailid email')
+        if not Subscriber.objects.filter(email=email, is_subscriber=True).exists():
+            messages.success(request, f"{email} is not a subsciber")
+        else:
+            Subscriber.objects.create(email=email,is_subscriber=True)
+            messages.success(request, "you have successfully unsubscribe to Jcoteck email list, You will no more receive updates and news from us")
+        return redirect(path)
+
+
+
+def privacyPolicy(request):
+    context={
+        'p_ps': PrivacyPolicy.objects.all()
+     }
+    return render(request, 'core/privacy_policy.html', context)

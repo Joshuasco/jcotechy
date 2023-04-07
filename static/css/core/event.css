@@ -1,7 +1,9 @@
+/* begin .hero-section */
+
 .hero-section {
     position: relative;
     background-color: rgba(97, 40, 231, 0.75);
-    background: url("/static/images/account/login2.jpg");
+    background: url("/static/images/core/event.jpg");
     background-position: right!important;
     background-repeat: no-repeat;
     background-size: cover;
@@ -28,10 +30,123 @@
     text-transform: capitalize;
 }
 
-.hero-section .p-20 {
-    font-size 20px;
-}
-
 .hero-section .p-20 a {
     text-shadow: 0 2px 2px white!important;
 }
+
+
+/* end .hero-section */
+
+h2 {
+    color: rgb(71, 8, 129);
+}
+
+.section-2 {
+    display: flex;
+    margin: .5em;
+}
+
+
+/* begin main */
+
+.section-2 main {
+    flex: 3;
+    padding: .5em;
+    max-width: 100%;
+}
+
+.project-container {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: flex-start;
+}
+
+.project {
+    width: 48%;
+    overflow: hidden;
+    background-color: whitesmoke;
+    margin: 1%;
+}
+
+.img-container {
+    height: 15em;
+    overflow-y: scroll;
+    width: 110%;
+}
+
+img {
+    width: 100%;
+}
+
+.content-container {
+    padding: 0 .5em;
+}
+
+.url-container {
+    text-align: right;
+    padding: .5em 0;
+}
+
+button {
+    padding: .5em 1em;
+    border-radius: 10px;
+    border: 2px solid #FD21CA;
+    transition: all ease .25s;
+}
+
+button:hover {
+    border: none;
+    background-image: linear-gradient(to right, #971ADE, rgb(233, 19, 179));
+    transition: all ease .25s;
+}
+
+button:hover a {
+    color: white!important;
+}
+
+
+/* end main */
+
+
+/* begin aside */
+
+aside {
+    flex: 1;
+    padding: .5em;
+}
+
+
+/* end aside */
+
+
+/* end section-2 */
+
+
+/* begin tablet view */
+
+@media screen and (max-width:992px) {
+    .section-2 {
+        flex-direction: column;
+    }
+    .section-2 h2 {
+        font-size: medium;
+    }
+}
+
+
+/* end tablet view */
+
+
+/* begin mobile view */
+
+@media screen and (max-width:600px) {
+    .section-2 {
+        padding: 0;
+    }
+    .project {
+        width: 100%;
+    }
+}
+
+
+/* end mobile view */

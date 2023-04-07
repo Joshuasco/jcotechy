@@ -1,24 +1,46 @@
-{% extends 'base.html' %} {%load static%} {%block styles%}
-<link rel="stylesheet" href="{% static 'css/core/event.css' %}"> {%endblock styles%} {%block content%}
-<section class="section-1 hero-section">
-    <!-- <img src="" alt=""> -->
-    <div>
-        <br><br><br>
-        <h1 class="h1-45"> Let's Get Going.</h1>
-        <p class="p-20">
-            <a href="{% url 'account:signin' %}">Login</a>/<a href="{% url 'account:signup' %}">Register</a> <br>
-        </p>
-    </div>
+ {% extends 'base.html' %} {%load static%} {%load read_svg%} {%block styles%}
+<link rel="stylesheet" href="{% static 'css/core/event.css' %}"> {%block aside_proj_styles %} {%endblock%}
+<link rel="stylesheet" href="{% static 'css/blog/django-social.css' %}">
+<meta name="description" content="view all of our projects on visual and Appealing Designs, web and mobile development, AI and Robotics, Iot and Embedded system, Digital Marketting Campaign ">
+<meta name="keywords" content="project, portfolio, 'JCOTeck Portfolios', 'JCOTeck Projects', 'visual and Appealing Designs', 'web and mobile development', 'AI and Robotics', 'Iot and Embedded system', 'Digital Marketting Campaign' ">
+<meta name="author" content="JCOTeck">
+<title>JCOTeck projects</title> {%endblock%} {%block content%}
+<div>
+    <section class="section-1 hero-section">
 
-</section>
-<section class="section-2">
-    {%for event in events%}
-    <div class="card">
-        <h2>{{event.title|upper}}</h2>
-        <p>{{event.content|safe}}</p>
-    </div>
-    {%empty%}
-    <div>No any event yet, Subscribe to our news later to know when will be our next event</div>
-    {%endfor%}
-</section>
-{%endblock content%}
+        <div>
+            <br><br><br>
+            <h1 class="h1-45"> Our Events </h1>
+            <p class="p-20">
+                <em>See our pasts and upcomming events</em> </p>
+        </div>
+
+    </section>
+
+    <section class="section-2">
+        <main>
+
+            <div class="project-container">
+                {%for event in events %}
+                <div class="project">
+                    <div class="img-container"><img src="{{event.image.url}}" alt="{{event.alt_text}}"></div>
+                    <div class="content-container">
+                        <h3>{{event.title}}</h3>
+                        {% if event.short_description%}{{event.short_description|safe}}{%endif%}
+                        <div class="url-container"> <button><a class="project-url" href="{{event.get_absolute_url}}">See Details</a></button></div>
+                    </div>
+                </div>
+                {%empty%}
+                <div class="comming-soon">
+                    <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTeck on our realeased <em>PROJECTS</em> and other events</span>
+                </div>
+                {%endfor%}
+            </div>
+        </main>
+        <aside>
+            {% include 'core/includes/event_aside.html' %}
+        </aside>
+    </section>
+
+</div>
+{%endblock%}

@@ -1,0 +1,62 @@
+/* begin hero-section */
+
+.hero-section {
+    position: relative;
+    background-color: rgba(97, 40, 231, 0.75);
+    background: url("/static/images/blog/tech.jpg");
+    background-position: right!important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding: 2.5em;
+    text-align: center;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to right, rgb(138, 43, 226, .5), rgb(138, 43, 226, .5));
+}
+
+.hero-section div {
+    position: relative;
+}
+
+.hero-section .h1-45 {
+    text-transform: capitalize;
+}
+
+iframe {
+    max-width: 100%;
+    width: 100%!important;
+    margin: auto;
+}
+
+.category-container {
+    display: flex;
+    margin: 0 auto;
+    overflow-x: scroll;
+}
+
+.category-container a {
+    padding: .5em;
+}
+
+.category-container a:hover {
+    border-bottom: 2px solid blueviolet;
+}
+
+.category-container .active-link {
+    border-bottom: 2px solid blueviolet;
+}
+
+
+/* end .hero-section */
+
+@media screen and (max-width:992px) {}
+
+@media screen and (max-width:600px) {}

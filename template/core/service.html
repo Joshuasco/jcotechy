@@ -1,12 +1,15 @@
 {% extends 'base.html' %} {%load static%} {%load read_svg%} {%block styles%}
-<link rel="stylesheet" href="{% static 'css/core/service.css' %}"> {%endblock%} {%block content%}
+<link rel="stylesheet" href="{% static 'css/core/service.css' %}">
+<meta name="description" content="{{service.short_description}}">
+<meta name="keywords" content="{{service.keywords}}">
+<meta name="author" content="Jcoteck"> {%endblock%} {%block content%}
 <div>
     <section class="section-1 hero-section">
         <div>
             <br><br><br>
             <h1 class="h1-45"> We Offer Top Notch Software, Iot & Robotic Serivices</h1>
             <p class="p-20">
-                <em> We can help you with your Project</em> <br><br> <button><a href="">Get Quote</a> </button>
+                <em> We can help you with your Project</em> <br><br> <button class="get-quote"><a href="">Get Quote</a> </button>
             </p>
         </div>
 
@@ -36,12 +39,12 @@
                 <div class="content-container">
                     <h3>{{project.title}}</h3>
                     {% if project.content%}{{project.content|safe}}{%endif%}
-                    <div class="url-container"> <button><a class="project-url" href="{{project.url}}">View project</a></button></div>
+                    <div class="url-container"> <button><a class="project-url" href="{%url 'core:project_details' project.slug %}">View project</a></button></div>
                 </div>
             </div>
             {%empty%}
             <div class="comming-soon">
-                <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTEk on our realeased <em>PROJECTS</em> and other events</span>
+                <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTeck on our realeased <em>PROJECTS</em> and other events</span>
             </div>
             {%endfor%}
         </div>

@@ -1,15 +1,23 @@
-<!DOCTYPE html> {%load static%}
+<!DOCTYPE html> {%load static%}{% load google_analytics_tags %}
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'images/includes/jcoteck-icon.png' %}" type="image/x-icon">
+    <link rel="icon" sizes="32x32" href="{% static 'images/includes/jcoteck-icon.png' %}" type="image/png">
+    <link rel="icon" sizes="64x64" href="{% static 'images/includes/jcoteck-icon.png' %}" type="image/png">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/includes/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/includes/footer.css' %}"> {%block styles %}
-    <!-- title and styles goes here -->
-    {%endblock%}
+    <link rel="stylesheet" href="{% static 'css/includes/footer.css' %}">
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+    <!-- Alpinjs -->
+    <script defer src="https://unpkg.com/alpinejs@3.8.1/dist/cdn.min.js"></script>
+
+    {%block styles %}
+    <!-- title, meta tags and styles goes here -->{%endblock%}
 </head>
 
 <body>
@@ -17,16 +25,30 @@
         {% include 'includes/header.html' %}
 
     </header>
-    <div class="msg-alert-container"> {%for message in messages %}{%if message%}
-        <div class="msg-alert"> {{message}} <span class="close-msg-alert"><svg xmlns="http://www.w3.org/2000/svg" width="10.632" height="10.502" viewBox="0 0 17.632 17.502">
+    <!-- begin back-end message alert -->
+    {%for message in messages %}{%if message%}
+    <div class="msg-alert-container">
+        <div class="msg-alert"> {{message}} <span id="msg-alert"></span><span class="close-msg-alert"><svg xmlns="http://www.w3.org/2000/svg" width="10.632" height="10.502" viewBox="0 0 17.632 17.502">
     <path id="xmark" d="M16.016,109.661a1.649,1.649,0,1,1-2.332,2.332L8.25,106.562l-5.433,5.43a1.65,1.65,0,0,1-2.333-2.333l5.435-5.435L.483,98.792a1.65,1.65,0,0,1,2.333-2.333L8.25,101.9l5.435-5.435a1.65,1.65,0,0,1,2.333,2.333l-5.435,5.435Z" transform="translate(0.5 -95.475)" fill="#800ba2" stroke="#fff" stroke-width="1"/>
-  </svg></span></div>{%endif%}{%endfor%} </div>
+  </svg></span></div>
+    </div>
+    {%endif%} {%endfor%}
+    <!-- end back-end message alert-->
+
+    <!-- begin fron-end message alert-2 -->
+    <span class="msg-alert-container-1">
+        <span class="msg-alert"> <span id="msg-alert"></span><span class="close-msg-alert"><svg xmlns="http://www.w3.org/2000/svg" width="10.632" height="10.502" viewBox="0 0 17.632 17.502">
+     <path id="xmark" d="M16.016,109.661a1.649,1.649,0,1,1-2.332,2.332L8.25,106.562l-5.433,5.43a1.65,1.65,0,0,1-2.333-2.333l5.435-5.435L.483,98.792a1.65,1.65,0,0,1,2.333-2.333L8.25,101.9l5.435-5.435a1.65,1.65,0,0,1,2.333,2.333l-5.435,5.435Z" transform="translate(0.5 -95.475)" fill="#800ba2" stroke="#fff" stroke-width="1"/>
+   </svg></span></span>
+    </span>
+    <!-- end front-end message alert-->
+
     <main>
         <div class="content">
             {% block content %}{%endblock%}
         </div>
+        <!-- begin quote form-->
         <div class="get-quote-form-container">
-
             <div class="get-quote-form">
                 <div class="quote-header">
                     <small><b> Get a Quote for any of our services you are interested in</b></small>
@@ -59,22 +81,43 @@
                 </form>
             </div>
         </div>
+        <!-- end quote form -->
+        <!-- begin aside -->
         <div class="aside">
-
             {% block aside %}{%endblock%}
-
         </div>
+        <!--end begin aside -->
     </main>
+    <div>
+        <!-- tawk.to live chat integration -->
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+            var Tawk_API = Tawk_API || {},
+                Tawk_LoadStart = new Date();
+            (function() {
+                var s1 = document.createElement("script"),
+                    s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/63f8179b4247f20fefe251eb/1gq0hogfh';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </div>
+
     <footer>
         <div class="footer-contact">
             <div class="subscription-container">
-                <h3>Stay Updated With Jcotek</h3>
+                <h3>Stay Updated With JCOTeck</h3>
                 <form id="subscribe" method="POST" action="{% url 'core:subscribe' %}">
                     {% csrf_token %}
-                    <input id="email" type="email" name="email" id="" placeholder="enter email address">
+                    <input id="email" type="email" name="email" id="" placeholder="enter email address" required>
                     <input type="hidden" name="next" value="{{request.get_full_path}}">
                     <input class="submit-btn" type="submit" value="Subscribe">
                 </form>
+
             </div>
             <div>
                 <h3>Locate Us</h3>
@@ -83,15 +126,15 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="31.675" viewBox="0 0 384 510.675">
                             <path id="location-dot" d="M168.3,499.2C116.1,435,0,279.4,0,192,0,85.96,85.96,0,192,0,298,0,384,85.96,384,192c0,87.4-117,243-168.3,307.2a30.212,30.212,0,0,1-47.4,0ZM192,256a64,64,0,1,0-64-64A64.059,64.059,0,0,0,192,256Z" fill="#fff"/>
                           </svg>
-                        <span>  No 5 maryland Estate, Onitsha, Anambra State. Nigeria</span>
+                        <span>  No 5 maryland Estate, Onitsha, Anambra Nigeria.</span>
                     </p>
                     <p><svg xmlns="http://www.w3.org/2000/svg" width="11.952" height="12.026" viewBox="0 0 511.952 512.026">
                         <path id="phone" d="M511.2,387,487.95,487.8a31.081,31.081,0,0,1-30.46,24.22C205.2,512,0,306.8,0,54.5A31.064,31.064,0,0,1,24.22,24.05L125.02.8A31.383,31.383,0,0,1,160.8,18.92l46.52,108.5a31.3,31.3,0,0,1-8.98,36.45L144.5,207.1A349.658,349.658,0,0,0,304,366.6l44.08-53.8a31.108,31.108,0,0,1,36.47-8.975l108.5,46.51C506.1,357.2,514.6,372.4,511.2,387Z" transform="translate(0 0.006)" fill="#fff"/>
-                      </svg> +2347054974199
+                      </svg> <a href="tel:+2349034334663" class="color-white">+2347054974199</a>
                     </p>
                     <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 512 384">
                         <path id="envelope" d="M464,64a48,48,0,0,1,28.8,86.4L275.2,313.6a32.1,32.1,0,0,1-38.4,0L19.2,150.4A48,48,0,0,1,48,64ZM217.6,339.2a63.9,63.9,0,0,0,76.8,0L512,176V384a64.059,64.059,0,0,1-64,64H64A64.027,64.027,0,0,1,0,384V176Z" transform="translate(0 -64)" fill="#fff"/>
-                      </svg> Jcotech.xyz
+                      </svg> <a href="mailto:info@jcoteck.com" class="color-white">info@jcoteck.com</a>
                     </p>
 
                 </div>
@@ -103,8 +146,14 @@
     <script src="{% static 'script/libraries/htmx.min.js' %}"></script>
     <script src="{% static 'script/base.js' %}"></script>
     <script src="{% static 'script/includes/header.js' %}"></script>
+    <script src="{% static 'script/includes/footer.js' %}"></script>
+    <script>
+        document.body.addEventListener('htmx:configRequest', (e) => {
+            e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}'
+        });
+    </script>
     {%block scripts%}
-    <!-- all scripts goes here -->
+    <!-- all page scripts goes here -->
     {%endblock%}
 </body>
 

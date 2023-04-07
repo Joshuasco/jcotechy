@@ -46,11 +46,12 @@
 
 .contact-socials {
     position: absolute;
-    top: 85%;
+    top: 21em;
     display: flex;
+    z-index: 10;
 }
 
-.contact-socials .socials {
+.contact-socials .social-contacts {
     border-radius: 50%;
     font-weight: bolder;
     font-size: larger;
@@ -61,12 +62,12 @@
     transition: linear .5s;
 }
 
-.contact-socials .socials svg {
+.contact-socials .social-contacts svg {
     height: 1.5em!important;
     width: 1.5em!important;
 }
 
-.contact-socials .socials:hover svg {
+.contact-socials .social-contacts:hover svg {
     animation: contact-svg-icon .75s infinite ease;
 }
 
@@ -75,7 +76,7 @@
         transform: scale(1.05);
     }
     50% {
-        transform: scale(0);
+        transform: scale(1);
     }
     100% {
         transform: scale(1.05);

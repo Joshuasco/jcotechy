@@ -1,0 +1,33 @@
+{%load static%} {%block aside_proj_styles %}
+<link rel="stylesheet" href="{% static 'css/core/includes/project_aside.css' %}">
+<!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">  -->
+{%endblock aside_proj_styles%}
+<div class="aside-container">
+    <section>
+        <h2>Project Categories</h2>
+        <div class=" aside-section-1">
+            {%for category in portfolio_cats%}
+            <div class="aside-cat">
+                <div class="img-container"> <img src="{{category.image.url}}" alt="{% if category.alt_text %}{{cateogory.alt_text}}{%else%}{{category.title}}{%endif%}"></div>
+                <a href="">
+                    <a href="{{category.get_absolute_url}}">
+                        <h4>{{category.title}} ({{category.portfolio_set.count}})</h4>
+                    </a>
+                </a>
+            </div>
+            {%endfor%}
+        </div>
+    </section>
+    <section>
+        <h2>Featured Projects</h2>
+        <div class=" aside-section-2">
+            {%for proj in portfolios|slice:5%}
+            <div class="aside-project">
+                <div class="img-container"> <img src="{{proj.image.url}}" alt="{% if proj.alt_text %}{{proj.alt_text}}{%else%}{{proj.title}}{%endif%}"></div>
+                <h3>{{proj.title}}</h3>
+            </div>
+            {%endfor%}
+        </div>
+
+    </section>
+</div>

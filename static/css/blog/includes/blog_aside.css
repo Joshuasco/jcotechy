@@ -1,0 +1,149 @@
+/* -------------begin aside----------------------  */
+
+
+/* blog list begin here */
+
+
+/* begin blog sub-header */
+
+.sub-header {
+    color: rgb(71, 8, 129);
+    display: flex;
+    justify-content: space-between;
+}
+
+.sub-header a {
+    border-radius: 5px;
+    padding: .15em .25em;
+    margin-bottom: 0;
+    font-weight: lighter;
+    font-size: medium;
+}
+
+.sub-header a:hover {
+    border-radius: 5px;
+    font-weight: lighter;
+    font-size: medium;
+    background-image: linear-gradient(to left, #971ADE, #de1aad);
+    color: white;
+}
+
+
+/* end blog sub-header */
+
+.aside-container {
+    flex: 1;
+    padding: .5em;
+    /* overflow-y: scroll;
+    min-width: 15em; */
+    position: relative;
+}
+
+.aside-container h4 {
+    padding: 0;
+    margin: 0;
+}
+
+.aside-container .outer-post-container {
+    width: 100%;
+}
+
+.aside-container .inner-post-container {
+    max-height: 24em;
+    width: 110%;
+    padding-right 2em!important;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.aside-container p {
+    padding: .25em 0;
+    margin: 0;
+}
+
+.aside-container .post-url {
+    color: black!important;
+}
+
+.aside-container .post-container {
+    padding: .5em;
+}
+
+.aside-container .post-container:hover {
+    color: black!important;
+    background-color: rgb(138, 43, 226, .5);
+}
+
+.author-container {
+    display: flex;
+    margin-right: 1em;
+}
+
+.author-container small:first-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: auto;
+}
+
+.author-container .author-img {
+    width: 2em;
+    height: 2em !important;
+    margin-right: .25em;
+    border-radius: 50%;
+}
+
+.content-container {
+    display: flex;
+    justify-content space-between;
+    align-items: center;
+}
+
+.article-img-conatainer {
+    width: 5em;
+    height: 5em;
+    padding-right: .5em;
+}
+
+.article-img-conatainer img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/*---------------- end aside--------------------- */
+
+
+/* tablet  */
+
+@media screen and (max-width: 992px) {
+    .aside-container .outer-post-container {
+        max-width: 100%;
+    }
+    .aside-container .inner-post-container {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-between;
+        max-height: 30em;
+    }
+    .post-container {
+        /* padding: .5em; */
+        width: 45%;
+        min-width: 45%;
+        padding: 3%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .aside-container .outer-post-container {
+        max-width: 100%;
+    }
+    .aside-container .inner-post-container {
+        display: block;
+        align-items: center;
+        max-height: 24em;
+    }
+    .post-container {
+        width: 100%;
+    }
+}

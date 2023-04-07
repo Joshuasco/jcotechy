@@ -9,6 +9,14 @@ body {
     position: relative;
 }
 
+.h1-45 {
+    text-transform: capitalize;
+}
+
+.p-20 em {
+    text-shadow: 0 2px 0 #FD21CA;
+}
+
 body .msg-alert-container {
     display: flex;
     justify-content: flex-end;

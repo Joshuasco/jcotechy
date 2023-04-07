@@ -1,5 +1,11 @@
 {% extends 'base.html' %} {%load static%} {%load read_svg%} {%block styles%}
-<link rel="stylesheet" href="{% static 'css/core/home.css' %}"> {%endblock%} {%block content%}
+<link rel="stylesheet" href="{% static 'css/core/home.css' %}">
+<meta name="description" content="JCOTeck is a leading and innovative technology company in Africa which is based off in Onitsha Nigeria saddled with the responsibility of providing sustanable ICT and Engineering solutions
+to start-ups, small, medium and large business organizations and industries.   We are professionals in visual and appealing designs, web and mobile application development, digital marketting, Iot and Embedded System development Ai and Robotics, Digital Training. Get in touch with us today, a trial will convince you.">
+<meta name="keywords" content="about jcoteck, Ict, Engineering, jcoteck, technology, about">
+<meta name="author" content="JCOTeck">
+<title>Welcome to Jcoteck</title>
+{%endblock%} {%block content%}
 
 <div class="home-page">
     <section class="section-1 hero-section">
@@ -46,7 +52,7 @@
                 <div class="hero-content " >
                   <h1>We provide custom</h1>
                   <h1 style="color:#FD21CA ;">WEB & MOBILE APPLICATIONS</h1>
-                    <span>Get a fully interactive, responsive and usee freindly web and mobile application. A good website speaks more about your product and servicse</span>
+                    <span>Get a fully interactive, responsive and user freindly web and mobile application. A good website speaks more about your product and servicse</span>
                 </div>
                 <img src="{% static 'images/core/web_dev.jpg' %} " alt="web development ">
                 <img class="mobile-app " src="{% static 'images/core/mobile_app.png' %} " alt="mobile and desktop development ">
@@ -76,7 +82,7 @@
 
         <div class="about-container ">
             <div class="about ">
-                JCOTEK is a leading and innovative Ict and Engineering company in Africa which is based off in Onitsha Nigeria saddled with the responsibility of providing sustanable ICT and Engineering solutions to organizations, small and medium business firms. Our
+                JCOTeck is a leading and innovative technological company in Africa, based off in Onitsha Nigeria saddled with the responsibility of providing sustanable ICT and Engineering solutions to organizations, small and medium business firms and industries. Our
                 services are quick and efficient, well trusted with over 200 happy clients and 50 completed projects in software, IOT and AI application development. <br> We are well known for the uniqueness of our designs that meets our
                 client needs and serve them better <a href="{% url 'core:about' %}">learn more</a> .<br>
                 <em>Let's take your business to the next level</em><br>
@@ -116,7 +122,7 @@
             </ul>
             {%empty%}
             <div class="comming-soon">
-                <h1>COMMING SOON!</h1> <span><a href="{% url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTEk on our realeased <em>SERVICES</em> and other events</span>
+                <h1>COMMING SOON!</h1> <span><a href="{% url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTeck on our realeased <em>SERVICES</em> and other events</span>
             </div>
             {%endfor%}
         </div>
@@ -430,15 +436,14 @@
                 <div class="img-container "><img src="{{project.image.url}} " alt="{{project.alt_text}} "></div>
                 <div class="content-container ">
                     <h3>{{project.title}}</h3>
-                    {% if project.content%}{{project.content}}{%endif%}
-                    <div class="url-container "> <button><a class="project-url " href="{{project.url}} ">View project</a></button></div>
+                    {% if project.content%}{{project.short_description}}{%endif%}
+                    <div class="url-container "> <button><a class="project-url " href="{%url 'core:project_details' project.slug %} ">View project</a></button></div>
                 </div>
             </div>
             {%empty%}
             <div class="comming-soon">
-                <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTEk on our realeased <em>PROJECTS</em> and other events</span>
-            </div>
-            {%endfor%}
+                <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTeck on our realeased <em>PROJECTS</em> and other events</span>
+            </div>{%endfor%}
         </div>
     </section>
 
@@ -651,7 +656,7 @@
                   </svg>
 
                     <br>
-                    <em><b>CONSULTANCY AND GUIDIANCE</b><br> Have an idea but Dont know how to go about it? we at Jcotech provide top notch consultancy to guide and help realise your dream goal with an online presence that grows your customer base </em>
+                    <em><b>CONSULTANCY AND GUIDIANCE</b><br> Have an idea but Dont know how to go about it? we at JCOTeck provide top notch consultancy to guide and help realise your dream goal with an online presence that grows your customer base </em>
                 </p>
                 <p>
                     <svg xmlns="http://www.w3.org/2000/svg " width="90.314 " height="101.736 " viewBox="0 0 90.314 101.736 ">
@@ -701,7 +706,7 @@
 
     <section class="section-14 couroser-section ">
         <h1 class="h1-center ">Our <span> Blog</span></h1>
-        <div class="title-header ">Get the latest gist from Jcotech <button><a class="list-url " href="{% url 'blog:articles' %} ">View All</a></button></div>
+        <div class="title-header ">Get the latest gist from JCOTeck <button><a class="list-url " href="{% url 'blog:articles' %} ">View All</a></button></div>
         <div class="couroser ">
             {%for article in articles|slice:4 %}
             <div class="article ">
@@ -711,7 +716,7 @@
                             <span>
                                   <img class="profile-pics " src="{{article.author.image.url}} " alt="{{article.author.username}} ">
                                   {{article.author.user.username}} </span>
-                            <small><em>{{article.created|timesince}} ago </em></small>
+                            <small><em>{{article.created}}</em></small>
                         </div>
                         <div class="stats-container ">
                             <div class="article-stats "><svg xmlns="http://www.w3.org/2000/svg " width="28.542 " height="24.408 " viewBox="0 0 28.542 24.408 ">
@@ -722,7 +727,7 @@
                                   <path id="heart " d="M0,50.444v-.323a7.968,7.968,0,0,1,13.6-5.635l.669.668.619-.668a8.11,8.11,0,0,1,7-2.225,7.966,7.966,0,0,1,6.656,7.86v.323a8.339,8.339,0,0,1-2.654,6.1l-10.073,9.4a2.266,2.266,0,0,1-3.088,0l-10.074-9.4A8.347,8.347,0,0,1,0,50.444Z
                         " transform="translate(0 -42.152) " fill="#f50add "/>
                                 </svg>
-                                <span>5</span>
+                                <span>{{article.love.count}}</span>
                             </div>
                             <div class="article-stats ">
                                 <svg xmlns="http://www.w3.org/2000/svg " width="29.176 " height="25.574 " viewBox="0 0 29.176 25.574 ">
@@ -733,7 +738,7 @@
                                   <path id="comment " d="M14.616,32C6.544,32,0,37.315,0,43.874a10.531,10.531,0,0,0,3.252,7.461A14.532,14.532,0,0,1,.129,56.8a.443.443,0,0,0-.086.5.44.44,0,0,0,.415.274,13.186,13.186,0,0,0,8.026-2.934,17.4,17.4,0,0,0,6.131,1.107c8.072,0,14.562-5.316,14.562-11.874S22.688,32,14.616,32Z
                         " transform="translate(-0.002 -32) " fill="#ec17bb "/>
                                 </svg>
-                                <span>3</span>
+                                <span>{{article.comment_set.all.count}}</span>
                             </div>
                             <div class="article-stats ">
                                 <svg xmlns="http://www.w3.org/2000/svg " width="21.46 " height="21.46 " viewBox="0 0 21.46 21.46 ">
@@ -745,7 +750,7 @@
                                   <path id="share-nodes " d="M13.671,39.909,9.164,42.16a4.667,4.667,0,0,1-.01.57,4.4,4.4,0,0,1,.01.57l4.508,2.251a4.6,4.6,0,1,1-1.408,3.31,4.057,4.057,0,0,1,.034-.57L7.789,46.04a4.6,4.6,0,1,1,0-6.62L12.3,37.169a5.008,5.008,0,0,1-.034-.57,4.6,4.6,0,1,1,1.408,3.31Z
                         " transform="translate(0 -32) " fill="#f50add "/>
                                 </svg>
-                                <span>4</span>
+                                <span>{{article.share_set.all.count}}</span>
                             </div>
                             <div class="article-stats article-details "><a href="{{ article.get_absolute_url }} "><b>More >></b> </a></div>
                         </div>
@@ -761,7 +766,7 @@
             </div>
             {%empty%}
             <div class="comming-soon">
-                <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTEk on our realeased <em>BLOG POSTS</em> and other events</span>
+                <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTeck on our realeased <em>BLOG POSTS</em> and other events</span>
             </div>
             {%endfor%}
         </div>
@@ -806,7 +811,7 @@
 
         {%empty%}
         <div class="comming-soon">
-            <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTEk on our realeased <em>FAQS</em> and other events</span>
+            <h1>COMMING SOON!</h1> <span><a href="{%url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTeck on our realeased <em>FAQS</em> and other events</span>
         </div>
         {%endfor%}
         <div class="contact-support">Have more questiona to ask or didn't get what you are looking for? <a href="{% url 'core:contact' %}">contact our support team</a></div>

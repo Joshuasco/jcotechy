@@ -1,0 +1,138 @@
+{%load static%}
+<!-- begin blog_include_styles  -->
+<!-- {%block blog_include_styles%} -->
+<link rel="stylesheet" href="{% static 'css/blog/includes/blog_aside.css' %}">
+<!-- {%endblock blog_include_styles%} -->
+<!-- end blog_include_styles  -->
+
+<!-- begin blog_aside -->
+<div class="aside-container division-2">
+    <div>
+        <section style="position: sticky;">
+            <h3 class="sub-header">Ads <a href="{%url 'blog:articles' %}?sponsored_articles=all">Explore</a></h3>
+            <hr>
+            <div class="outer-post-container">
+                <div class="inner-post-container">
+                    <div class="post-container">
+                        <div hx-get="" hx-trigger="every 350s" style="text-align: center;">
+                            <img id="ads-img" style="max-height:10em" src="{{trending_articles.1.image.url}}" alt="">
+                            <p id="ads-content"> {{ trending_articles.1.content|safe|truncatechars:50 }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-3">
+            <h3 class="sub-header">Recent <a href="{%url 'blog:articles' %}?recent_articles=all">Explore</a></h3>
+            <hr>
+            <div class="outer-post-container">
+                <div class="inner-post-container">
+                    {%for article in recent_articles|slice:6 %}
+                    <a href="{{ article.get_absolute_url }}" class="post-url">
+                        <div class="post-container">
+                            <div class="author-container">
+                                <small>
+                        <img class="author-img" src="{{article.author.image.url}}" alt="{{article.author.user.username}}">
+                        {%if article.author.first_name%}{{article.author.first_name}}{{article.author.last_name}}{%else%}{{article.author.user.username}}{%endif%}
+                    </small>
+                                <small> <em>{{article.created|timesince}} ago</em></small>
+
+                            </div>
+                            <div class="content-container">
+                                <div class="article-img-conatainer"><img src="{{article.header_image.url}}" alt=""></div>
+                                <div>
+                                    <h4>{{article.title|title|truncatechars:25}}</h4>
+                                    <div>
+                                        {{article.content|safe|truncatechars:40}} in <a href=""><small>{{article.category}}</small></a>
+                                    </div>
+                                    <div class="stats">
+                                        <small><span>{{article.love.count}} likes </span><span>  2 views  </span><span>  {{article.comment_set.count}} comments</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {%empty%}
+                    <div>no Recent posts yet</div>
+                    {%endfor%}
+                </div>
+            </div>
+        </section>
+        <section class="section-3">
+            <h3 class="sub-header">Trending <a href="{%url 'blog:articles' %}?trending_articles=all">Explore</a></h3>
+            <hr>
+            <div class="outer-post-container">
+                <div class="inner-post-container">
+                    {%for article in trending_articles|slice:6 %}
+                    <a href="{{ article.get_absolute_url }}" class="post-url">
+                        <div class="post-container">
+                            <div class="author-container">
+                                <small>
+                                    <img class="author-img" src="{{article.author.image.url}}" alt="{{article.author.user.username}}">
+                                    {%if article.author.first_name%}{{article.author.first_name}}{{article.author.last_name}}{%else%}{{article.author.user.username}}{%endif%}
+                                </small>
+                                <small> 
+                                    <em>{{article.created|timesince}} ago</em>
+                                </small>
+                            </div>
+                            <div class="content-container">
+                                <div class="article-img-conatainer"><img src="{{article.header_image.url}}" alt=""></div>
+                                <div>
+                                    <h4>{{article.title|title|truncatechars:25}}</h4>
+                                    <div>
+                                        {{article.content|safe|truncatechars:40}} in <a href=""><small>{{article.category}}</small></a>
+                                    </div>
+                                    <div class="stats">
+                                        <small><span>{{article.love.count}} likes </span><span>  2 views  </span><span>  {{article.comment_set.count}} comments</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {%empty%}
+                    <div>no Trending posts yet</div>
+                    {%endfor%}
+                </div>
+            </div>
+        </section>
+        <section>
+            <h3 class="sub-header">Reviews<a href="{%url 'blog:articles' %}?reviewed_articles=all">Explore</a></h3>
+            <hr>
+            <div class="outer-post-container">
+                <div class="inner-post-container">
+                    {%for article in reviewed_articles|slice:6 %}
+                    <a href="{{ article.get_absolute_url }}" class="post-url">
+                        <div class="post-container">
+                            <div class="author-container">
+                                <small>
+                            <img class="author-img" src="{{article.author.image.url}}" alt="{{article.author.user.username}}">
+                            {%if article.author.first_name%}{{article.author.first_name}}{{article.author.last_name}}{%else%}{{article.author.user.username}}{%endif%}
+                        </small>
+                                <small> <em>{{article.created|timesince}} ago</em></small>
+
+                            </div>
+                            <div class="content-container">
+                                <div class="article-img-conatainer"><img src="{{article.header_image.url}}" alt=""></div>
+                                <div>
+                                    <h4>{{article.title|title|truncatechars:25}}</h4>
+                                    <div>
+                                        {{article.content|safe|truncatechars:40}} in <a href=""><small>{{article.category}}</small></a>
+                                    </div>
+                                    <div class="stats">
+                                        <small><span>{{article.love.count}} likes </span><span>  2 views  </span><span>  {{article.comment_set.count}} comments</span></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {%empty%}
+                    <div>No Reviews yet</div>
+                    {%endfor%}
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+<!-- end blog_aside -->

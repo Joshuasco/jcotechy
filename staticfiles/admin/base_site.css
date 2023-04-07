@@ -1,0 +1,23 @@
+/* customize the button colors */
+
+button,
+.button {
+    background-color: #ff008c;
+    color: #fff;
+}
+
+button:hover,
+.button:hover {
+    background-color: #0069d9;
+}
+
+button:focus,
+.button:focus {
+    background-color: #0062cc;
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+button:active,
+.button:active {
+    background-color: #005cbf;
+}

@@ -1,0 +1,178 @@
+/* project section */
+
+table {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+
+/* end default settings */
+
+
+/* default settings */
+
+
+/* hero section */
+
+.hero-section {
+    position: relative;
+    background-color: rgba(97, 40, 231, 0.75);
+    background: url("/static/images/core/software_embedded_iot.jpg");
+    background-position: right!important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding: 2.5em;
+    text-align: center;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to right, rgb(138, 43, 226, .5), rgb(138, 43, 226, .5));
+}
+
+.hero-section div {
+    position: relative;
+}
+
+.hero-section .h1-45 {
+    text-transform: capitalize;
+}
+
+.hero-section .p-20 em {
+    text-shadow: 0 2px 0 #FD21CA;
+}
+
+
+/* end hero section */
+
+
+/* begin section-2 */
+
+.section-2 {
+    display: flex;
+    margin: .5em;
+}
+
+
+/* begin main */
+
+.section-2 main {
+    flex: 3;
+    padding: .5em;
+    max-width: 100%;
+    background-color: white;
+}
+
+main h1 {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+main .header-img {
+    width: 100%;
+}
+
+.project-container {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: flex-start;
+}
+
+.project {
+    width: 48%;
+    overflow: hidden;
+    background-color: whitesmoke;
+    margin: 1%;
+}
+
+.img-container {
+    max-height: 15em;
+    overflow-y: scroll;
+    width: 110%;
+}
+
+.img-container img {
+    width: 100%;
+}
+
+.content-container {
+    padding: 0 .5em;
+}
+
+.url-container {
+    text-align: right;
+    padding: .5em 0;
+}
+
+button {
+    padding: .5em 1em;
+    border-radius: 10px;
+    border: 2px solid #FD21CA;
+    transition: all ease .25s;
+}
+
+button:hover {
+    border: none;
+    background-image: linear-gradient(to right, #971ADE, rgb(233, 19, 179));
+    transition: all ease .25s;
+}
+
+button:hover a {
+    color: white!important;
+}
+
+h2 {
+    color: rgb(71, 8, 129);
+}
+
+
+/* end main */
+
+
+/* begin aside */
+
+.section-2 aside {
+    flex: 1;
+}
+
+
+/* end aside */
+
+
+/* end section-2 */
+
+
+/* palmtop view size */
+
+@media screen and (max-width:992px) {
+    .section-2 {
+        flex-direction: column;
+    }
+    .section-2 h2 {
+        font-size: medium;
+    }
+}
+
+
+/* end palmtop view size */
+
+
+/* mobile view size */
+
+@media screen and (max-width:600px) {
+    .section-2 {
+        padding: 0;
+    }
+    .project {
+        width: 100%;
+    }
+}
+
+
+/* end mobile view size */

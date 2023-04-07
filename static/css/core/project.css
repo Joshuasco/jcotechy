@@ -44,26 +44,39 @@
 
 /* end hero section */
 
+h2 {
+    color: rgb(71, 8, 129);
+}
+
 .section-2 {
-    background-color: white;
-    padding: 2.5em;
+    display: flex;
+    margin: .5em;
+}
+
+
+/* begin main */
+
+.section-2 main {
+    flex: 3;
+    padding: .5em;
+    max-width: 100%;
 }
 
 .project-container {
     display: flex;
     flex-flow: wrap;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .project {
     width: 48%;
     overflow: hidden;
     background-color: whitesmoke;
-    margin: .5em;
+    margin: 1%;
 }
 
 .img-container {
-    height: 15em;
+    max-height: 15em;
     overflow-y: scroll;
     width: 110%;
 }
@@ -98,21 +111,49 @@ button:hover a {
     color: white!important;
 }
 
+
+/* end main */
+
+
+/* begin aside */
+
+aside {
+    flex: 1;
+    padding: .5em;
+}
+
+
+/* end aside */
+
+
+/* end section-2 */
+
+
+/* begin tablet view */
+
 @media screen and (max-width:992px) {
-    .project {
-        width: 90%;
-        margin: .5em auto;
+    .section-2 {
+        flex-direction: column;
     }
     .section-2 h2 {
         font-size: medium;
     }
 }
 
-@media screen and (max-width:992px) {
+
+/* end tablet view */
+
+
+/* begin mobile view */
+
+@media screen and (max-width:600px) {
     .section-2 {
-        padding: 1em;
+        padding: 0;
     }
     .project {
         width: 100%;
     }
 }
+
+
+/* end mobile view */
