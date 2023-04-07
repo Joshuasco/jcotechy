@@ -79,7 +79,7 @@ class Article(models.Model):
     video              =models.URLField(blank=True, null=True, help_text='when adding a video url ensure to check the \'is_video\' \
     field and add video description in content field. Also upload an image to be use as thumbnail')
     short_description       = models.CharField(default="", max_length=160, help_text='give a short description in not more than 160 chars. this will help users find your post on search engines')
-    keywords =models.CharField(default='', max_length=100, help_text="enter comma separated words")
+    keywords = models.CharField(default='', max_length=100, help_text="enter comma separated words")
     content =HTMLField(default='',help_text='use this field as video description when providing video url')
     category          = models.ForeignKey(Category, max_length=50,related_name='category_articles', on_delete=models.SET_NULL, null= True )
     tags               = models.ManyToManyField(Tag, related_name='tags', blank=True)
