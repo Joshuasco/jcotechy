@@ -192,6 +192,11 @@ def activate(request, uidb64, token):
 
 def signin(request):
     path= request.POST.get('next')
+   
+    if not path:
+         path= request.GET.get('next')
+    print(f"######### path = {path} ##############################")
+
     email_username=request.POST.get('email_or_username', None)
     password=request.POST.get('password', None)
     if request.method == "POST":
@@ -207,7 +212,7 @@ def signin(request):
             
             if authenticate_user:
                 auth.login(request, authenticate_user)
-                messages.success(request,f"{email_username} signin successfully")
+                messages.success(request,f"{email_username}, signin successful")
                 return redirect('core:home')
             else:
                 messages.error(request,"wrong credentials")
@@ -216,7 +221,7 @@ def signin(request):
             authenticate_user=auth.authenticate(username=email_username, password=password)
             if authenticate_user:
                 auth.login(request, authenticate_user)
-                messages.success(request,f"{email_username} signin successfully")
+                messages.success(request,f"{email_username}, signin successful")
                 if path:
                   return redirect(path)  
                 return redirect("core:home")
@@ -321,8 +326,6 @@ def signup(request):
             messages.info(request, "Please confirm your email address to complete the registration")
             return redirect('account:signup')
 
-            # messages.success(request, 'signup successfull, click the signin button to signin')
-            # return redirect('account:signup')
         else:
 
             messages.warning(request, 'one or more filed(s) is(are) empty please fill all filleds')

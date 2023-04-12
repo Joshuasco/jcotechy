@@ -162,3 +162,20 @@ button:hover a {
         height: 12em;
     }
 }
+
+@media screen and (max-width:600px) {
+    .couroser {
+        margin: 0;
+    }
+    .section-3 {
+        padding: 0;
+        margin: .5em;
+    }
+    .project-container {
+        flex-direction: column;
+    }
+    .project {
+        width: 100%;
+        margin: .5em 0;
+    }
+}

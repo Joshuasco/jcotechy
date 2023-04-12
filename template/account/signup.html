@@ -5,7 +5,7 @@
 <section class="section-2 form-section">
     <div class="form-container">
         <div class="img-container"><img src="{% static 'images/account/login3.jpg' %}" alt=""></div>
-        <form method="POST" action="{%url 'account:signup' %}">
+        <form method="POST" action="{%url 'account:signup' %}?next={{request.GET.next}}">
             {%csrf_token%}
             <p><input type="text" name="username" id="" placeholder="username" required></p>
             <p><input type="text" name="email" id="" placeholder="email" required></p>

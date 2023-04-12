@@ -176,7 +176,7 @@
                         </div>
                         <div class="featured-posts">
                             <div class="couroser">
-                                {%for article in category.category_articles.all %} {% if article.is_published%}
+                                {%for article in category.category_articles.all|slice:6 %} {% if article.is_published%}
                                 <div class="article">
                                     <ul>
                                         <div class="absolute-bg">

@@ -47,67 +47,7 @@ $(document).ready(function() {
     //end hero section
 
 
-    // begin service section
-    // $('.services-action-btn').each(function() {
-
-    //     let $this = $(this);
-    //     $(this).click(function(e) {
-    //         e.preventDefault();
-    //         $(this).parents('.service-container').addClass('service-details')
-    //             // $('body::before').css({
-    //             //     backgroundImage: 'linear-gradient(to left, rgb(138, 43, 226, .5), rgb(138, 43, 226, .5))',
-    //             //     zIndex: '3',
-    //             // })
-    //         $(this).parents('.service-container div').css({
-    //             display: 'flex',
-    //             padding: '.5em',
-    //             justifyContent: 'center',
-    //             alignItems: 'center',
-    //             flexDirection: 'column',
-    //         });
-    //         $(this).parents('.service-container').children('.service-cancel-btn').toggle(250);
-    //         $(this).parent('.service-description').toggle(250);
-    //         $(this).parents('.service-description').siblings('.service-content').toggle(250);
-    //         console.log('service clicked')
-    //             // if(!$(this).parents('.service-container')){
-    //             //     $parents('.service-container').css()
-    //             // }
-    //     });
-    //     $(this).parents('.service-container').children('.service-cancel-btn').click(function() {
-    //         $(this).toggle(250);
-    //         $(this).parents('.service-container').removeClass('service-details');
-    //         $(this).parents('.service-container').find('.service-description').toggle(250);
-    //         $(this).parents('.service-container').find('.service-description').siblings('.service-content').toggle(250);
-    //     });
-    // });
-    // end service section
-
-
-    $('.faqs').click(function(e) {
-        console.log("just cliked");
-        $('html, body').animate({
-            scrollTop: $("#faqs").offset().top
-        }, 1000);
-    });
-
-    $('.services').click(function(e) {
-        e.preventDefault();
-        $('html, body').animate({
-            scrollTop: $("#services").offset().top
-        }, 1000);
-    });
-
-    $('.subscribe').click(function(e) {
-        e.preventDefault();
-        $('html, body').animate({
-            scrollTop: $("#subscribe").offset().top
-        }, 1000);
-        $("#subscribe input").focus()
-    });
-
-
-
-    //scroll function for mobile device
+    //scroll animations on features(why choose us) section-3
     $(document).scroll(function() {
         let offsetT = $('.section-3').offset().top;
         let offsetH = $('.features').offset().height;
@@ -126,10 +66,11 @@ $(document).ready(function() {
             console.log(windowHeight);
         }
     });
+    // end animation scroll
 
 
 
-    // FAQS section
+
     $('.question').each(function() {
         $(this).click(function() {
             $(this).children('p').next('.reply').slideToggle();
@@ -145,7 +86,7 @@ $(document).ready(function() {
 
     //reviews
     var animationSpeed = 2000; // How quickly the next slide animates.
-    var pause = 3000; // The pause between each slide
+    var pause = 5000; // The pause between each slide
     // var width = 15.75;
     var currentSlide = 1;
     var interval;
@@ -167,7 +108,6 @@ $(document).ready(function() {
 
     }
 
-
     function startInterval() {
         interval = setInterval(review, pause);
     }
@@ -181,6 +121,9 @@ $(document).ready(function() {
         'mouseenter': stopInterval,
     });
     startInterval();
+    // end review slide
+
+
 
 
     // testing Script

@@ -17,7 +17,7 @@ li {
     position: relative;
     background-color: rgba(97, 40, 231, 0.75);
     background: url("/static/images/blog/tech.jpg");
-    background-position: right;
+    background-position: right!important;
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
@@ -52,13 +52,11 @@ iframe {
 .category-container {
     display: flex;
     margin: 0 auto;
-    max-width: 100%;
     overflow-x: scroll;
 }
 
 .category-container a {
     padding: .5em;
-    white-space: nowrap;
 }
 
 .category-container a:hover {
@@ -74,17 +72,4 @@ iframe {
 
 @media screen and (max-width:992px) {}
 
-@media screen and (max-width:600px) {
-    .hero-section {
-        position: relative;
-        /* background-color: rgba(97, 40, 231, 0.75);
-        background: url(""); */
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        color: white;
-        padding: 2.5em;
-        text-align: center;
-        max-width: 80%!important;
-    }
-}
+@media screen and (max-width:600px) {}

@@ -1,12 +1,14 @@
 .hero-section {
     position: relative;
     background-color: rgba(97, 40, 231, 0.75);
-    background: url("/static/images/account/login2.jpg");
+    background: url("/static/images/core/hiring.jpg");
     background-position: right!important;
     background-repeat: no-repeat;
     background-size: cover;
+    vertical-align: center;
+    text-align: center;
     color: white;
-    padding: 2.5em;
+    padding: 4em 2.5em;
     text-align: center;
 }
 
@@ -34,4 +36,107 @@
 
 .hero-section .p-20 a {
     text-shadow: 0 2px 2px white!important;
+}
+
+
+/* begin section-2 */
+
+.section-2 {
+    margin: 1em;
+}
+
+.section-2 .container {
+    display: flex;
+    flex-flow: wrap;
+    width: 100%;
+}
+
+.section-2 .item-list {
+    box-shadow: 2px 2px 0 whitesmoke;
+    max-width: 45%;
+    min-width: 44%;
+    background-color: lavender;
+    padding: 1em;
+    margin: .5em;
+    border-radius: 10px;
+}
+
+.section-2 .item-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.section-2 .item-row span {
+    padding-right: .5em;
+}
+
+.section-2 .info {
+    padding: .5em;
+    background-image: linear-gradient(to bottom, rgb(245, 245, 245, .5), rgb(245, 245, 245, .5));
+}
+
+.section-2 .btn-2 {
+    display: none;
+}
+
+.section-2 .more {
+    display: none;
+    padding: 0 .5em .5em;
+    max-height: 15em;
+    overflow-y: scroll;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.section-3 {
+    background-color: lavender;
+}
+
+.section-3 h1,
+.section-3 .message,
+.section-3 .title-header {
+    text-align: center;
+}
+
+.section-3 .container {
+    width: 80%;
+    margin: auto;
+    padding: 1em;
+}
+
+.section-3 input,
+.section-3 select,
+.section-3 textarea {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+.section-3 input,
+.section-3 select {
+    height: 2em;
+}
+
+
+/* end section-2 */
+
+@media screen and (max-width:992px) {
+    /* begin section-2 */
+    .section-2 {
+        margin: 0;
+    }
+    .section-2 .container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .section-2 .item-list {
+        max-width: 90%;
+        min-width: 90%;
+    }
+    /* end section-2 */
+}
+
+@media screen and (max-width:600px) {
+    /* begin section-2 */
 }

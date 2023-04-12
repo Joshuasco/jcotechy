@@ -1,0 +1,17 @@
+.django-share-button.django-share-facebook {
+    background-image: url('path/to/your/facebook/icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+.django-share-button.django-share-whatsapp {
+    background-image: url('path/to/your/whatsapp/icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}

@@ -1,3 +1,9 @@
+/* changes to hero-section  */
+
+
+/* end changes to hero-section */
+
+
 /* begin constant blog base container */
 
 .blog-base-container {
@@ -396,7 +402,7 @@
         padding: 0;
     }
     .featured-posts {
-        max-width: 17.5em;
+        max-width: 18.5em;
         margin: 0!important;
     }
     .couroser .article {

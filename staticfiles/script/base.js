@@ -1,5 +1,52 @@
 $(document).ready(function() {
+    // begin message alert
+    // togglenclose message alert
+    $(".msg-alert-container .close-msg-alert").click(function() {
+        $('.msg-alert-container').slideUp(500);
+    })
+    $(".msg-alert-container-1 .close-msg-alert").click(function() {
+            $('.msg-alert-container-1').slideUp(500);
+        })
+        // end message alert
 
+
+    // begin django csrf-token for form submition
+    //funtion to handle all ajax post request
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+
+        }
+    });
+
+    // end django csrf-token for form submition
+
+
+    // begin get quote form
     $('.get-quote').click(function(e) {
         e.preventDefault();
         console.log('base clicked');
@@ -31,10 +78,6 @@ $(document).ready(function() {
         });
         $('.get-quote-form').slideToggle(500);
     });
-
-    // close message alert
-    $(".close-msg-alert").click(function() {
-        $('.msg-alert-container').slideUp(500);
-    })
+    // end get quote form
 
 })

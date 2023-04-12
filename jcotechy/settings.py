@@ -292,7 +292,21 @@ from django.urls import reverse, reverse_lazy
 from django.shortcuts import render, redirect
 
 LOGIN_URL='account:signin'
-LOGIN_REDIRECT_URL='core:home'
+
+def get_login_redirect_url(request):
+    # Get the 'next' parameter from the request GET parameters
+    next_param = request.GET.get('next')
+    
+    # If the 'next' parameter is present and is a relative URL, return it
+    if next_param and not next_param.startswith('http'):
+        return next_param
+    
+    # Otherwise, redirect to the homepage
+    return '/'
+    
+# Set the LOGIN_REDIRECT_URL to be the get_login_redirect_url function
+LOGIN_REDIRECT_URL = get_login_redirect_url
+
 
 
 

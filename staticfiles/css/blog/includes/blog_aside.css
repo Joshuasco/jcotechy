@@ -51,6 +51,7 @@
 .aside-container .inner-post-container {
     max-height: 24em;
     width: 110%;
+    padding-right 2em!important;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -124,9 +125,9 @@
         flex-flow: wrap;
         justify-content: space-between;
         max-height: 30em;
-        width: 100%;
     }
     .post-container {
+        /* padding: .5em; */
         width: 45%;
         min-width: 45%;
         padding: 3%;
@@ -141,8 +142,6 @@
         display: block;
         align-items: center;
         max-height: 24em;
-        width: 102%;
-        padding-right: .75em!important;
     }
     .post-container {
         width: 100%;

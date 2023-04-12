@@ -396,7 +396,7 @@
                         <input class="submit_comment" type="submit" value="send">
                     </form>
                     {%else%}
-                    <div class="comming-soon"> <a href="{% url 'account:signin' %}?next='{% url 'blog:article_details' article.slug %}'"> signin</a> to comment on this post</div>
+                    <div class="comming-soon"> <a href="{% url 'account:signin' %}?next={% url 'blog:article_details' article.slug %}#comment-container"> signin</a> to comment on this post</div>
                     {%endif%}
                 </div>
         </div>

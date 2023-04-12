@@ -1,0 +1,106 @@
+h2 {
+    text-transform: capitalize;
+}
+
+.aside-container section {
+    margin: 0 .5em;
+}
+
+.aside-section-1,
+.aside-section-2 {
+    display: block;
+}
+
+.aside-section-1 .aside-cat {
+    position: relative;
+    overflow-y: hidden;
+}
+
+.aside-section-1 .aside-cat,
+.aside-section-2 .aside-project {
+    width: 100%;
+    overflow-x: hidden;
+    background-color: whitesmoke;
+}
+
+.aside-cat .img-container {
+    max-height: 5em;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aside-cat img {
+    width: 100%;
+    height: auto;
+}
+
+.aside-project .img-container {
+    max-height: 10em;
+    width: 110%;
+    overflow-y: scroll;
+}
+
+.aside-project img {
+    width: 100%;
+    height: auto;
+}
+
+.aside-cat h4 {
+    position: absolute;
+    bottom: -1.25em;
+    right: 0;
+    left: 0;
+    background-color: rgba(138, 43, 226, .5);
+    color: white;
+    padding: .25em;
+}
+
+
+/* begin tablet view css */
+
+@media screen and (max-width:992px) {
+    h2 {
+        text-transform: uppercase!important;
+        margin-top: 3em;
+    }
+    .aside-section-1,
+    .aside-section-2 {
+        display: flex;
+        flex-flow: wrap;
+        max-width: 100%;
+    }
+    .aside-section-1 .aside-cat {
+        width: 23%;
+        margin: 1%;
+    }
+    .aside-section-2 .aside-project {
+        width: 48%;
+        margin: 1%;
+    }
+}
+
+
+/* end tablet view css */
+
+
+/* begin mobile view css */
+
+@media screen and (max-width:600px) {
+    .aside-container section {
+        margin: 0;
+        padding: 0;
+    }
+    .aside-section-2 .aside-project {
+        width: 100%;
+        margin: .5em 0;
+    }
+    .aside-section-1 .aside-cat {
+        width: 48%;
+        margin: 1%;
+    }
+}
+
+
+/* end mobielo view css */
