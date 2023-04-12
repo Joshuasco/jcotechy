@@ -1,3 +1,16 @@
+/* default css */
+
+ul,
+ol,
+li {
+    list-style: unset;
+    list-style-type: unset;
+}
+
+
+/* end default css */
+
+
 /* begin hero-section */
 
 .hero-section {

@@ -13,8 +13,8 @@
 }
 
 .blog-base-container h4 {
-    padding: 0;
-    margin: 0;
+    padding 0;
+    margin 0;
 }
 
 .blog-base-container p {
@@ -79,7 +79,7 @@
 
 .featured-posts {
     max-width: 52em;
-    max-height: 13em;
+    max-height: 17em;
     margin: auto;
     margin-bottom: 2em;
     overflow: hidden;
@@ -90,15 +90,17 @@
     flex-flow: row !important;
     justify-content: left !important;
     margin: auto;
-    height: 14em;
+    height: 17em;
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: scroll!important;
 }
 
 .featured-posts .couroser .article {
     width: 15em;
-    width: 12.5em;
+    min-width: 15em;
+    /* width: 12.5em; */
     margin: .15em;
+    padding-bottom: .5em;
 }
 
 .featured-posts .couroser .img-container {
@@ -119,6 +121,7 @@
     display: flex;
     flex-flow: wrap;
     width: 100%;
+    padding: 2%;
 }
 
 .couroser .article {
@@ -274,8 +277,8 @@
 }
 
 .aside-container h4 {
-    padding: 0;
-    margin: 0;
+    padding 0;
+    margin 0;
 }
 
 .aside-container .trending-post {

@@ -158,13 +158,13 @@
                     <!-- end searched articles -->
 
                     <!-- ads display -->
-                    {% include 'ads/ads.html' %}
+
                     <!-- end ads display -->
 
                     {%else%}
 
                     <!-- ads display -->
-                    {% include 'ads/ads.html' %}
+
                     <!-- end ads display -->
 
                     {% if not 'category' in request.get_full_path %} {% for category in categories %} {%if category.category_articles.all %}
@@ -232,11 +232,11 @@
                     </section>
                     {%endif%}{%endfor%}{%endif%} {%endif%}
 
-                    <section>
+                    <!-- <section>
                         <div>
                             <button>1</button><button>2</button><button>3</button><button>Next</button>
                         </div>
-                    </section>
+                    </section> -->
                 </div>
             </div>
         </div>

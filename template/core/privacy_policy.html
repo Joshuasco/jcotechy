@@ -11,18 +11,18 @@ to startups, small and medium business organizations and industries that creates
 
         <div class="content">
             <br><br><br>
-            <h1 class="h1-45"> Our Privacy / Policy </h1>
+            <h1 class="h1-45"> Our Privacy Policy </h1>
             <p class="p-20">
-                <em>Read our Privacy / Policy</em> <br>
-                <small>Note that this is subject to change and as such  you should always stay abreast by subscribing to our email list where you get notified on any recent update</small>
+                <em>Read our Privacy Policy</em> <br>
+                <small>Note that this is subject to change and as such  you will be notified on effected through your email and on our website </small>
             </p>
         </div>
 
     </section>
-    <section>
-        {% for p_p in P_Ps %}
-        <h1>{{p_p.title}}</h1>
-        <div>{{p_p.content|safe}}</div>
+    <section class="section-2">
+        {% for p_p in p_ps %}
+        <h1 class="privacy-title">{{p_p.title}}</h1>
+        <div class="privacy-content">{{p_p.content|safe}}</div>
         {%empty%}
         <div class="comming-soon">
             <h1>COMMING SOON!</h1> <span><a href="{% url 'core:home' %}/#subscribe" class="subscribe">subscribe</a> to our e-mail list to stay abreast with JCOTeck on our  <em>Privacy / Policy</em> and other events</span>

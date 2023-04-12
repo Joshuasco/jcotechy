@@ -271,6 +271,6 @@ def unsubscribe(request):
 
 def privacyPolicy(request):
     context={
-        'p_ps': PrivacyPolicy.objects.all()
+        'p_ps': PrivacyPolicy.p_ps.all()
      }
     return render(request, 'core/privacy_policy.html', context)

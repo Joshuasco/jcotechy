@@ -42,7 +42,7 @@ body .msg-alert-container-1 {
     left: unset;
     right: 0;
     margin-right: .5em;
-    z-index: 2!important;
+    z-index: 100!important;
     opacity: 1!important;
 }
 

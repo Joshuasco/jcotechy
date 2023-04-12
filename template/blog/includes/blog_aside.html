@@ -8,13 +8,13 @@
 <!-- begin blog_aside -->
 <div class="aside-container division-2">
     <div>
-        <section style="position: sticky;">
+        <!-- <section style="position: sticky;">
             <h3 class="sub-header">Ads <a href="{%url 'blog:articles' %}?sponsored_articles=all">Explore</a></h3>
             <hr>
             <div class="outer-post-container">
                 <div class="inner-post-container">
                     <div class="post-container">
-                        <div hx-get="" hx-trigger="every 350s" style="text-align: center;">
+                        <div style="text-align: center;">
                             <img id="ads-img" style="max-height:10em" src="{{trending_articles.1.image.url}}" alt="">
                             <p id="ads-content"> {{ trending_articles.1.content|safe|truncatechars:50 }}
                             </p>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <section class="section-3">
             <h3 class="sub-header">Recent <a href="{%url 'blog:articles' %}?recent_articles=all">Explore</a></h3>
             <hr>

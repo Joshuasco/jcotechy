@@ -29,3 +29,16 @@
 .hero-section .h1-45 {
     text-transform: capitalize;
 }
+
+.section-2 {
+    padding: 1em 1.5em 2em;
+}
+
+.privacy-title {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.privacy-content {
+    color gray;
+}
