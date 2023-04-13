@@ -27,7 +27,7 @@ class ProductCat(models.Model):
     updated_on = models.DateTimeField(auto_now= True)
 
     objects=models.Manager() #default ProductCat manager
-    product_imgs=ProductCatManager() #custom ProductCat manager
+    product_cats=ProductCatManager() #custom ProductCat manager
 
     def __str__(self):
         return self.title
@@ -134,8 +134,8 @@ class OrderProduct(models.Model):
     updated_on=models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = 'product'
-        verbose_name_plural='products'
+        verbose_name = 'Order Product'
+        verbose_name_plural='Order Products'
         ordering= ('-created_on',)
 
     def __str__(self):
@@ -186,8 +186,8 @@ class Order(models.Model):
     updated_on=models.DateTimeField(auto_now=True)
     
     class Meta:
-        verbose_name = 'product'
-        verbose_name_plural='products'
+        verbose_name = 'Order'
+        verbose_name_plural='Oders'
         ordering= ('-created_on',)
 
     def __str__(self):
@@ -214,8 +214,15 @@ class Payment(models.Model):
     paid = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = 'Payment'
+        verbose_name_plural='Payments'
+        ordering= ('-timestamp',)
+
     def __str__(self):
-        return self.paid
+        return str(self.amount)
+
+
 
 
 ################ COUPON MODEL ##################
@@ -225,6 +232,11 @@ class Coupon(models.Model):
     code = models.CharField(max_length=15)
     amount = models.FloatField()
     created_on= models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Coupon'
+        verbose_name_plural='Coupons'
+        ordering= ('-created_on',)
 
     def __str__(self):
         return self.code

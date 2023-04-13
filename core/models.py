@@ -113,8 +113,8 @@ class PortfolioCat(models.Model):
     portfolio_cats= PortfolioCatManager() # custom portfolio manager
     
     class Meta:
-        verbose_name = 'PortfolioCat'
-        verbose_name_plural= 'PortfolioCats'
+        verbose_name = 'Portfolio cat'
+        verbose_name_plural= 'Portfolio cats'
         ordering= ('-created_on',) 
 
     def __str__(self):
@@ -184,8 +184,8 @@ class EventCat(models.Model):
     event_cats= EventCatManager() # custom event manager
     
     class Meta:
-        verbose_name = 'EventCat'
-        verbose_name_plural= 'EventCats'
+        verbose_name = 'Event cat'
+        verbose_name_plural= 'Event cats'
         ordering= ('-created_on',) 
 
     def __str__(self):
@@ -414,8 +414,8 @@ class PrivacyPolicy(models.Model):
     p_ps = PrivacyPolicyManager() # custom PrivacyPolicy manager
     
     class Meta:
-        verbose_name = 'PrivacyPolicy'
-        verbose_name_plural= 'PrivacyPolicies'
+        verbose_name = 'Privacy policy'
+        verbose_name_plural= 'Privacy policy'
         ordering= ('-created_on',) 
 
     def __str__(self):

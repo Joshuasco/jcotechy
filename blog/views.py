@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse, reverse_lazy
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import (Article, Comment, Category, Tag, Share, Viewer)
 from .forms import CommentForm
 from account.models import Profile
