@@ -2,14 +2,14 @@
 # # from typing_extensions import Required
 # # from typing_extensions import Required
 # from django import forms
-# from django.contrib.auth.forms import (AuthenticationForm, PasswordResetForm,
-#                                        SetPasswordForm)
+# from django.contrib.auth.forms import (AuthenticationForm,)
 # from .models import Customer, Address
 
 
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import (UserCreationForm, AuthenticationForm, PasswordResetForm,
+                                       SetPasswordForm)
 from .models import Profile
  
  
@@ -24,6 +24,30 @@ class SignupForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('email already exist, pls use another email')
         return email
+
+
+class PwdResetForm(PasswordResetForm):
+
+    email = forms.EmailField(max_length=254, widget=forms.TextInput(
+        attrs={'class': 'form-control ', 'placeholder': 'Email', 'id': 'form-email'}))
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        user = User.objects.filter(email=email)[0]
+        if not user:
+            raise forms.ValidationError(
+                'email does not exists, signup with this email')
+        return email
+
+
+class PwdResetConfirmForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label='New password', widget=forms.PasswordInput(
+            attrs={'class': 'form-control ', 'placeholder': 'New Password', 'id': 'form-newpass'}))
+    new_password2 = forms.CharField(
+        label='Repeat password', widget=forms.PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'New Password', 'id': 'form-new-pass2'}))
+
 
 
 class AccountUpdateForm(forms.ModelForm):
@@ -132,28 +156,6 @@ class ProfileUpdateForm(forms.ModelForm):
 #         self.fields['password2'].widget.attrs.update(
 #             {'class': 'form-control', 'placeholder': 'Repeat Password'})
 
-
-# class PwdResetForm(PasswordResetForm):
-
-#     email = forms.EmailField(max_length=254, widget=forms.TextInput(
-#         attrs={'class': 'form-control mb-3', 'placeholder': 'Email', 'id': 'form-email'}))
-
-#     def clean_email(self):
-#         email = self.cleaned_data['email']
-#         u = Customer.objects.filter(email=email)
-#         if not u:
-#             raise forms.ValidationError(
-#                 'Unfortunatley we can not find that email address')
-#         return email
-
-
-# class PwdResetConfirmForm(SetPasswordForm):
-#     new_password1 = forms.CharField(
-#         label='New password', widget=forms.PasswordInput(
-#             attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-newpass'}))
-#     new_password2 = forms.CharField(
-#         label='Repeat password', widget=forms.PasswordInput(
-#             attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-new-pass2'}))
 
 
 # class UserEditForm(forms.ModelForm):

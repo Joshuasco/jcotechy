@@ -47,7 +47,7 @@
                                         {{article.content|safe|truncatechars:40}} in <a href=""><small>{{article.category}}</small></a>
                                     </div>
                                     <div class="stats">
-                                        <small><span>{{article.love.count}} likes </span><span>  2 views  </span><span>  {{article.comment_set.count}} comments</span></small>
+                                        <small><span>{{article.love.count}} like{{ article.love.count|pluralize }}  </span> <span> {{article.viewer_set.count}} view{{article.viewer_set.count|pluralize}} </span><span>  {{article.comment_set.count}} comment{{article.comment_set.count|pluralize}}</span></small>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                                         {{article.content|safe|truncatechars:40}} in <a href=""><small>{{article.category}}</small></a>
                                     </div>
                                     <div class="stats">
-                                        <small><span>{{article.love.count}} likes </span><span>  2 views  </span><span>  {{article.comment_set.count}} comments</span></small>
+                                        <small><span>{{article.love.count}} like{{ article.love.count|pluralize }}  </span> <span> {{article.viewer_set.count}} view{{article.viewer_set.count|pluralize}} </span><span>  {{article.comment_set.count}} comment{{article.comment_set.count|pluralize}}</span></small>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                         {{article.content|safe|truncatechars:40}} in <a href=""><small>{{article.category}}</small></a>
                                     </div>
                                     <div class="stats">
-                                        <small><span>{{article.love.count}} likes </span><span>  2 views  </span><span>  {{article.comment_set.count}} comments</span></small>
+                                        <small><span>{{article.love.count}} like{{ article.love.count|pluralize }}  </span> <span> {{article.viewer_set.count}} view{{article.viewer_set.count|pluralize}} </span><span>  {{article.comment_set.count}} comment{{article.comment_set.count|pluralize}}</span></small>
                                     </div>
                                 </div>
                             </div>

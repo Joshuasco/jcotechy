@@ -76,7 +76,7 @@ def send_email(to_email, subject, body):
     print(f"############## {settings.DEFAULT_FROM_EMAIL} ##############")
     message = Mail(
         from_email="info@jcoteck.com",
-        to_emails=['emekaodigbo1@gmail.com', 'joshuaodigbo1@gmail.com'],
+        to_emails=to_email,
         subject=subject,
         # html_content=body
         # subject = "Subject line for the email"
@@ -143,7 +143,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):  
         user.is_active = True  
         user.save()  
-        messages.success(request, 'Thank you for your email confirmation. You can now login to your account.' )
+        messages.success(request, 'Thank you for your email confirmation. You can now signin to your account.' )
         return redirect('account:signin')  
     else:  
         messages.success(request, 'Activation link is invalid!' )
@@ -218,7 +218,12 @@ def signin(request):
                 messages.error(request,"wrong credentials")
                 return redirect('account:signin')
         else:
+            if not User.objects.filter(username=email_username ).exists():
+                messages.error(request, f"username '{email_username}' doesn't exists, signup with this username")
+                return redirect('account:signin')
+
             authenticate_user=auth.authenticate(username=email_username, password=password)
+
             if authenticate_user:
                 auth.login(request, authenticate_user)
                 messages.success(request,f"{email_username}, signin successful")
@@ -228,50 +233,34 @@ def signin(request):
             else:
                 messages.error(request,"wrong credentials")
                 return redirect('account:signin')
+   
     from django.core.mail import send_mail
-    message = Mail(
-        from_email='info@jcoteck.com',
-        to_emails=["emekaodigbo1@gmail.com",],
-        subject="u are welcomw to jcoteck",
-        # html_content=body
-        # subject = "Subject line for the email"
-        html_content = "my html content goes here"
-        # Content("text/plain", "Body of the email")
-        )
-        
-    try:
-        # sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
-        print("done")
+   
+    to_emails=["emekaodigbo1@gmail.com",'jcoteck@gmail.com']
+    subject="u are welcome to jcoteck SENDGRID API from info@jcoteck.com"
+    html_content = "<p>thank you for signing in, ensure to stay update with our latest contetn from our blog. <a href='https://jcoteck.com/blog' >visit our blog</a> </p>"
 
-
-        subject = 'Test Email'
-        message = 'This is a test email message'
-        email_from = 'emekaodigbo1@gmail.com'
-        recipient_list = ['joshuaodigbo1@gmail.com', 'jcoteck@gmail.com']
+    # send_email(to_email=to_emails, subject=subject, body=html_content)
+    try: 
+        print("######### USING DJANGO DEFAULT MAILING IN WEB API #########")
+        subject = 'Test Email SENDGRID SMTP from info@jcoteck.com'
+        message = render_to_string('account/verify_account.html', {  
+                'user': current_user,  
+                'domain': current_site.domain,  
+                'uid':urlsafe_base64_encode(force_bytes(current_user.pk)),  
+                'token':account_activation_token.make_token(current_user),  
+                'verification_url' : request.build_absolute_uri(reverse('account:activate', kwargs={'uidb64': uid, 'token': token}))
+            })
+        email_from = 'info@jcoteck.com'
+        recipient_list = ['jcoteck@gmail.com',]
         
-        send_mail(subject, message, email_from, recipient_list, fail_silently=False)
-        send_mail(
-            "u are welcomw to jcoteck",
-            # html_content=body
-            # subject = "Subject line for the email"
-        "my html content goes here"
-            'emekaodigbo1@gmail.com',
-            ["joshuaodigbo1@gmail.com",],
-            fail_silently=False,
-        )
-        messages.info(request, "message sent")
-        # response = sg.send(message)
-        # print("############## RESPONSE STATUS CODE  ###################")
-        # print(response.status_code)
-        # print("############## RESPONSE BODY  ###################")
-        # print(response.body)
-        # print("############## RESPONSE HEADER  ###################")
-        # print(response.headers)
+        # send_mail(subject, message, email_from, recipient_list, fail_silently=False)
     except Exception as e:
-        print("############## ERROR ENCOUNTERED  ###################")
+        print("######### USING DJANGO DEFAULT MAILING: COULDNT SEND, AN ERROR JUST OCCURED #########")
         print(e)
-            
     return render(request, 'account/signin.html')
+
+
 
 def signup(request):
     username=request.POST.get('username', None)
@@ -284,7 +273,7 @@ def signup(request):
         'password_1':password_1,
         'password_2':password_2,
     }
-    send_email('emekodigbo1@gmail.com', "Integrating sendgird mail", "testing out sendgrid mail integrations")
+   
     print("######################## MESSAGE SENT ################")
     if request.method == 'POST':
         if username !=None and email !=None and password_1 !=None and password_2 !=None:
@@ -313,17 +302,15 @@ def signup(request):
                 'uid':urlsafe_base64_encode(force_bytes(current_user.pk)),  
                 'token':account_activation_token.make_token(current_user),  
                 'verification_url' : request.build_absolute_uri(reverse('account:activate', kwargs={'uidb64': uid, 'token': token}))
-            })  
-            to_email = email 
-            # email = EmailMessage(  
-            #             mail_subject, message, to=[to_email]  
-            # )  
-            # email.send() 
 
+            })  
+            to_email = email  
+            # print(f"##### URL =  {message['verification_url'] } ###################")
             send_email(to_email, mail_subject, message)
             print("######################## MESSAGE SENT ################")
+            
 
-            messages.info(request, "Please confirm your email address to complete the registration")
+            messages.info(request, "Please confirm your email address to complete the registration, An activation link has been sent to your email")
             return redirect('account:signup')
 
         else:
@@ -332,6 +319,8 @@ def signup(request):
             return redirect('account:signup')
     return render(request, 'account/signup.html', context)
  
+
+
 @login_required
 def signout(request):
     path=request.GET.get('next')
@@ -340,6 +329,8 @@ def signout(request):
     if path:
         return redirect(path)  
     return redirect("core:home")
+
+
 
 @login_required
 def profile(request):

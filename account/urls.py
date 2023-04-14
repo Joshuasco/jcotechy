@@ -17,12 +17,12 @@ urlpatterns = [
         "signin/", views.signin, name="signin"),
     path(
         "signout/", views.signout, name="signout"),
-    # path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',  
-    #     views.activate, name='activate'), 
+    path("activate/<slug:uidb64>/<slug:token>)/", views.activate, name="activate"),
+
 
     # path("logout/", auth_views.LogoutView.as_view(next_page="/account/login/"), name="logout"),
     # path("register/", views.account_register, name="register"),
-    # path("activate/<slug:uidb64>/<slug:token>)/", views.account_activate, name="activate"),
+    
     # # Reset password
     # path(
     #     "password_reset/",

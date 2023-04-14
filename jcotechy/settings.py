@@ -325,7 +325,7 @@ LOGIN_REDIRECT_URL = get_login_redirect_url
 # except:
 SENDGRID_API_KEY= os.environ.get('SENDGRID_API_KEY')
 
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
