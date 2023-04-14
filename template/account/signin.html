@@ -3,7 +3,7 @@
 <section class="section-2 form-section">
     <div class="form-container">
         <div class="img-container"><img src="{% static 'images/account/login.jpg' %}" alt=""></div>
-        <form method="POST" action="{%url 'account:signin' %}?next={{request.GET.next}}">
+        <form method="POST" action="{%url 'account:signin' %}{% if request.GET.next %}?next={{request.GET.next}}{%endif%}">
             {%csrf_token%}
             <p><input type="text" name="email_or_username" id="" placeholder="email or username"></p>
             <p><input type="password" name="password" id="" placeholder='password'></p>
