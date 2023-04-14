@@ -306,7 +306,7 @@ def signup(request):
             })  
             to_email = email  
             # print(f"##### URL =  {message['verification_url'] } ###################")
-            send_email(to_email, mail_subject, message)
+            # send_email(to_email, mail_subject, message)
             print("######################## MESSAGE SENT ################")
             
 
