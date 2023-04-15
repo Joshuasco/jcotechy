@@ -313,7 +313,8 @@ def viewer(request, slug):
     if ip:
         
         ip.split(',')[0]
+             
     else:
         ip=request.META.get('REMOTE_ADDR')
-    Viewer.objects.create(article=article, ip=ip,)
+    #Viewer.objects.create(article=article, ip=ip,)
     return 'ip added'
