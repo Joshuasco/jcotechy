@@ -192,7 +192,7 @@ class Share(models.Model):
 
 class Viewer(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    ip=models.CharField(max_length=50)
+    ip=models.CharField(max_length=150)
     # view_count = models.PositiveIntegerField(default=0)
     viewed_date =  models.DateTimeField(auto_now_add=True)
     def __str__(self):
