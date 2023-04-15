@@ -313,8 +313,9 @@ def viewer(request, slug):
     if ip:
         
         ip.split(',')[0]
-             
+        print(f"##### split ip = {ip} ######") 
     else:
         ip=request.META.get('REMOTE_ADDR')
+        print(f"##### unsplit ip = {ip} ######")
     #Viewer.objects.create(article=article, ip=ip,)
     return 'ip added'
