@@ -73,7 +73,7 @@ class HomeView(ListView):
     SHOULD EXECUTE ONCE
 
     """
-    if _S.DEBUG:
+    if not _S.DEBUG:
         for service in Services:
 
             obj, created = Service.objects.get_or_create(title=service['title'],
