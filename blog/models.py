@@ -179,7 +179,7 @@ SOCIALS=(
 class Share(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     social_medium =models.CharField(choices=SOCIALS, max_length=10)
-    shared_date = models.DateTimeField(default=datetime.now)
+    shared_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = 'share'
@@ -194,7 +194,7 @@ class Viewer(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     ip=models.CharField(max_length=50)
     # view_count = models.PositiveIntegerField(default=0)
-    viewed_date =  models.DateTimeField(default=datetime.now)
+    viewed_date =  models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.ip  
 
